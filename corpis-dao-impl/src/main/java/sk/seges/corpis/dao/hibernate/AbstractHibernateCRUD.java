@@ -86,6 +86,18 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 		return doFindByCriteria(criteria, page, existingAliases, true, cacheable);
 	}
 
+    @Override
+    @Transactional
+    public T persist(T entity) {
+        return super.persist(entity);
+    }
+
+    @Override
+    @Transactional
+    public T merge(T entity) {
+        return super.merge(entity);
+    }
+    
 	@SuppressWarnings("unchecked")
 	private List<T> doFindByCriteria(DetachedCriteria criteria, Page page, Set<String> existingAliases,
 			boolean addFilterables, boolean cacheable) {
