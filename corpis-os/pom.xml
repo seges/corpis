@@ -172,7 +172,7 @@
 				<groupId>sk.seges.sesam</groupId>
 				<artifactId>sesam-service-local-interface-processor</artifactId>
 				<version>${sesam-os.version}</version>
-			</dependency>			
+			</dependency>
 			<dependency>
 				<groupId>sk.seges.sesam</groupId>
 				<artifactId>sesam-service-support</artifactId>
@@ -235,6 +235,11 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>corpis-application-scaffold-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>corpis-domain-model-hibernate-support</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

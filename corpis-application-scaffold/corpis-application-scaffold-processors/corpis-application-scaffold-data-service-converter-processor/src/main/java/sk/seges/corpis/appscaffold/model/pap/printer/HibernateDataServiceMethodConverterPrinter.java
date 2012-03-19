@@ -7,12 +7,12 @@ import sk.seges.sesam.pap.model.model.ConfigurationTypeElement;
 import sk.seges.sesam.pap.model.model.TransferObjectProcessingEnvironment;
 import sk.seges.sesam.pap.model.model.api.dto.DtoType;
 import sk.seges.sesam.pap.model.printer.converter.ConverterProviderPrinter;
-import sk.seges.sesam.pap.model.resolver.api.ParametersResolver;
+import sk.seges.sesam.pap.model.resolver.api.ConverterConstructorParametersResolver;
 import sk.seges.sesam.pap.service.printer.model.ServiceConverterPrinterContext;
 
 public class HibernateDataServiceMethodConverterPrinter extends HibernateServiceMethodConverterPrinter {
 
-	public HibernateDataServiceMethodConverterPrinter(TransferObjectProcessingEnvironment processingEnv, ParametersResolver parametersResolver, FormattedPrintWriter pw,
+	public HibernateDataServiceMethodConverterPrinter(TransferObjectProcessingEnvironment processingEnv, ConverterConstructorParametersResolver parametersResolver, FormattedPrintWriter pw,
 			ConverterProviderPrinter converterProviderPrinter) {
 		super(processingEnv, parametersResolver, pw, converterProviderPrinter);
 	}
@@ -22,7 +22,7 @@ public class HibernateDataServiceMethodConverterPrinter extends HibernateService
 			ConfigurationTypeElement configuration = returnDtoType.getDomainDefinitionConfiguration();
 		
 			if (configuration instanceof DataConfigurationTypeElement) {
-				pw.print("(", ((DataConfigurationTypeElement)configuration).getDomainEntity(), ")");
+				pw.print("(", ((DataConfigurationTypeElement)configuration).getInstantiableDomain(), ")");
 			}
 		}
 	}

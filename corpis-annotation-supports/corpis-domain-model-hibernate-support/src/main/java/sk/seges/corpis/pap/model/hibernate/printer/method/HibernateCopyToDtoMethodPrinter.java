@@ -13,20 +13,20 @@ import sk.seges.corpis.shared.converter.utils.ConverterUtils;
 import sk.seges.sesam.core.pap.model.PathResolver;
 import sk.seges.sesam.core.pap.utils.MethodHelper;
 import sk.seges.sesam.core.pap.writer.FormattedPrintWriter;
-import sk.seges.sesam.pap.model.hibernate.resolver.HibernateParameterResolver;
+import sk.seges.sesam.pap.model.hibernate.resolver.HibernateParameterResolverDelegate;
 import sk.seges.sesam.pap.model.model.TransferObjectProcessingEnvironment;
 import sk.seges.sesam.pap.model.model.api.ElementHolderTypeConverter;
 import sk.seges.sesam.pap.model.printer.api.TransferObjectElementPrinter;
 import sk.seges.sesam.pap.model.printer.converter.ConverterProviderPrinter;
 import sk.seges.sesam.pap.model.printer.method.CopyToDtoMethodPrinter;
-import sk.seges.sesam.pap.model.resolver.api.ParametersResolver;
+import sk.seges.sesam.pap.model.resolver.api.ConverterConstructorParametersResolver;
 
 public class HibernateCopyToDtoMethodPrinter extends CopyToDtoMethodPrinter {
 
 	private final HibernateEntityResolver entityResolver;
 	
 	public HibernateCopyToDtoMethodPrinter(ConverterProviderPrinter converterProviderPrinter, ElementHolderTypeConverter elementHolderTypeConverter,
-			HibernateEntityResolver entityResolver, ParametersResolver parametersResolver, RoundEnvironment roundEnv,
+			HibernateEntityResolver entityResolver, ConverterConstructorParametersResolver parametersResolver, RoundEnvironment roundEnv,
 			TransferObjectProcessingEnvironment processingEnv) {
 		super(converterProviderPrinter, elementHolderTypeConverter, parametersResolver, roundEnv, processingEnv);
 		this.entityResolver = entityResolver;
@@ -42,7 +42,7 @@ public class HibernateCopyToDtoMethodPrinter extends CopyToDtoMethodPrinter {
     			//it is blob
 //	    		pw.println("if (", Hibernate.class,".isInitialized(" + TransferObjectElementPrinter.DOMAIN_NAME + "." + MethodHelper.toGetter(domainPathResolver.getPath()) + ")) {");
 //        		pw.println("if (", ConverterUtils.class,".hasTransaction(" + HibernateParameterResolver.TRANSACTION_PROPAGATION_NAME + ")) {");
-        		pw.println("if (", ConverterUtils.class,".convertResult(" + HibernateParameterResolver.TRANSACTION_PROPAGATION_NAME + ", \"" + domainPathResolver.getPath() + "\")) {");
+        		pw.println("if (", ConverterUtils.class,".convertResult(" + HibernateParameterResolverDelegate.TRANSACTION_PROPAGATION_NAME + ", \"" + domainPathResolver.getPath() + "\")) {");
 
 //        		pw.print("if (", ConverterUtils.class,".hasTransaction(" + HibernateParameterResolver.TRANSACTION_PROPAGATION_NAME + ") && ");
 //        		pw.println(ConverterUtils.class,".convertResult(" + HibernateParameterResolver.TRANSACTION_PROPAGATION_NAME + ", \"" + domainPathResolver.getPath() + "\")) {");
