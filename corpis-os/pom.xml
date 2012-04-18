@@ -66,6 +66,7 @@
 		<module>../corpis-import-export</module>
 		<module>../corpis-payment-api</module>
 		<module>../corpis-payment</module>
+		<module>../corpis-domain</module>
 		<module>../corpis-application-scaffold/corpis-application-scaffold-parent</module>
 	</modules>
 
