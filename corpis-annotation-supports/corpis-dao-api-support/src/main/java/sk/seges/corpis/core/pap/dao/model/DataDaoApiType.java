@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sk.seges.corpis.appscaffold.model.pap.model.DomainDataInterfaceType;
+import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableDeclaredType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableTypeVariable;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableWildcardType;
@@ -16,8 +17,18 @@ public class DataDaoApiType extends AbstractDaoApiType  {
 
 	public DataDaoApiType(MutableDeclaredType mutableDeclaredType, MutableProcessingEnvironment processingEnv) {
 		super(mutableDeclaredType, processingEnv);
+		
 	}
 
+	@Override
+	protected MutableDeclaredType getDelegate() {
+		MutableDeclaredType delegate = super.getDelegate();
+		if (mutableDeclaredType.getAnnotation(DomainInterface.class) == null) {
+			delegate.setSuperClass(null);
+		}
+		return delegate;
+	}
+	
 	protected MutableDeclaredType getDataType(MutableDeclaredType inputType) {
 		if (inputType.getTypeVariables().size() > 0) {
 			MutableTypeVariable[] typeVariables = new MutableTypeVariable[inputType.getTypeVariables().size()];
@@ -26,7 +37,12 @@ public class DataDaoApiType extends AbstractDaoApiType  {
 			}
 			inputType = inputType.clone().setTypeVariables(typeVariables);
 		}
-		return new DomainDataInterfaceType(inputType, processingEnv);
+		
+		if (inputType.getAnnotation(DomainInterface.class) != null) {
+			return new DomainDataInterfaceType(inputType, processingEnv);
+		} 
+
+		return inputType;
 	}
 
 	@Override

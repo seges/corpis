@@ -34,7 +34,7 @@ public class DomainDataInterfaceProcessor extends AbstractDataProcessor {
 		Collections.sort(methods, new Comparator<ExecutableElement>() {
 			@Override
 			public int compare(ExecutableElement method1, ExecutableElement method2) {
-				return method1.getSimpleName().toString().compareTo(method2.getSimpleName().toString());
+				return method1.getSimpleName().toString().compareTo(method2.getSimpleName().toString());	
 			}
 		});
 		FormattedPrintWriter pw = context.getPrintWriter();
@@ -43,13 +43,28 @@ public class DomainDataInterfaceProcessor extends AbstractDataProcessor {
 			
 			MutableTypeMirror returnType = castToDomainDataInterface(method.getReturnType());
 			
-			pw.println("public static final String " + method.getSimpleName().toString().toUpperCase() + " = \"" + method.getSimpleName() + "\";");
+			pw.println("public static final String " + getConvertedPropertyName(method.getSimpleName().toString()) + " = \"" + method.getSimpleName() + "\";");
 			pw.println();
-			pw.println(returnType, " " + MethodHelper.toGetter(method) + ";");
+			pw.println(toPrintableType(context.getTypeElement(), returnType), " " + MethodHelper.toGetter(method) + ";");
 			pw.println();
-			pw.println("void ", MethodHelper.toSetter(method) + "(", returnType, " " + method.getSimpleName() + ");");
+			pw.println("void ", MethodHelper.toSetter(method) + "(", toPrintableType(context.getTypeElement(), returnType), " " + method.getSimpleName() + ");");
 			pw.println();
 		}
+	}
+
+	//TODO copied from PojoPropertyConverter
+	private String getConvertedPropertyName(String originalPropertyName) {
+		String result = "";
+
+		for (int i = 0; i < originalPropertyName.length(); i++) {
+			char c = originalPropertyName.charAt(i);
+			if (Character.isUpperCase(c)) {
+				result += "_";
+			}
+			result += c;
+		}
+
+		return result.toUpperCase();
 	}
 
 	@Override
