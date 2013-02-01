@@ -1,6 +1,7 @@
 package sk.seges.sesam.pap.model.hibernate.resolver;
 
-import sk.seges.corpis.service.annotation.TransactionPropagationModel;
+import javax.persistence.EntityManager;
+
 import sk.seges.sesam.core.pap.model.ParameterElement;
 import sk.seges.sesam.core.pap.model.mutable.utils.MutableProcessingEnvironment;
 import sk.seges.sesam.pap.service.resolver.ServiceConverterConstructorParametersResolver;
@@ -12,12 +13,28 @@ public class HibernateServiceParameterResolver extends ServiceConverterConstruct
 	public HibernateServiceParameterResolver(MutableProcessingEnvironment processingEnv) {
 		super(processingEnv);
 		this.hibernateParameterResolverDelegate = new HibernateParameterResolverDelegate(processingEnv) {
-			protected ParameterElement getTransactionPropagationModel() {
-				return new ParameterElement(processingEnv.getTypeUtils().getArrayType(processingEnv.getTypeUtils().toMutableType(TransactionPropagationModel.class)), TRANSACTION_PROPAGATION_NAME, false);
+
+			@Override
+			protected boolean isTransactionPropagationModelParameterPropagated() {
+				return isTransactionPropagationPropagated();
+			};
+			
+			@Override
+			protected ParameterElement getEntityManagerModel() {
+				return new ParameterElement(processingEnv.getTypeUtils().toMutableType(EntityManager.class),
+						ENTITY_MANAGER_NAME, getEntityManagerReference(), isEntityManagerPropagated(), processingEnv);
 			}
 		};
 	}
 
+	protected boolean isTransactionPropagationPropagated() {
+		return false;
+	};
+	
+	public boolean isEntityManagerPropagated() {
+		return true;
+	}
+	
 	@Override
 	public ParameterElement[] getConstructorAditionalParameters() {
 		return hibernateParameterResolverDelegate.getConstructorAditionalParameters(super.getConstructorAditionalParameters());
