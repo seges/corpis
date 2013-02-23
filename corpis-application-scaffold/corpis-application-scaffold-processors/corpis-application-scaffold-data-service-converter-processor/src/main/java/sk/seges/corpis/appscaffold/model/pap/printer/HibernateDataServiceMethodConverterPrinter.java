@@ -12,12 +12,12 @@ import sk.seges.sesam.pap.service.printer.model.ServiceConverterPrinterContext;
 
 public class HibernateDataServiceMethodConverterPrinter extends HibernateServiceMethodConverterPrinter {
 
-	public HibernateDataServiceMethodConverterPrinter(TransferObjectProcessingEnvironment processingEnv, ConverterConstructorParametersResolverProvider parametersResolverProvider, FormattedPrintWriter pw,
+	public HibernateDataServiceMethodConverterPrinter(TransferObjectProcessingEnvironment processingEnv, ConverterConstructorParametersResolverProvider parametersResolverProvider, 
 			ConverterProviderPrinter converterProviderPrinter) {
-		super(processingEnv, parametersResolverProvider, pw, converterProviderPrinter);
+		super(processingEnv, parametersResolverProvider, converterProviderPrinter);
 	}
 
-	protected void printCastLocalMethodResult(DtoType returnDtoType, ServiceConverterPrinterContext context) {
+	protected void printCastLocalMethodResult(FormattedPrintWriter pw, DtoType returnDtoType, ServiceConverterPrinterContext context) {
 		if (returnDtoType != null) {
 			ConfigurationTypeElement configuration = returnDtoType.getDomainDefinitionConfiguration();
 		

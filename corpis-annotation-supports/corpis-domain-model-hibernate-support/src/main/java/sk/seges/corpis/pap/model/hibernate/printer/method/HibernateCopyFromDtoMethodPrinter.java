@@ -14,7 +14,6 @@ import sk.seges.sesam.pap.model.hibernate.resolver.HibernateParameterResolverDel
 import sk.seges.sesam.pap.model.model.Field;
 import sk.seges.sesam.pap.model.model.TransferObjectMappingAccessor;
 import sk.seges.sesam.pap.model.model.TransferObjectProcessingEnvironment;
-import sk.seges.sesam.pap.model.model.api.domain.DomainDeclaredType;
 import sk.seges.sesam.pap.model.model.api.dto.DtoDeclaredType;
 import sk.seges.sesam.pap.model.printer.api.TransferObjectElementPrinter;
 import sk.seges.sesam.pap.model.printer.converter.ConverterProviderPrinter;
@@ -50,7 +49,7 @@ public class HibernateCopyFromDtoMethodPrinter extends CopyFromDtoMethodPrinter 
 //    			converterProviderPrinter.printDtoEnsuredConverterMethodName(converter.getDto(), field, dtoMethod, pw, false);
     			converterProviderPrinter.printDtoGetConverterMethodName(context.getConverter().getDto(), field, context.getDtoMethod(), pw, false);
     		} else {
-    			converterProviderPrinter.printObtainConverterFromCache(ConverterTargetType.DTO, context.getConverter().getDomain(), field, context.getDomainMethod(), true);
+    			converterProviderPrinter.printObtainConverterFromCache(pw, ConverterTargetType.DTO, context.getConverter().getDomain(), field, context.getDomainMethod(), true);
     		}
 
     		
@@ -59,14 +58,14 @@ public class HibernateCopyFromDtoMethodPrinter extends CopyFromDtoMethodPrinter 
     		pw.print("(", getDelegateCast(context.getConverter().getDomain(), true), ")");
     		pw.print(converterName + ".convertFromDto(");
     		
-    		if (context.getConverter().getDomain().getKind().isDeclared() && ((DomainDeclaredType)context.getConverter().getDomain()).hasTypeParameters()) {
+//    		if (context.getConverter().getDomain().getKind().isDeclared() && ((DomainDeclaredType)context.getConverter().getDomain()).hasTypeParameters()) {
 	    		pw.print(CastUtils.class, ".cast(");
 	    		//pw.print("(", getDelegateCast(converter.getDomain()), ")");
 	    		pw.print(TransferObjectElementPrinter.RESULT_NAME  + "." + MethodHelper.toGetter(domainPathResolver.getCurrent()) + ", ");
 	    		pw.print(getTypeVariableDelegate(getDelegateCast(context.getConverter().getDomain(), true)), ".class), ");
-    		} else {
-	    		pw.print(TransferObjectElementPrinter.RESULT_NAME  + "." + MethodHelper.toGetter(domainPathResolver.getCurrent()) + ", ");
-    		}
+ //   		} else {
+//	    		pw.print(TransferObjectElementPrinter.RESULT_NAME  + "." + MethodHelper.toGetter(domainPathResolver.getCurrent()) + ", ");
+ //   		}
 
     		if (context.getConverter().getDto().getKind().isDeclared() && ((DtoDeclaredType)context.getConverter().getDto()).hasTypeParameters()) {
 	    		pw.print(CastUtils.class, ".cast(");
