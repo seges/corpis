@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -24,6 +25,7 @@ import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.impl.CriteriaImpl;
+import org.hibernate.impl.CriteriaImpl.OrderEntry;
 import org.hibernate.property.Getter;
 import org.hibernate.property.PropertyAccessor;
 import org.hibernate.property.PropertyAccessorFactory;
@@ -127,8 +129,15 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 		if (cacheable) {
 			executable.setCacheMode(CacheMode.NORMAL);
 		}
-
+		List<T> list = setSpecialSortCriteria(executable);
+		if (list != null){
+			return list;
+		}
 		return executable.list();
+	}
+	
+	protected List<T> setSpecialSortCriteria(Criteria executable){
+		return null;
 	}
 
 	@Override
@@ -144,10 +153,15 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 	@SuppressWarnings("unchecked")
 	private Integer doGetCountByCriteria(DetachedCriteria criteria, Page requestedPage, Set<String> existingAliases,
 			MutableBoolean addedFilterables) {
-		criteria.setProjection(Projections.rowCount());
+		
 		List<Long> resultList;
-
+		setProjectionsForCountCriteria(criteria);
 		Criteria executable = criteria.getExecutableCriteria((Session) entityManager.getDelegate());
+		
+		//remove orderings from criteria
+		List<Order> removedOrderings = new ArrayList<Order>();
+		removedOrderings = removeOrderingFromCriteria(executable);
+		
 		if (requestedPage != null && existingAliases != null) {
 			enrichCriteriaWithFilterables(requestedPage, executable, existingAliases);
 			if (null != addedFilterables) {
@@ -155,6 +169,9 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 			}
 		}
 		resultList = executable.list();
+		
+		//get back orderings from criteria
+		addOrderingsToCriteria(removedOrderings, criteria);
 
 		if (resultList == null || resultList.size() == 0) {
 			return 0;
@@ -162,6 +179,28 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 		// FIXME: we cast it to Integer, changing it to long would imply changes
 		// to PagedResult and lot of code..
 		return resultList.get(0).intValue();
+	}
+	protected void setProjectionsForCountCriteria(DetachedCriteria criteria){
+		criteria.setProjection(Projections.rowCount());
+	}
+	
+	protected List<Order> removeOrderingFromCriteria(Criteria executable){
+		List<Order> removedOrderings = new ArrayList<Order>();
+		if(executable instanceof CriteriaImpl){
+			CriteriaImpl criteriaImpl = (CriteriaImpl)executable;			
+			Iterator orderIterator = criteriaImpl.iterateOrderings();
+			while (orderIterator.hasNext()){
+				OrderEntry orderEntry = (OrderEntry) orderIterator.next();
+				removedOrderings.add(orderEntry.getOrder());
+				orderIterator.remove();
+			}			
+		}
+		return removedOrderings;
+	}
+	protected void addOrderingsToCriteria(List<Order> orderings, DetachedCriteria criteria){
+		for(Order order : orderings){
+			criteria.addOrder(order);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -193,7 +232,7 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 		// criteria definition
 		Set<String> existingAliases = new HashSet<String>();
 		MutableBoolean addedFilterables = new MutableBoolean();
-
+		
 		if (!retrieveAllResults(requestedPage)) {
 			// select count only when paging
 			totalCount = doGetCountByCriteria(criteria, requestedPage, existingAliases, addedFilterables);
@@ -202,7 +241,6 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 			criteria.setProjection(null);
 			criteria.setResultTransformer(Criteria.ROOT_ENTITY);
 		}
-
 		List<T> list = doFindByCriteria(criteria, requestedPage, existingAliases, !addedFilterables.value, cacheable);
 
 		if (retrieveAllResults(requestedPage)) {
