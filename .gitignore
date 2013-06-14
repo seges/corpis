@@ -1,0 +1,466 @@
+
+# /
+/target
+/.project
+/.settings
+
+# /corpis-annotation-apis/
+/corpis-annotation-apis/.project
+/corpis-annotation-apis/.settings
+
+# /corpis-annotation-apis/corpis-service-api/
+/corpis-annotation-apis/corpis-service-api/.settings
+/corpis-annotation-apis/corpis-service-api/.project
+/corpis-annotation-apis/corpis-service-api/.classpath
+/corpis-annotation-apis/corpis-service-api/target
+/corpis-annotation-apis/corpis-service-api/.factorypath
+/corpis-annotation-apis/corpis-service-api/home
+/corpis-annotation-apis/corpis-service-api/.apt_generated
+/corpis-annotation-apis/corpis-service-api/Users
+
+# /corpis-annotation-processors/
+/corpis-annotation-processors/.project
+/corpis-annotation-processors/.settings
+
+# /corpis-annotation-processors/corpis-dao-api-processor/
+/corpis-annotation-processors/corpis-dao-api-processor/target
+/corpis-annotation-processors/corpis-dao-api-processor/.classpath
+/corpis-annotation-processors/corpis-dao-api-processor/.project
+/corpis-annotation-processors/corpis-dao-api-processor/.settings
+
+# /corpis-annotation-processors/corpis-dao-implementation-processor/
+/corpis-annotation-processors/corpis-dao-implementation-processor/target
+/corpis-annotation-processors/corpis-dao-implementation-processor/.classpath
+/corpis-annotation-processors/corpis-dao-implementation-processor/.project
+/corpis-annotation-processors/corpis-dao-implementation-processor/.settings
+
+# /corpis-annotation-processors/corpis-data-dao-api-processor/
+/corpis-annotation-processors/corpis-data-dao-api-processor/target
+/corpis-annotation-processors/corpis-data-dao-api-processor/.classpath
+/corpis-annotation-processors/corpis-data-dao-api-processor/.project
+/corpis-annotation-processors/corpis-data-dao-api-processor/.settings
+
+# /corpis-annotation-processors/corpis-data-dao-implementation-processor/
+/corpis-annotation-processors/corpis-data-dao-implementation-processor/.classpath
+/corpis-annotation-processors/corpis-data-dao-implementation-processor/.project
+/corpis-annotation-processors/corpis-data-dao-implementation-processor/.settings
+/corpis-annotation-processors/corpis-data-dao-implementation-processor/target
+
+# /corpis-annotation-processors/corpis-domain-model-converter-hibernate-processor/
+/corpis-annotation-processors/corpis-domain-model-converter-hibernate-processor/.classpath
+/corpis-annotation-processors/corpis-domain-model-converter-hibernate-processor/.project
+/corpis-annotation-processors/corpis-domain-model-converter-hibernate-processor/.settings
+/corpis-annotation-processors/corpis-domain-model-converter-hibernate-processor/target
+
+# /corpis-annotation-processors/corpis-domain-model-hibernate-processor/
+/corpis-annotation-processors/corpis-domain-model-hibernate-processor/.classpath
+/corpis-annotation-processors/corpis-domain-model-hibernate-processor/.project
+/corpis-annotation-processors/corpis-domain-model-hibernate-processor/.settings
+/corpis-annotation-processors/corpis-domain-model-hibernate-processor/target
+
+# /corpis-annotation-processors/corpis-service-converter-hibernate-processor/
+/corpis-annotation-processors/corpis-service-converter-hibernate-processor/.classpath
+/corpis-annotation-processors/corpis-service-converter-hibernate-processor/.project
+/corpis-annotation-processors/corpis-service-converter-hibernate-processor/.settings
+/corpis-annotation-processors/corpis-service-converter-hibernate-processor/target
+
+# /corpis-annotation-processors/corpis-service-local-interface-hibernate-processor/
+/corpis-annotation-processors/corpis-service-local-interface-hibernate-processor/.classpath
+/corpis-annotation-processors/corpis-service-local-interface-hibernate-processor/.project
+/corpis-annotation-processors/corpis-service-local-interface-hibernate-processor/.settings
+/corpis-annotation-processors/corpis-service-local-interface-hibernate-processor/target
+
+# /corpis-annotation-processors/corpis-service-processor/
+/corpis-annotation-processors/corpis-service-processor/.classpath
+/corpis-annotation-processors/corpis-service-processor/.project
+/corpis-annotation-processors/corpis-service-processor/.settings
+/corpis-annotation-processors/corpis-service-processor/target
+
+# /corpis-annotation-supports/
+/corpis-annotation-supports/.project
+/corpis-annotation-supports/.settings
+
+# /corpis-annotation-supports/corpis-dao-api-support/
+/corpis-annotation-supports/corpis-dao-api-support/.classpath
+/corpis-annotation-supports/corpis-dao-api-support/.project
+/corpis-annotation-supports/corpis-dao-api-support/.settings
+/corpis-annotation-supports/corpis-dao-api-support/target
+
+# /corpis-annotation-supports/corpis-dao-implementation-support/
+/corpis-annotation-supports/corpis-dao-implementation-support/.classpath
+/corpis-annotation-supports/corpis-dao-implementation-support/.project
+/corpis-annotation-supports/corpis-dao-implementation-support/.settings
+/corpis-annotation-supports/corpis-dao-implementation-support/target
+
+# /corpis-annotation-supports/corpis-domain-model-hibernate-support/
+/corpis-annotation-supports/corpis-domain-model-hibernate-support/.classpath
+/corpis-annotation-supports/corpis-domain-model-hibernate-support/.project
+/corpis-annotation-supports/corpis-domain-model-hibernate-support/.settings
+/corpis-annotation-supports/corpis-domain-model-hibernate-support/target
+/corpis-annotation-supports/corpis-domain-model-hibernate-support/Users
+
+# /corpis-annotation-supports/corpis-model-domain-configurations/
+/corpis-annotation-supports/corpis-model-domain-configurations/.classpath
+/corpis-annotation-supports/corpis-model-domain-configurations/.factorypath
+/corpis-annotation-supports/corpis-model-domain-configurations/.project
+/corpis-annotation-supports/corpis-model-domain-configurations/.settings
+/corpis-annotation-supports/corpis-model-domain-configurations/target
+/corpis-annotation-supports/corpis-model-domain-configurations/.apt_generated
+/corpis-annotation-supports/corpis-model-domain-configurations/home
+/corpis-annotation-supports/corpis-model-domain-configurations/Users
+
+# /corpis-annotation-supports/corpis-service-converter-hibernate-support/
+/corpis-annotation-supports/corpis-service-converter-hibernate-support/.classpath
+/corpis-annotation-supports/corpis-service-converter-hibernate-support/.project
+/corpis-annotation-supports/corpis-service-converter-hibernate-support/.settings
+/corpis-annotation-supports/corpis-service-converter-hibernate-support/target
+
+# /corpis-annotation-supports/corpis-service-support/
+/corpis-annotation-supports/corpis-service-support/.classpath
+/corpis-annotation-supports/corpis-service-support/.project
+/corpis-annotation-supports/corpis-service-support/.settings
+/corpis-annotation-supports/corpis-service-support/target
+
+# /corpis-application-scaffold/corpis-application-scaffold-model/
+/corpis-application-scaffold/corpis-application-scaffold-model/.settings
+/corpis-application-scaffold/corpis-application-scaffold-model/target
+/corpis-application-scaffold/corpis-application-scaffold-model/.classpath
+/corpis-application-scaffold/corpis-application-scaffold-model/.project
+
+# /corpis-application-scaffold/corpis-application-scaffold-parent/
+/corpis-application-scaffold/corpis-application-scaffold-parent/bin
+/corpis-application-scaffold/corpis-application-scaffold-parent/.project
+/corpis-application-scaffold/corpis-application-scaffold-parent/.settings
+
+# /corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-domain-model-coverter-processor/
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-domain-model-coverter-processor/.classpath
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-domain-model-coverter-processor/.project
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-domain-model-coverter-processor/.settings
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-domain-model-coverter-processor/target
+
+# /corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-interface-processor/
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-interface-processor/.classpath
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-interface-processor/.project
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-interface-processor/.settings
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-interface-processor/target
+
+# /corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-service-converter-processor/
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-service-converter-processor/.classpath
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-service-converter-processor/.project
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-service-converter-processor/.settings
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-service-converter-processor/target
+
+# /corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-datainterface-processor/
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-datainterface-processor/.classpath
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-datainterface-processor/.project
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-datainterface-processor/.settings
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-datainterface-processor/target
+
+# /corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-jpamodel-processor/
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-jpamodel-processor/.classpath
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-jpamodel-processor/.project
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-jpamodel-processor/.settings
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-jpamodel-processor/target
+
+# /corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-local-service-data-interface-processor/
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-local-service-data-interface-processor/.classpath
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-local-service-data-interface-processor/.project
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-local-service-data-interface-processor/.settings
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-local-service-data-interface-processor/target
+
+# /corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-mapbasedobject-processor/
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-mapbasedobject-processor/.settings
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-mapbasedobject-processor/target
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-mapbasedobject-processor/.classpath
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-mapbasedobject-processor/.project
+
+# /corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-model-base-processor/
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-model-base-processor/.classpath
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-model-base-processor/.project
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-model-base-processor/.settings
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-model-base-processor/target
+
+# /corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-processors-parent/
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-processors-parent/bin
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-processors-parent/.project
+/corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-processors-parent/.settings
+
+# /corpis-application-scaffold/corpis-application-scaffold-support/corpis-application-scaffold-model-support/
+/corpis-application-scaffold/corpis-application-scaffold-support/corpis-application-scaffold-model-support/.classpath
+/corpis-application-scaffold/corpis-application-scaffold-support/corpis-application-scaffold-model-support/.project
+/corpis-application-scaffold/corpis-application-scaffold-support/corpis-application-scaffold-model-support/.settings
+/corpis-application-scaffold/corpis-application-scaffold-support/corpis-application-scaffold-model-support/target
+
+# /corpis-dao-api/
+/corpis-dao-api/target
+/corpis-dao-api/.project
+/corpis-dao-api/.settings
+/corpis-dao-api/.classpath
+
+# /corpis-dao-impl/
+/corpis-dao-impl/target
+/corpis-dao-impl/.settings
+/corpis-dao-impl/.classpath
+/corpis-dao-impl/.project
+
+# /corpis-domain/corpis-core-domain-api/
+/corpis-domain/corpis-core-domain-api/.classpath
+/corpis-domain/corpis-core-domain-api/.factorypath
+/corpis-domain/corpis-core-domain-api/.settings
+/corpis-domain/corpis-core-domain-api/.project
+/corpis-domain/corpis-core-domain-api/target
+/corpis-domain/corpis-core-domain-api/.apt_generated
+/corpis-domain/corpis-core-domain-api/home
+/corpis-domain/corpis-core-domain-api/Users
+
+# /corpis-domain/corpis-core-domain-model/
+/corpis-domain/corpis-core-domain-model/.classpath
+/corpis-domain/corpis-core-domain-model/.factorypath
+/corpis-domain/corpis-core-domain-model/.project
+/corpis-domain/corpis-core-domain-model/.settings
+/corpis-domain/corpis-core-domain-model/target
+/corpis-domain/corpis-core-domain-model/home
+/corpis-domain/corpis-core-domain-model/.apt_generated
+/corpis-domain/corpis-core-domain-model/Users
+
+# /corpis-domain/corpis-customer-domain-model/
+/corpis-domain/corpis-customer-domain-model/.classpath
+/corpis-domain/corpis-customer-domain-model/.factorypath
+/corpis-domain/corpis-customer-domain-model/.project
+/corpis-domain/corpis-customer-domain-model/.settings
+/corpis-domain/corpis-customer-domain-model/target
+/corpis-domain/corpis-customer-domain-model/.apt_generated
+/corpis-domain/corpis-customer-domain-model/home
+/corpis-domain/corpis-customer-domain-model/Users
+
+# /corpis-domain/corpis-invoice-domain-model/
+/corpis-domain/corpis-invoice-domain-model/.classpath
+/corpis-domain/corpis-invoice-domain-model/.factorypath
+/corpis-domain/corpis-invoice-domain-model/.project
+/corpis-domain/corpis-invoice-domain-model/.settings
+/corpis-domain/corpis-invoice-domain-model/bin
+/corpis-domain/corpis-invoice-domain-model/target
+/corpis-domain/corpis-invoice-domain-model/.apt_generated
+/corpis-domain/corpis-invoice-domain-model/home
+/corpis-domain/corpis-invoice-domain-model/Users
+
+# /corpis-domain/corpis-manufacture-domain-model/
+/corpis-domain/corpis-manufacture-domain-model/target
+/corpis-domain/corpis-manufacture-domain-model/.classpath
+/corpis-domain/corpis-manufacture-domain-model/.factorypath
+/corpis-domain/corpis-manufacture-domain-model/.project
+/corpis-domain/corpis-manufacture-domain-model/.settings
+/corpis-domain/corpis-manufacture-domain-model/.apt_generated
+/corpis-domain/corpis-manufacture-domain-model/home
+/corpis-domain/corpis-manufacture-domain-model/Users
+
+# /corpis-domain/corpis-news-domain-model/
+/corpis-domain/corpis-news-domain-model/.apt_generated
+/corpis-domain/corpis-news-domain-model/.classpath
+/corpis-domain/corpis-news-domain-model/.factorypath
+/corpis-domain/corpis-news-domain-model/.project
+/corpis-domain/corpis-news-domain-model/.settings
+/corpis-domain/corpis-news-domain-model/target
+
+# /corpis-domain/corpis-news-domain-model/src/
+
+# /corpis-domain/corpis-news-domain-model/src/main/
+
+# /corpis-domain/corpis-news-domain-model/src/main/java/
+
+# /corpis-domain/corpis-news-domain-model/src/main/java/sk/
+
+# /corpis-domain/corpis-news-domain-model/src/main/java/sk/seges/
+
+# /corpis-domain/corpis-news-domain-model/src/main/java/sk/seges/corpis/
+
+# /corpis-domain/corpis-news-domain-model/src/main/java/sk/seges/corpis/server/
+
+# /corpis-domain/corpis-news-domain-model/src/main/java/sk/seges/corpis/server/domain/
+
+# /corpis-domain/corpis-news-domain-model/src/main/java/sk/seges/corpis/server/domain/news/
+
+# /corpis-domain/corpis-news-domain-model/src/main/resources/
+
+# /corpis-domain/corpis-news-domain-model/src/test/
+
+# /corpis-domain/corpis-news-domain-model/src/test/java/
+
+# /corpis-domain/corpis-news-domain-model/src/test/resources/
+
+# /corpis-domain/corpis-payment-domain-model/
+/corpis-domain/corpis-payment-domain-model/.classpath
+/corpis-domain/corpis-payment-domain-model/.factorypath
+/corpis-domain/corpis-payment-domain-model/.project
+/corpis-domain/corpis-payment-domain-model/.settings
+/corpis-domain/corpis-payment-domain-model/target
+/corpis-domain/corpis-payment-domain-model/.apt_generated
+/corpis-domain/corpis-payment-domain-model/home
+/corpis-domain/corpis-payment-domain-model/Users
+
+# /corpis-domain/corpis-price-domain-api/
+/corpis-domain/corpis-price-domain-api/.classpath
+/corpis-domain/corpis-price-domain-api/.factorypath
+/corpis-domain/corpis-price-domain-api/.project
+/corpis-domain/corpis-price-domain-api/.settings
+/corpis-domain/corpis-price-domain-api/target
+/corpis-domain/corpis-price-domain-api/Users
+/corpis-domain/corpis-price-domain-api/.apt_generated
+
+# /corpis-domain/corpis-stock-domain-model/
+/corpis-domain/corpis-stock-domain-model/target
+/corpis-domain/corpis-stock-domain-model/.classpath
+/corpis-domain/corpis-stock-domain-model/.factorypath
+/corpis-domain/corpis-stock-domain-model/.project
+/corpis-domain/corpis-stock-domain-model/.settings
+/corpis-domain/corpis-stock-domain-model/.apt_generated
+/corpis-domain/corpis-stock-domain-model/home
+/corpis-domain/corpis-stock-domain-model/Users
+
+# /corpis-domain/corpis-transportation-domain-model/
+/corpis-domain/corpis-transportation-domain-model/.classpath
+/corpis-domain/corpis-transportation-domain-model/.factorypath
+/corpis-domain/corpis-transportation-domain-model/.project
+/corpis-domain/corpis-transportation-domain-model/.settings
+/corpis-domain/corpis-transportation-domain-model/target
+/corpis-domain/corpis-transportation-domain-model/.apt_generated
+/corpis-domain/corpis-transportation-domain-model/home
+/corpis-domain/corpis-transportation-domain-model/Users
+
+# /corpis-domain-generator/
+/corpis-domain-generator/.settings
+/corpis-domain-generator/target
+/corpis-domain-generator/.classpath
+/corpis-domain-generator/.project
+/corpis-domain-generator/log
+
+# /corpis-domain-generator-import/
+/corpis-domain-generator-import/target
+/corpis-domain-generator-import/.settings
+/corpis-domain-generator-import/.project
+/corpis-domain-generator-import/.classpath
+
+# /corpis-domain-jpa/
+/corpis-domain-jpa/.project
+/corpis-domain-jpa/bin
+
+# /corpis-domain-jpa/corpis-core-domain-jpa/
+/corpis-domain-jpa/corpis-core-domain-jpa/.classpath
+/corpis-domain-jpa/corpis-core-domain-jpa/.project
+/corpis-domain-jpa/corpis-core-domain-jpa/.settings
+/corpis-domain-jpa/corpis-core-domain-jpa/target
+
+# /corpis-domain-jpa/corpis-customer-domain-jpa/
+/corpis-domain-jpa/corpis-customer-domain-jpa/.classpath
+/corpis-domain-jpa/corpis-customer-domain-jpa/.project
+/corpis-domain-jpa/corpis-customer-domain-jpa/.settings
+/corpis-domain-jpa/corpis-customer-domain-jpa/target
+
+# /corpis-domain-jpa/corpis-invoice-domain-jpa/
+/corpis-domain-jpa/corpis-invoice-domain-jpa/.classpath
+/corpis-domain-jpa/corpis-invoice-domain-jpa/.project
+/corpis-domain-jpa/corpis-invoice-domain-jpa/.settings
+/corpis-domain-jpa/corpis-invoice-domain-jpa/target
+
+# /corpis-domain-jpa/corpis-manufacture-domain-jpa/
+/corpis-domain-jpa/corpis-manufacture-domain-jpa/target
+/corpis-domain-jpa/corpis-manufacture-domain-jpa/.classpath
+/corpis-domain-jpa/corpis-manufacture-domain-jpa/.project
+/corpis-domain-jpa/corpis-manufacture-domain-jpa/.settings
+
+# /corpis-domain-jpa/corpis-news-domain-jpa/
+/corpis-domain-jpa/corpis-news-domain-jpa/.classpath
+/corpis-domain-jpa/corpis-news-domain-jpa/.project
+/corpis-domain-jpa/corpis-news-domain-jpa/.settings
+/corpis-domain-jpa/corpis-news-domain-jpa/target
+
+# /corpis-domain-jpa/corpis-news-domain-jpa/src/
+
+# /corpis-domain-jpa/corpis-news-domain-jpa/src/main/
+
+# /corpis-domain-jpa/corpis-news-domain-jpa/src/main/java/
+
+# /corpis-domain-jpa/corpis-news-domain-jpa/src/main/java/sk/
+
+# /corpis-domain-jpa/corpis-news-domain-jpa/src/main/java/sk/seges/
+
+# /corpis-domain-jpa/corpis-news-domain-jpa/src/main/java/sk/seges/corpis/
+
+# /corpis-domain-jpa/corpis-news-domain-jpa/src/main/java/sk/seges/corpis/server/
+
+# /corpis-domain-jpa/corpis-news-domain-jpa/src/main/java/sk/seges/corpis/server/domain/
+
+# /corpis-domain-jpa/corpis-news-domain-jpa/src/main/java/sk/seges/corpis/server/domain/news/
+
+# /corpis-domain-jpa/corpis-news-domain-jpa/src/main/java/sk/seges/corpis/server/domain/news/jpa/
+
+# /corpis-domain-jpa/corpis-news-domain-jpa/src/main/resources/
+
+# /corpis-domain-jpa/corpis-payment-domain-jpa/
+/corpis-domain-jpa/corpis-payment-domain-jpa/.classpath
+/corpis-domain-jpa/corpis-payment-domain-jpa/.project
+/corpis-domain-jpa/corpis-payment-domain-jpa/.settings
+/corpis-domain-jpa/corpis-payment-domain-jpa/target
+
+# /corpis-domain-jpa/corpis-price-domain-jpa/
+/corpis-domain-jpa/corpis-price-domain-jpa/.classpath
+/corpis-domain-jpa/corpis-price-domain-jpa/.project
+/corpis-domain-jpa/corpis-price-domain-jpa/.settings
+/corpis-domain-jpa/corpis-price-domain-jpa/target
+
+# /corpis-domain-jpa/corpis-stock-domain-jpa/
+/corpis-domain-jpa/corpis-stock-domain-jpa/.classpath
+/corpis-domain-jpa/corpis-stock-domain-jpa/.project
+/corpis-domain-jpa/corpis-stock-domain-jpa/.settings
+/corpis-domain-jpa/corpis-stock-domain-jpa/target
+/corpis-domain-jpa/corpis-stock-domain-jpa/a
+
+# /corpis-domain-jpa/corpis-transportation-domain-jpa/
+/corpis-domain-jpa/corpis-transportation-domain-jpa/.classpath
+/corpis-domain-jpa/corpis-transportation-domain-jpa/.project
+/corpis-domain-jpa/corpis-transportation-domain-jpa/target
+/corpis-domain-jpa/corpis-transportation-domain-jpa/.settings
+
+# /corpis-import-export/
+/corpis-import-export/.classpath
+/corpis-import-export/target
+/corpis-import-export/.settings
+/corpis-import-export/.project
+
+# /corpis-import-export-api/
+/corpis-import-export-api/.classpath
+/corpis-import-export-api/.settings
+/corpis-import-export-api/target
+/corpis-import-export-api/.project
+
+# /corpis-lang-api/
+/corpis-lang-api/.classpath
+/corpis-lang-api/.project
+/corpis-lang-api/.settings
+/corpis-lang-api/target
+
+# /corpis-lang-api/src/main/java/sk/seges/corpis/shared/round/
+
+# /corpis-os/
+/corpis-os/target
+/corpis-os/bin
+/corpis-os/.project
+/corpis-os/.settings
+
+# /corpis-payment/
+/corpis-payment/target
+/corpis-payment/.classpath
+/corpis-payment/.project
+/corpis-payment/.settings
+
+# /corpis-payment-api/
+/corpis-payment-api/.classpath
+/corpis-payment-api/target
+/corpis-payment-api/.settings
+/corpis-payment-api/.project
+
+# /corpis-test/
+/corpis-test/target
+/corpis-test/.classpath
+/corpis-test/.settings
+/corpis-test/.project
