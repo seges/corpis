@@ -16,7 +16,7 @@ import sk.seges.corpis.server.domain.stock.server.model.data.StockItemData;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "warehouse")
+@Table(name = "olea_warehouse")
 @SequenceGenerator(name = JpaWarehouse.SEQ_WAREHOUSE, sequenceName = "seq_warehouse", initialValue = 1)
 public class JpaWarehouse extends WarehouseBase {
 

@@ -19,6 +19,7 @@ import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverP
 import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider.UsageType;
 import sk.seges.sesam.pap.service.model.ConverterProviderContextType;
 import sk.seges.sesam.pap.service.model.ServiceTypeElement;
+import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
 
 public class HibernateServiceConverterProviderParameterResolver extends HibernateConverterProviderParameterResolver {
 
@@ -40,15 +41,16 @@ public class HibernateServiceConverterProviderParameterResolver extends Hibernat
 		MutableTypes typeUtils = processingEnv.getTypeUtils();
 		
 		MutableExecutableElement converterProviderContextMethod = processingEnv.getElementUtils().getExecutableElement(GET_CONVERTER_PROVIDER_CONTEXT_METHOD);
-		ConverterProviderContextType convertProviderContextType = serviceTypeElement.getServiceConverter().getConvertProviderContextType();
+		//ConverterProviderContextType convertProviderContextType = serviceTypeElement.getServiceConverter().getConvertProviderContextType();
 		
-		converterProviderContextMethod.asType().setReturnType(convertProviderContextType);
+		converterProviderContextMethod.asType().setReturnType(processingEnv.getTypeUtils().toMutableType(ConverterProviderContext.class));
+        //convertProviderContextType);
 	
 		ParameterElement[] generatedParameters = new HasConstructorParametersDelegate().getRequiredParameters(processingEnv,
 				parametersResolverProvider.getParameterResolver(UsageType.CONVERTER_PROVIDER_CONTEXT_CONSTRUCTOR),
 				parametersResolverProvider.getParameterResolver(UsageType.DEFINITION));
 
-		List<MutableVariableElement> requiredParameters = convertProviderContextType.getConstructor().getParameters();
+		List<MutableVariableElement> requiredParameters = new ArrayList<MutableVariableElement>();//convertProviderContextType.getConstructor().getParameters();
 
 		List<MutableReferenceType> referenceParams = new ArrayList<MutableReferenceType>();
 

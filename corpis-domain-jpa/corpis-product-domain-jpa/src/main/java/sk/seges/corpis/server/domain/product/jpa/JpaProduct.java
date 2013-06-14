@@ -40,7 +40,7 @@ import sk.seges.corpis.server.domain.server.model.data.VatData;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "product")
+@Table(name = "olea_product")
 @SequenceGenerator(name = JpaProduct.SEQ_PRODUCT, sequenceName = "seq_products", initialValue = 1)
 public class JpaProduct extends ProductBase {
 

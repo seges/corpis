@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import sk.seges.sesam.domain.IMutableDomainObject;
 
 @Entity
-@Table(name = "name")
+@Table(name = "olea_name")
 @SequenceGenerator(name = JpaName.SEQ_OLEA_NAMES, sequenceName = "seq_name", initialValue = 1)
 public class JpaName extends JpaEmbeddedName implements IMutableDomainObject<Long >{
 

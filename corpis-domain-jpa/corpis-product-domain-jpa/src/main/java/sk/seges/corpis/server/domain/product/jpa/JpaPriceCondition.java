@@ -26,7 +26,7 @@ import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
 import sk.seges.sesam.domain.IDomainObject;
 
 @Entity
-@Table(name = "price_conditions", uniqueConstraints = { @UniqueConstraint(columnNames={PriceConditionData.CUSTOMER + "_" + CustomerData.ID, 
+@Table(name = "olea_price_conditions", uniqueConstraints = { @UniqueConstraint(columnNames={PriceConditionData.CUSTOMER + "_" + CustomerData.ID,
 		PriceConditionData.PRODUCT + "_" + ProductData.ID, PriceConditionData.WEB_ID})})
 @SequenceGenerator(name = JpaPriceCondition.SEQ_PRICE_CONDITIONS, sequenceName = "SEQ_PRICE_CONDITIONS", initialValue = 1)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

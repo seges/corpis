@@ -29,7 +29,7 @@ import sk.seges.corpis.server.domain.server.model.data.NameData;
 import sk.seges.corpis.shared.domain.product.EProductCategoryType;
 
 @Entity
-@Table (name = "product_category", uniqueConstraints = @UniqueConstraint(columnNames = { ProductCategoryData.WEB_ID, ProductCategoryData.EXT_ID }))
+@Table (name = "olea_product_category", uniqueConstraints = @UniqueConstraint(columnNames = { ProductCategoryData.WEB_ID, ProductCategoryData.EXT_ID }))
 @SequenceGenerator(name = JpaProductCategory.SEQ_PRODUCT_CATEGORY, sequenceName = "seq_product_category", initialValue = 1)
 public class JpaProductCategory extends ProductCategoryBase {
 

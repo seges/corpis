@@ -11,7 +11,7 @@ import sk.seges.corpis.server.domain.product.server.model.data.TagNameData;
 import sk.seges.sesam.domain.IMutableDomainObject;
 
 @Entity
-@Table(name = "tag_name")
+@Table(name = "olea_tag_name")
 @SequenceGenerator(name = JpaTagName.SEQ_OLEA_TAG_NAMES, sequenceName = "seq_tag_name", initialValue = 1)
 public class JpaTagName extends JpaEmbeddedName implements TagNameData, IMutableDomainObject<Long> {
 

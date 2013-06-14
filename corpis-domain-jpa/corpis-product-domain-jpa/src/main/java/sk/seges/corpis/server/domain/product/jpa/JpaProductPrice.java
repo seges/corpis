@@ -17,7 +17,7 @@ import sk.seges.corpis.server.domain.product.server.model.base.ProductPriceBase;
 import sk.seges.corpis.server.domain.product.server.model.data.ProductPriceConditionData;
 
 @Entity
-@Table(name = "product_prices")
+@Table(name = "olea_product_prices")
 @SequenceGenerator(name = JpaProductPrice.SEQ_PRODUCT_PRICE, sequenceName = "seq_prices", initialValue = 1)
 public class JpaProductPrice extends ProductPriceBase {
 

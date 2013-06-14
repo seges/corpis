@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import sk.seges.corpis.server.domain.payment.server.model.base.PaymentBase;
 
 @Entity
-@Table(name = "payment")
+@Table(name = "olea_payment")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @SequenceGenerator(name = "seqPayment", sequenceName = "seq_payment", initialValue = 1)
 @DiscriminatorColumn(name = "payment_type", discriminatorType = DiscriminatorType.INTEGER)

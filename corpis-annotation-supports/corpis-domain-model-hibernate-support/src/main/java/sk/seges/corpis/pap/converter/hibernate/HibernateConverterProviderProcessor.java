@@ -1,11 +1,5 @@
 package sk.seges.corpis.pap.converter.hibernate;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.processing.SupportedSourceVersion;
-import javax.lang.model.SourceVersion;
-
 import sk.seges.corpis.pap.converter.hibernate.resolver.HibernateConverterParameterResolver;
 import sk.seges.corpis.pap.model.printer.converter.HibernateConverterProviderPrinter;
 import sk.seges.sesam.core.pap.model.ConverterConstructorParameter;
@@ -23,10 +17,15 @@ import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverP
 import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider.UsageType;
 import sk.seges.sesam.pap.model.resolver.api.ConverterConstructorParametersResolver;
 
+import javax.annotation.processing.SupportedSourceVersion;
+import javax.lang.model.SourceVersion;
+import java.util.ArrayList;
+import java.util.List;
+
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class HibernateConverterProviderProcessor extends ConverterProviderProcessor {
 
-	@Override
+    @Override
 	protected ConverterConstructorParametersResolverProvider getParametersResolverProvider() {
 		return new CacheableConverterConstructorParametersResolverProvider() {
 

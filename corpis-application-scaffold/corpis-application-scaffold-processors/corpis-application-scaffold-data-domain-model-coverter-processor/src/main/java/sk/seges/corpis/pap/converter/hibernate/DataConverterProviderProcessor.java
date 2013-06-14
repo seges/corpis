@@ -13,7 +13,8 @@ import sk.seges.sesam.pap.model.provider.api.ConfigurationProvider;
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class DataConverterProviderProcessor extends HibernateConverterProviderProcessor {
 
-	protected ConfigurationProvider[] getLookupConfigurationProviders(MutableDeclaredType mutableType, EnvironmentContext<TransferObjectProcessingEnvironment> context) {
+    @Override
+    protected ConfigurationProvider[] getLookupConfigurationProviders(MutableDeclaredType mutableType, EnvironmentContext<TransferObjectProcessingEnvironment> context) {
 		return new ConfigurationProvider[] {
 				new DataRoundEnvConfigurationProvider(context)
 		};

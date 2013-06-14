@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import sk.seges.corpis.server.domain.server.model.base.DescriptionBase;
 
 @Entity
-@Table(name = "description")
+@Table(name = "olea_description")
 @SequenceGenerator(name = JpaDescription.SEQ_OLEA_DESC, sequenceName = "seq_desc", initialValue = 1)
 public class JpaDescription extends DescriptionBase {
 

@@ -14,7 +14,7 @@ import sk.seges.corpis.server.domain.product.server.model.base.RelatedProductBas
 import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 
 @Entity
-@Table(name = "related_product", uniqueConstraints = { @UniqueConstraint(columnNames = {"product", "related_product" }) })
+@Table(name = "olea_related_product", uniqueConstraints = { @UniqueConstraint(columnNames = {"product", "related_product" }) })
 @SequenceGenerator(name = JpaRelatedProduct.SEQ_RELATED_PRODUCTS, sequenceName = "seq_related_products", initialValue = 1)
 public class JpaRelatedProduct extends RelatedProductBase {
 	private static final long serialVersionUID = -5614882896518185987L;

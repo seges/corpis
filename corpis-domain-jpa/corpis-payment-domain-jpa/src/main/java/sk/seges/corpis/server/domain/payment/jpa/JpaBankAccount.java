@@ -19,7 +19,7 @@ import sk.seges.corpis.server.domain.payment.server.model.data.BankAccountData;
 import sk.seges.corpis.server.domain.payment.server.model.data.BankData;
 
 @Entity
-@Table(name = "bank_account", uniqueConstraints = @UniqueConstraint(columnNames = {
+@Table(name = "olea_bank_account", uniqueConstraints = @UniqueConstraint(columnNames = {
 		JpaBankAccount.BANK_JOIN, BankAccountData.BANK_ACCOUNT }))
 @SequenceGenerator(name = JpaBankAccount.SEQ, sequenceName = "seq_bank_account", initialValue = 1)
 public class JpaBankAccount extends BankAccountBase {

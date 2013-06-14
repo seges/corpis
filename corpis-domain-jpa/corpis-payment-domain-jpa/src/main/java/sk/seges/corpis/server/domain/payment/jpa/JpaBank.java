@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import sk.seges.corpis.server.domain.payment.server.model.base.BankBase;
 
 @Entity
-@Table(name = "bank")
+@Table(name = "olea_bank")
 public class JpaBank extends BankBase {
 
 	private static final long serialVersionUID = 1430587109294119553L;

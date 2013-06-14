@@ -11,7 +11,7 @@ import sk.seges.corpis.server.domain.stock.server.model.data.WarehouseData;
 
 @Entity
 @SuppressWarnings("serial")
-@Table(name ="stock_item")
+@Table(name ="olea_stock_item")
 public class JpaStockItem extends JpaProduct implements StockItemData {
 
 	private WarehouseData warehouse;

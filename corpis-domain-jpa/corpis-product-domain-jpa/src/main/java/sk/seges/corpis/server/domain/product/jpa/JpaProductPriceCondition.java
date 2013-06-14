@@ -15,7 +15,7 @@ import sk.seges.corpis.server.domain.product.server.model.base.ProductPriceCondi
 import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
 
 @Entity
-@Table(name = "product_price_condition")
+@Table(name = "olea_product_price_condition")
 @SequenceGenerator(name = JpaProductPriceCondition.SEQ_PRODUCT_PRICE_CONDITIONS, sequenceName = "seq_price_conditions", initialValue = 1)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "condition_type", discriminatorType = DiscriminatorType.INTEGER)

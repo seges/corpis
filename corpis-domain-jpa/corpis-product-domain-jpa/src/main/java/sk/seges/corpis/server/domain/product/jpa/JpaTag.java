@@ -21,7 +21,7 @@ import sk.seges.corpis.shared.domain.product.EAssignmentTagsType;
 import sk.seges.corpis.shared.domain.product.ESystemTagsType;
 
 @Entity
-@Table(name = "tag")
+@Table(name = "olea_tag")
 @SequenceGenerator(name = JpaTag.SEQ_TAG, sequenceName = "seg_tag", initialValue = 1)
 public class JpaTag extends TagBase {
 
