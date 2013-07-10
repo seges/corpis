@@ -12,11 +12,12 @@ import sk.seges.sesam.core.pap.model.mutable.api.MutableReferenceType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableType;
 import sk.seges.sesam.core.pap.model.mutable.utils.MutableProcessingEnvironment;
 import sk.seges.sesam.core.pap.model.mutable.utils.MutableTypes;
+import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
 
 public class HibernateParameterResolverDelegate {
 
 	public static final String ENTITY_MANAGER_NAME = "entityManager";
-	public static final String TRANSACTION_PROPAGATION_NAME = "transactionPropagations";
+    public static final String TRANSACTION_PROPAGATION_NAME = "transactionPropagations";
 
 	protected final MutableProcessingEnvironment processingEnv;
 	
@@ -51,7 +52,7 @@ public class HibernateParameterResolverDelegate {
 	protected MutableReferenceType getEntityManagerReference() {
 		return null;
 	}
-	
+
 	protected ParameterElement getEntityManagerModel() {
 		return new ParameterElement(processingEnv.getTypeUtils().toMutableType(EntityManager.class),
 				ENTITY_MANAGER_NAME, getEntityManagerReference(), true, processingEnv);

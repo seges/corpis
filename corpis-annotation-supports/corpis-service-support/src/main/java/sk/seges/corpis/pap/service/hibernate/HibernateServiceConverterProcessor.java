@@ -46,24 +46,24 @@ public class HibernateServiceConverterProcessor extends ServiceConverterProcesso
 									return true;
 								}
 							};
-						case CONVERTER_PROVIDER_CONTEXT_CONSTRUCTOR:
-							return new HibernateServiceParameterResolver(processingEnv) {
-								
-								@Override
-								protected boolean isConverterCacheParameterPropagated() {
-									return true;
-								}
-								
-								@Override
-								protected boolean isTransactionPropagationPropagated() {
-									return true;
-								}
-
-								@Override
-								protected boolean isConverterProviderContextParameterPropagated() {
-									return false;
-								}
-							};
+//						case CONVERTER_PROVIDER_CONTEXT_CONSTRUCTOR:
+//							return new HibernateServiceParameterResolver(processingEnv) {
+//
+//								@Override
+//								protected boolean isConverterCacheParameterPropagated() {
+//									return true;
+//								}
+//
+//								@Override
+//								protected boolean isTransactionPropagationPropagated() {
+//									return true;
+//								}
+//
+//								@Override
+//								protected boolean isConverterProviderContextParameterPropagated() {
+//									return false;
+//								}
+//							};
 						case CONVERTER_PROVIDER_INSIDE_USAGE:
 							return new HibernateServiceParameterResolver(processingEnv);
 						case CONVERTER_PROVIDER_CONSTRUCTOR: 
@@ -112,8 +112,8 @@ public class HibernateServiceConverterProcessor extends ServiceConverterProcesso
 				new ConverterParameterFieldPrinter(processingEnv, getParametersFilter(), getParametersResolverProvider(serviceTypeElement)),
 				new ServiceConstructorDefinitionPrinter(processingEnv, getParametersFilter(), getParametersResolverProvider(serviceTypeElement)),
 				new ServiceConstructorBodyPrinter(processingEnv, getParametersFilter(), getParametersResolverProvider(serviceTypeElement)),
-				new HibernateServiceMethodConverterPrinter(processingEnv, getParametersResolverProvider(serviceTypeElement), getConverterProviderPrinter(serviceTypeElement)),
-				new ServiceConverterProviderContextMethodPrinter(processingEnv, getParametersResolverProvider(serviceTypeElement), converterProviderPrinter, getClassPathTypes())
+				new HibernateServiceMethodConverterPrinter(processingEnv, getParametersResolverProvider(serviceTypeElement), getConverterProviderPrinter(serviceTypeElement))
+		//		new ServiceConverterProviderContextMethodPrinter(processingEnv, getParametersResolverProvider(serviceTypeElement), converterProviderPrinter, getClassPathTypes())
 		};
 	}
 	
