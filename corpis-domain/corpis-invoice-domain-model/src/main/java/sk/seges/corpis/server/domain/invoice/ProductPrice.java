@@ -1,4 +1,4 @@
-package sk.seges.corpis.server.domain;
+package sk.seges.corpis.server.domain.invoice;
 
 import sk.seges.corpis.appscaffold.shared.annotation.BaseObject;
 import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
@@ -6,9 +6,10 @@ import sk.seges.sesam.domain.IMutableDomainObject;
 
 @DomainInterface
 @BaseObject
-public interface Description extends IMutableDomainObject<Long> {
+public interface ProductPrice extends IMutableDomainObject<Long> {
 
-	String language();
-	String value();
+	Price price();
+
+	Short priority();
 
 }
