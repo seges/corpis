@@ -10,6 +10,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
 import sk.seges.corpis.server.domain.invoice.server.model.base.PriceBase;
+import sk.seges.corpis.server.domain.invoice.server.model.data.CurrencyData;
 
 /**
  * @author eldzi
@@ -23,8 +24,8 @@ public class JpaPrice extends PriceBase {
 		return super.getValue();
 	}
 
-	@ManyToOne
-	public JpaCurrency getCurrency() {
-		return (JpaCurrency) super.getCurrency();
+	@ManyToOne(targetEntity = JpaCurrency.class)
+	public CurrencyData getCurrency() {
+		return super.getCurrency();
 	}	
 }
