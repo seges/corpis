@@ -72,6 +72,7 @@
 		<sesam-os.version>1.2.2</sesam-os.version>
 
 		<bouncycastle.version>1.45</bouncycastle.version>
+		<hibernate.version>4.2.5.Final</hibernate.version>
 	</properties>
 
 	<build>
@@ -388,6 +389,24 @@
 				<artifactId>opencsv</artifactId>
 				<version>1.8.1</version>
 			</dependency>
+			
+			
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-ehcache</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>			
+			
 		</dependencies>
 	</dependencyManagement>
 
