@@ -24,9 +24,9 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.impl.CriteriaImpl;
-import org.hibernate.impl.CriteriaImpl.OrderEntry;
-import org.hibernate.impl.CriteriaImpl.Subcriteria;
+import org.hibernate.internal.CriteriaImpl;
+import org.hibernate.internal.CriteriaImpl.OrderEntry;
+import org.hibernate.internal.CriteriaImpl.Subcriteria;
 import org.hibernate.property.Getter;
 import org.hibernate.property.PropertyAccessor;
 import org.hibernate.property.PropertyAccessorFactory;
@@ -373,6 +373,7 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 		if (embedableClassSet == null) {
 			findEmbeddableClasses();
 		}
+		Set<Class<?>> embedableClassCopySet = new HashSet<Class<?>>(embedableClassSet);
 
 		Class<?> clazz = resultClass;
 		StringBuilder newProperty = new StringBuilder(property.length());
@@ -385,14 +386,14 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 			clazz = getter.getReturnType();
 
 			boolean assignable = false;
-			for (Class<?> clazzz : embedableClassSet) {
+			for (Class<?> clazzz : embedableClassCopySet) {
 				if (clazz.isAssignableFrom(clazzz)) {
 					assignable = true;
 					break;
 				}
 			}
 			
-			if (assignable || embedableClassSet.contains(clazz)) {
+			if (assignable || embedableClassCopySet.contains(clazz)) {
 				newProperty.append(fieldName + EMBEDDED_FIELD_DELIM);
 			} else {
 				newProperty.append(fieldName + FIELD_DELIM);
