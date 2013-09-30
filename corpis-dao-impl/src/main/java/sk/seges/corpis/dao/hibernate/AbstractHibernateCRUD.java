@@ -287,6 +287,8 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 			findEmbeddableClasses();
 		}
 
+		Set<Class<?>> embedableClassCopySet = new HashSet<Class<?>>(embedableClassSet);
+
 		Class<?> clazz = resultClass;
 		StringBuilder newProperty = new StringBuilder(property.length());
 		int fieldIndex = property.indexOf(FIELD_DELIM);
@@ -298,14 +300,14 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 			clazz = getter.getReturnType();
 
 			boolean assignable = false;
-			for (Class<?> clazzz : embedableClassSet) {
+			for (Class<?> clazzz : embedableClassCopySet) {
 				if (clazz.isAssignableFrom(clazzz)) {
 					assignable = true;
 					break;
 				}
 			}
 			
-			if (assignable || embedableClassSet.contains(clazz)) {
+			if (assignable || embedableClassCopySet.contains(clazz)) {
 				newProperty.append(fieldName + EMBEDDED_FIELD_DELIM);
 			} else {
 				newProperty.append(fieldName + FIELD_DELIM);
