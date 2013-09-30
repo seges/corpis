@@ -1,7 +1,7 @@
 /**
  * 
  */
-package sk.seges.corpis.server.domain;
+package sk.seges.corpis.shared.domain.customer;
 
 /**
  * @author ladislav.gazo
