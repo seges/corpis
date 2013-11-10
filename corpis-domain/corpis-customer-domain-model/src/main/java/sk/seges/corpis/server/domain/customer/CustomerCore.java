@@ -34,6 +34,7 @@ public interface CustomerCore extends IMutableDomainObject<Long> {
 	String icDph();
 	Boolean taxPayment();
 	Short invoicePaymentInterval();
+
 	String accountNumber();
 	Date registrationDate();
 	

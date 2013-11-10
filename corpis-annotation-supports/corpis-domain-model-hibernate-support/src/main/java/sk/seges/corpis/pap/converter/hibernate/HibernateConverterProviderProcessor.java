@@ -1,10 +1,13 @@
 package sk.seges.corpis.pap.converter.hibernate;
 
+import sk.seges.corpis.pap.converter.hibernate.model.HibernateConverterProviderType;
 import sk.seges.corpis.pap.converter.hibernate.resolver.HibernateConverterParameterResolver;
 import sk.seges.corpis.pap.model.printer.converter.HibernateConverterProviderPrinter;
 import sk.seges.sesam.core.pap.model.ConverterConstructorParameter;
+import sk.seges.sesam.core.pap.model.mutable.api.MutableDeclaredType;
 import sk.seges.sesam.core.pap.writer.FormattedPrintWriter;
 import sk.seges.sesam.pap.converter.ConverterProviderProcessor;
+import sk.seges.sesam.pap.converter.model.ConverterProviderType;
 import sk.seges.sesam.pap.converter.printer.api.ConverterProviderElementPrinter;
 import sk.seges.sesam.pap.converter.printer.converterprovider.DomainMethodConverterProviderPrinter;
 import sk.seges.sesam.pap.converter.printer.converterprovider.DtoMethodConverterProviderPrinter;
@@ -24,6 +27,13 @@ import java.util.List;
 
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class HibernateConverterProviderProcessor extends ConverterProviderProcessor {
+
+	@Override
+	protected MutableDeclaredType[] getOutputClasses(RoundContext context) {
+		return new MutableDeclaredType[] {
+				new HibernateConverterProviderType(context.getMutableType(), processingEnv)
+		};
+	}
 
     @Override
 	protected ConverterConstructorParametersResolverProvider getParametersResolverProvider() {

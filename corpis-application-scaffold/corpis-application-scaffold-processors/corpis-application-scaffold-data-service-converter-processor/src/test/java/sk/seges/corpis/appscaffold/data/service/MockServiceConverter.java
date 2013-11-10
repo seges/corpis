@@ -10,8 +10,8 @@ import sk.seges.corpis.appscaffold.data.model.configuration.PagedResultConverter
 import sk.seges.corpis.appscaffold.data.model.converter.MockEntityDTOConverter;
 import sk.seges.corpis.appscaffold.data.model.dto.MockEntityDTO;
 import sk.seges.corpis.appscaffold.data.model.entity.MockEntity;
-import sk.seges.corpis.service.annotation.TransactionPropagation.PropagationTarget;
-import sk.seges.corpis.service.annotation.TransactionPropagation.PropagationType;
+import sk.seges.corpis.service.annotation.PropagationTarget;
+import sk.seges.corpis.service.annotation.PropagationType;
 import sk.seges.corpis.service.annotation.TransactionPropagationModel;
 import sk.seges.sesam.dao.PagedResult;
 import sk.seges.sesam.pap.service.annotation.LocalServiceConverter;
@@ -43,12 +43,20 @@ public class MockServiceConverter implements MockRemoteService {
 
 	@Override
 	public PagedResult<List<MockEntityDTO>> findAll(){
-		return (PagedResult<List<MockEntityDTO>>)((PagedResultConverter)getPagedResultConverter(new TransactionPropagationModel[] {new TransactionPropagationModel(new String[] {}, new PropagationTarget[] {PropagationTarget.RETURN_VALUE, PropagationTarget.ARGUMENTS}, PropagationType.ISOLATE)})).toDto((PagedResult<List<MockEntity>>)mockLocalServiceService.findAll());
+		return (PagedResult<List<MockEntityDTO>>)((PagedResultConverter)
+					getPagedResultConverter(new TransactionPropagationModel[] {new TransactionPropagationModel(new String[] {}, new PropagationTarget[] {PropagationTarget.RETURN_VALUE, PropagationTarget.ARGUMENTS}, PropagationType.ISOLATE)})).
+				toDto((PagedResult<List<MockEntity>>)mockLocalServiceService.findAll());
 	}
 
 	class MockConverterProviderContext extends ConverterProviderContext {
 		public MockConverterProviderContext() {
-			registerConverterProvider(new MockConverterProvider(this));
+		}
+
+		@Override
+		public ConverterProviderContext get() {
+			MockConverterProviderContext result = new MockConverterProviderContext();
+			result.registerConverterProvider(new MockConverterProvider(this));
+			return result;
 		}
 	}
 	
@@ -67,7 +75,7 @@ public class MockServiceConverter implements MockRemoteService {
 			}
 			
 			if (domainClass.isAssignableFrom(PagedResult.class)) {
-				return (DtoConverter<DTO, DOMAIN>) new PagedResultConverter<DTO, DOMAIN>(cache, context);
+				return (DtoConverter<DTO, DOMAIN>) new PagedResultConverter<DTO, DOMAIN>(entityManager, context);
 			}
 
 			return null;
@@ -80,7 +88,7 @@ public class MockServiceConverter implements MockRemoteService {
 			}
 			
 			if (dtoClass.getClass().isAssignableFrom(PagedResult.class)) {
-				return (DtoConverter<DTO, DOMAIN>) new PagedResultConverter<DTO, DOMAIN>(cache, converterProviderContext);
+				return (DtoConverter<DTO, DOMAIN>) new PagedResultConverter<DTO, DOMAIN>(entityManager, converterProviderContext);
 			}
 
 			return null;
@@ -88,14 +96,16 @@ public class MockServiceConverter implements MockRemoteService {
 	}
 	
 	private<DTO_T, DOMAIN_T> PagedResultConverter<? extends DTO_T, ? extends DOMAIN_T> getPagedResultConverter(TransactionPropagationModel[] transactionPropagations) {
-		PagedResultConverter<DTO_T, DOMAIN_T> pagedResultConverter = new PagedResultConverter<DTO_T, DOMAIN_T>(cache, context);
+		PagedResultConverter<DTO_T, DOMAIN_T> pagedResultConverter = new PagedResultConverter<DTO_T, DOMAIN_T>(entityManager, context);
 		pagedResultConverter.setTransactionPropagations(transactionPropagations);
-		pagedResultConverter.setEntityManager(entityManager);
+		pagedResultConverter.setCache(cache);
 		return pagedResultConverter;
 	}
 
 	private MockEntityDTOConverter getMockEntityDTOConverter(TransactionPropagationModel[] transactionPropagations) {
-		return new MockEntityDTOConverter(entityManager, transactionPropagations);
+		MockEntityDTOConverter mockEntityDTOConverter = new MockEntityDTOConverter(entityManager);
+		mockEntityDTOConverter.setTransactionPropagations(transactionPropagations);
+		return mockEntityDTOConverter;
 	}
 
 }

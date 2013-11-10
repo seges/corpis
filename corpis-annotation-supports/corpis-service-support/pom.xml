@@ -38,7 +38,7 @@
 			<groupId>sk.seges.corpis</groupId>
 			<artifactId>corpis-service-api</artifactId>
 		</dependency>
-		
+
 		<!-- Hibernate dependencies -->
 		<dependency>
 			<groupId>org.hibernate</groupId>

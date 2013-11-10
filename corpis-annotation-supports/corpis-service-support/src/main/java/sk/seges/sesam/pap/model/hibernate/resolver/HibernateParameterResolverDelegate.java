@@ -1,18 +1,18 @@
 package sk.seges.sesam.pap.model.hibernate.resolver;
 
-import javax.persistence.EntityManager;
-
 import sk.seges.corpis.pap.service.hibernate.accessor.TransactionPropagationAccessor;
 import sk.seges.corpis.service.annotation.TransactionPropagationModel;
 import sk.seges.sesam.core.pap.model.ParameterElement;
 import sk.seges.sesam.core.pap.model.ParameterElement.ParameterUsageContext;
 import sk.seges.sesam.core.pap.model.ParameterElement.ParameterUsageProvider;
+import sk.seges.sesam.core.pap.model.api.PropagationType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableDeclaredType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableReferenceType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableType;
 import sk.seges.sesam.core.pap.model.mutable.utils.MutableProcessingEnvironment;
 import sk.seges.sesam.core.pap.model.mutable.utils.MutableTypes;
-import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
+
+import javax.persistence.EntityManager;
 
 public class HibernateParameterResolverDelegate {
 
@@ -34,11 +34,11 @@ public class HibernateParameterResolverDelegate {
 					TransactionPropagationAccessor transactionPropagationAccessor = new TransactionPropagationAccessor(context.getMethod(), processingEnv);
 					return getTransactionModelReference(transactionPropagationAccessor);
 				}
-			}, isTransactionPropagationModelParameterPropagated());
+			}, getTransactionPropagationModelParameterPropagation());
 	}
 	
-	protected boolean isTransactionPropagationModelParameterPropagated() {
-		return true;
+	protected PropagationType getTransactionPropagationModelParameterPropagation() {
+		return PropagationType.PROPAGATED_MUTABLE;
 	}
 
 	protected MutableReferenceType getTransactionModelReference(TransactionPropagationAccessor transactionPropagationAccessor) {
@@ -55,7 +55,7 @@ public class HibernateParameterResolverDelegate {
 
 	protected ParameterElement getEntityManagerModel() {
 		return new ParameterElement(processingEnv.getTypeUtils().toMutableType(EntityManager.class),
-				ENTITY_MANAGER_NAME, getEntityManagerReference(), true, processingEnv);
+				ENTITY_MANAGER_NAME, getEntityManagerReference(), PropagationType.PROPAGATED_IMUTABLE, processingEnv);
 	}
 	
 	public ParameterElement[] getConstructorAditionalParameters(ParameterElement[] additionalConstructorParameters) {

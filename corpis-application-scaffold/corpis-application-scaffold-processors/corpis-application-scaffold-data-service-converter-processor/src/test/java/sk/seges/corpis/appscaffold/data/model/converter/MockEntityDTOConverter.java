@@ -9,29 +9,24 @@ import javax.persistence.EntityManager;
 import sk.seges.corpis.appscaffold.data.model.dto.MockEntityDTO;
 import sk.seges.corpis.appscaffold.data.model.entity.MockEntity;
 import sk.seges.corpis.service.annotation.TransactionPropagationModel;
-import sk.seges.corpis.shared.converter.utils.ConverterUtils;
+import sk.seges.corpis.shared.converter.utils.utils.ConverterUtils;
 import sk.seges.sesam.shared.model.converter.BasicCachedConverter;
-import sk.seges.sesam.shared.model.converter.MapConvertedInstanceCache;
 
 @Generated(value = "sk.seges.corpis.pap.model.hibernate.HibernateTransferObjectConverterProcessor")
 public class MockEntityDTOConverter extends BasicCachedConverter<MockEntityDTO, MockEntity> {
 
-	public MockEntityDTOConverter(MapConvertedInstanceCache cache, EntityManager entityManager, TransactionPropagationModel[] transactionPropagations) {
-		super(cache);
-		this.cache = cache;
+	public MockEntityDTOConverter(EntityManager entityManager) {
 		this.entityManager = entityManager;
-		this.transactionPropagations = transactionPropagations;
 	}
-
-	public MockEntityDTOConverter(EntityManager entityManager, TransactionPropagationModel[] transactionPropagations) {
-		this(new sk.seges.sesam.shared.model.converter.MapConvertedInstanceCache(), entityManager, transactionPropagations);
-	}
-
-	private MapConvertedInstanceCache cache;
 
 	private EntityManager entityManager;
 
 	private TransactionPropagationModel[] transactionPropagations;
+
+
+	public void setTransactionPropagations(TransactionPropagationModel[] transactionPropagations) {
+		this.transactionPropagations = transactionPropagations;
+	}
 
 	public boolean equals(MockEntity _domain,MockEntityDTO _dto) {
 		if (_domain.getBlob() == null) {

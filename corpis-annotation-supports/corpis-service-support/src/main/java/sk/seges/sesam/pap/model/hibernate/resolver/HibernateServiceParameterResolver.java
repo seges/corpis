@@ -1,10 +1,12 @@
 package sk.seges.sesam.pap.model.hibernate.resolver;
 
-import javax.persistence.EntityManager;
-
+import sk.seges.corpis.server.model.converter.provider.AbstractContextualConverterProvider;
 import sk.seges.sesam.core.pap.model.ParameterElement;
+import sk.seges.sesam.core.pap.model.api.PropagationType;
 import sk.seges.sesam.core.pap.model.mutable.utils.MutableProcessingEnvironment;
 import sk.seges.sesam.pap.service.resolver.ServiceConverterConstructorParametersResolver;
+
+import javax.persistence.EntityManager;
 
 public class HibernateServiceParameterResolver extends ServiceConverterConstructorParametersResolver {
 
@@ -15,24 +17,30 @@ public class HibernateServiceParameterResolver extends ServiceConverterConstruct
 		this.hibernateParameterResolverDelegate = new HibernateParameterResolverDelegate(processingEnv) {
 
 			@Override
-			protected boolean isTransactionPropagationModelParameterPropagated() {
-				return isTransactionPropagationPropagated();
+			protected PropagationType getTransactionPropagationModelParameterPropagation() {
+				return getTransactionPropagationPropagation();
 			};
 			
 			@Override
 			protected ParameterElement getEntityManagerModel() {
 				return new ParameterElement(processingEnv.getTypeUtils().toMutableType(EntityManager.class),
-						ENTITY_MANAGER_NAME, getEntityManagerReference(), isEntityManagerPropagated(), processingEnv);
+						ENTITY_MANAGER_NAME, getEntityManagerReference(), getEntityManagerPropagation(), processingEnv);
 			}
 		};
 	}
 
-	protected boolean isTransactionPropagationPropagated() {
-		return false;
+	@Override
+	protected ParameterElement getConverterProviderContextParameter() {
+		return new ParameterElement(processingEnv.getTypeUtils().toMutableType(AbstractContextualConverterProvider.class), CONVERTER_PROVIDER_CONTEXT_NAME,
+				getConverterProviderContextReference(), getConverterProviderContextParameterPropagation(), processingEnv);
+	}
+
+	protected PropagationType getTransactionPropagationPropagation() {
+		return PropagationType.INSTANTIATED;
 	};
 	
-	public boolean isEntityManagerPropagated() {
-		return true;
+	public PropagationType getEntityManagerPropagation() {
+		return PropagationType.PROPAGATED_IMUTABLE;
 	}
 	
 	@Override

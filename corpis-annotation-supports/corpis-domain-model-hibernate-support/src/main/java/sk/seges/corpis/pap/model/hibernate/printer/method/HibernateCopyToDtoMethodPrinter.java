@@ -9,7 +9,7 @@ import javax.lang.model.element.TypeElement;
 import org.hibernate.Hibernate;
 
 import sk.seges.corpis.pap.model.hibernate.resolver.HibernateEntityResolver;
-import sk.seges.corpis.shared.converter.utils.ConverterUtils;
+import sk.seges.corpis.shared.converter.utils.utils.ConverterUtils;
 import sk.seges.sesam.core.pap.model.PathResolver;
 import sk.seges.sesam.core.pap.utils.MethodHelper;
 import sk.seges.sesam.core.pap.writer.FormattedPrintWriter;

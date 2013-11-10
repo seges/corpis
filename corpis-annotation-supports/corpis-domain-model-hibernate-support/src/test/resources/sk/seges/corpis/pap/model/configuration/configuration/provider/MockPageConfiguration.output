@@ -1,0 +1,64 @@
+package sk.seges.corpis.pap;
+import javax.annotation.Generated;
+import javax.persistence.EntityManager;
+
+import sk.seges.corpis.pap.model.configuration.configuration.MockPageConverter;
+import sk.seges.sesam.dao.Page;
+import sk.seges.sesam.pap.model.annotation.ConverterProviderDefinition;
+import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
+import sk.seges.sesam.shared.model.converter.api.DtoConverter;
+import sk.seges.sesam.shared.model.converter.provider.AbstractConverterProvider;
+
+@ConverterProviderDefinition
+@Generated(value = "sk.seges.corpis.pap.converter.hibernate.HibernateConverterProviderProcessor")
+public class HibernateConverterProviderProcessorTestConverterProvider extends AbstractConverterProvider {
+	
+	protected final EntityManager entityManager;
+	
+	protected final ConverterProviderContext converterProviderContext;
+	 
+	public HibernateConverterProviderProcessorTestConverterProvider(EntityManager entityManager, ConverterProviderContext converterProviderContext) {
+		this.entityManager = entityManager;
+		this.converterProviderContext = converterProviderContext;
+	}
+	 
+	public <DTO, DOMAIN> DtoConverter<DTO, DOMAIN> getConverterForDomain(Class<DOMAIN> domainClass) {
+	
+		if (domainClass == null) {
+			return null;
+		}
+	
+		if (Page.class.equals(domainClass)) {
+			return (DtoConverter<DTO, DOMAIN>) getDomainMockPageConverter();
+		}
+	
+		return null;
+	}
+	
+	public <DTO, DOMAIN> DtoConverter<DTO, DOMAIN> getConverterForDto(Class<DTO> dto) {
+	
+		if (dto == null) {
+			return null;
+		}
+	
+		if (Page.class.equals(dto)) {
+			return (DtoConverter<DTO, DOMAIN>) getDtoMockPageConverter();
+		}
+	
+		return null;
+	}
+	
+	protected MockPageConverter getDomainMockPageConverter(){
+		MockPageConverter result = new MockPageConverter(entityManager, converterProviderContext);
+		result.setTransactionPropagations(transactionPropagations);
+		result.setCache(cache);
+		return result;
+	}
+	
+	protected MockPageConverter getDtoMockPageConverter(){
+		MockPageConverter result = new MockPageConverter(entityManager, converterProviderContext);
+		result.setTransactionPropagations(transactionPropagations);
+		result.setCache(cache);
+		return result;
+	}
+}

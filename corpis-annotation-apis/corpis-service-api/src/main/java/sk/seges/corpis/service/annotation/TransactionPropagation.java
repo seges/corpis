@@ -5,16 +5,8 @@ import sk.seges.sesam.core.configuration.annotation.GenerateModel;
 @GenerateModel
 public @interface TransactionPropagation {
 
-	public enum PropagationType {
-		PROPAGATE, ISOLATE
-	}
-	
-	public enum PropagationTarget {
-		RETURN_VALUE, ARGUMENTS
-	}
-
-	PropagationType value() default PropagationType.PROPAGATE;
-	PropagationTarget[] target() default { PropagationTarget.RETURN_VALUE, PropagationTarget.ARGUMENTS };
+	PropagationType value() default sk.seges.corpis.service.annotation.PropagationType.PROPAGATE;
+	PropagationTarget[] target() default { sk.seges.corpis.service.annotation.PropagationTarget.RETURN_VALUE, sk.seges.corpis.service.annotation.PropagationTarget.ARGUMENTS };
 
 	String[] fields() default {};
 }

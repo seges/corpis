@@ -1,25 +1,9 @@
 package sk.seges.corpis.pap.model.printer.converter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.lang.model.element.ExecutableElement;
-
-import sk.seges.sesam.core.pap.model.ParameterElement;
-import sk.seges.sesam.core.pap.model.ParameterElement.ParameterUsageContext;
-import sk.seges.sesam.core.pap.model.mutable.api.MutableReferenceType;
-import sk.seges.sesam.core.pap.model.mutable.api.element.MutableExecutableElement;
-import sk.seges.sesam.core.pap.model.mutable.api.element.MutableVariableElement;
 import sk.seges.sesam.core.pap.model.mutable.utils.MutableProcessingEnvironment;
-import sk.seges.sesam.core.pap.model.mutable.utils.MutableTypes;
-import sk.seges.sesam.core.pap.utils.ProcessorUtils;
-import sk.seges.sesam.pap.converter.util.HasConstructorParametersDelegate;
 import sk.seges.sesam.pap.model.hibernate.resolver.HibernateConverterProviderParameterResolver;
 import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider;
-import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider.UsageType;
-import sk.seges.sesam.pap.service.model.ConverterProviderContextType;
 import sk.seges.sesam.pap.service.model.ServiceTypeElement;
-import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
 
 @Deprecated
 public class HibernateServiceConverterProviderParameterResolver extends HibernateConverterProviderParameterResolver {

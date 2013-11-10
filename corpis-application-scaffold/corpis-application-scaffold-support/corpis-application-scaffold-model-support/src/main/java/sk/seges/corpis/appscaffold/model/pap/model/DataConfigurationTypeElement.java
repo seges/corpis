@@ -6,15 +6,14 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 
+import sk.seges.corpis.pap.model.hibernate.TransactionalConfigurationTypeElement;
+import sk.seges.corpis.pap.model.hibernate.TransactionalConverterTypeElement;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableDeclaredType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableTypeMirror;
-import sk.seges.sesam.pap.model.model.ConfigurationContext;
-import sk.seges.sesam.pap.model.model.ConfigurationTypeElement;
-import sk.seges.sesam.pap.model.model.EnvironmentContext;
-import sk.seges.sesam.pap.model.model.TransferObjectProcessingEnvironment;
+import sk.seges.sesam.pap.model.model.*;
 import sk.seges.sesam.pap.model.model.api.domain.DomainDeclaredType;
 
-public class DataConfigurationTypeElement extends ConfigurationTypeElement {
+public class DataConfigurationTypeElement extends TransactionalConfigurationTypeElement {
 	
 //	private DomainDeclaredType domainType;
 //	private boolean domainTypeInitialized = false;
@@ -36,6 +35,7 @@ public class DataConfigurationTypeElement extends ConfigurationTypeElement {
 		super(domainType, dtoType, configurationElement, envContext, configurationContext);
 		dataTypeResolver = new DataTypeResolver(envContext);
 	}
+
 
 	@Override
 	protected ConfigurationTypeElement getConfigurationTypeElement(Element configurationElement, EnvironmentContext<TransferObjectProcessingEnvironment> envContext, ConfigurationContext configurationContext) {

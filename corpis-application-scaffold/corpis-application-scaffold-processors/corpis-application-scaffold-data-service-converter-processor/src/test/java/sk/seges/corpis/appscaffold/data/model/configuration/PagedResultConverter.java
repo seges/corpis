@@ -10,16 +10,11 @@ import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
 
 public class PagedResultConverter<DTO_T, DOMAIN_T> extends BasicCachedConverter<PagedResult<DTO_T>, PagedResult<DOMAIN_T>> {
 
-	public PagedResultConverter(ConvertedInstanceCache arg0, ConverterProviderContext context) {
-		super(arg0);
+	public PagedResultConverter(EntityManager entityManager, ConverterProviderContext context) {
+		setCache(new sk.seges.sesam.shared.model.converter.MapConvertedInstanceCache());
 	}
 
 	public void setTransactionPropagations(TransactionPropagationModel[] transactionPropagations) {}
-	public void setEntityManager(EntityManager entityManager) {};
-	
-	public PagedResultConverter(ConverterProviderContext converterProviderContext) {
-		this(new sk.seges.sesam.shared.model.converter.MapConvertedInstanceCache(), converterProviderContext);
-	}
 
 	@Override
 	public PagedResult<DTO_T> convertToDto(PagedResult<DTO_T> result, PagedResult<DOMAIN_T> domain) {
