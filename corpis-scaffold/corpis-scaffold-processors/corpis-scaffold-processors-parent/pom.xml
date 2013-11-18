@@ -13,14 +13,14 @@
 	</parent>
 
 	<modules>
-		<module>../corpis-application-scaffold-data-interface-processor</module>
-		<module>../corpis-application-scaffold-model-base-processor</module>
-		<module>../corpis-application-scaffold-jpamodel-processor</module>
-		<module>../corpis-application-scaffold-mapbasedobject-processor</module>
-		<module>../corpis-application-scaffold-data-domain-model-coverter-processor</module>
-		<module>../corpis-application-scaffold-local-service-data-interface-processor</module>
-		<module>../corpis-application-scaffold-data-service-converter-processor</module>
-		<module>../corpis-application-scaffold-data-domain-model-processor</module>
+		<module>../corpis-scaffold-data-interface-processor</module>
+		<module>../corpis-scaffold-model-base-processor</module>
+		<module>../corpis-scaffold-jpamodel-processor</module>
+		<module>../corpis-scaffold-mapbasedobject-processor</module>
+		<module>../corpis-scaffold-data-domain-model-coverter-processor</module>
+		<module>../corpis-scaffold-local-service-data-interface-processor</module>
+		<module>../corpis-scaffold-data-service-converter-processor</module>
+		<module>../corpis-scaffold-data-domain-model-processor</module>
 	</modules>
 	
 	<dependencyManagement>

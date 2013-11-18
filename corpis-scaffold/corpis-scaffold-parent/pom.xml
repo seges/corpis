@@ -13,9 +13,9 @@
 	</parent>
 
 	<modules>
-		<module>../corpis-application-scaffold-model</module>
-		<module>../corpis-application-scaffold-support/corpis-application-scaffold-support-parent</module>
-		<module>../corpis-application-scaffold-processors/corpis-application-scaffold-processors-parent</module>
+		<module>../corpis-scaffold-model</module>
+		<module>../corpis-scaffold-support/corpis-scaffold-support-parent</module>
+		<module>../corpis-scaffold-processors/corpis-scaffold-processors-parent</module>
 	</modules>
 
 	<dependencyManagement>
