@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import sk.seges.corpis.server.domain.DBConstraints;
+
 import sk.seges.corpis.server.domain.server.model.base.PersonNameBase;
 import sk.seges.corpis.shared.domain.customer.Salutation;
 import sk.seges.corpis.shared.domain.validation.person.PersonCustomerFormCheck;

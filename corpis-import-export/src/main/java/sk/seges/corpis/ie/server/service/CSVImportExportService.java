@@ -121,6 +121,7 @@ public abstract class CSVImportExportService {
 				violations.addAll(handle);
 			} catch (Exception ex) {
 				log.error("Unable to import entry. ", ex);
+				log.error("Failed entry: " + entry.toString());
 			}
 			
 			i++;

@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import sk.seges.corpis.server.domain.server.model.base.PriceBase;
+import sk.seges.corpis.server.domain.server.model.data.CurrencyData;
 
 /**
  * @author eldzi
@@ -34,8 +35,8 @@ public class JpaPrice extends PriceBase {
 	}
 
 	@NotNull
-	@ManyToOne
-	public JpaCurrency getCurrency() {
-		return (JpaCurrency) super.getCurrency();
+	@ManyToOne(targetEntity = JpaCurrency.class)
+	public CurrencyData getCurrency() {
+		return super.getCurrency();
 	}	
 }
