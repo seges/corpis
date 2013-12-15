@@ -18,6 +18,7 @@ import javax.validation.Validator;
 import sk.seges.corpis.domain.shared.pay.PaymentRequest;
 import sk.seges.corpis.domain.shared.pay.trust.ETrustPayParameter;
 import sk.seges.corpis.domain.shared.pay.trust.TrustPayRequest;
+import sk.seges.corpis.domain.shared.pay.trust.TrustPaySettings;
 import sk.seges.corpis.pay.JSRValidatorAwarePaymentRequestBuilder;
 import sk.seges.corpis.pay.signer.PaymentSigner;
 
@@ -55,21 +56,42 @@ public class TrustPayRequestBuilder extends JSRValidatorAwarePaymentRequestBuild
 		NumberFormat ff = new DecimalFormat("##0.00", DecimalFormatSymbols.getInstance(new Locale("en")));
 		String amt = ff.format(request.getAmt());
 
+		TrustPaySettings settings = request.getSettings();
+
 		// required parameters
 		// MID = AID
-		fill(params, ETrustPayParameter.MID.getName(), request.getSettings().getMid());
+		fill(params, ETrustPayParameter.MID.getName(), settings.getMid());
 		fill(params, ETrustPayParameter.AMT.getName(), amt);
 		fill(params, ETrustPayParameter.CUR.getName(), request.getCur());
 		// VS = REF
 		fill(params, ETrustPayParameter.VS.getName(), request.getVs());
-		String signature = signer.forgeSignature(request.getSettings(), params.values());
+		String signature = signer.forgeSignature(settings, params.values());
 		request.setSign(signature);
 		fill(params, ETrustPayParameter.SIG.getName(), signature);
 
 
 		// optional parameters
-		fill(params, ETrustPayParameter.URL.getName(), request.getSettings().getUrl());
-		fill(params, ETrustPayParameter.LNG.getName(), locale);
+		if (settings.getUrl() != null) {
+			fill(params, ETrustPayParameter.URL.getName(), settings.getUrl());
+		}
+		if (locale != null) {
+			fill(params, ETrustPayParameter.LNG.getName(), locale);
+		}
+		if (settings.getNurl() != null) {
+			fill(params, ETrustPayParameter.NURL.getName(), settings.getNurl());
+		}
+
+		if (settings.getRurl() != null) {
+			fill(params, ETrustPayParameter.RURL.getName(), settings.getRurl());
+		}
+
+		if (settings.getEurl() != null) {
+			fill(params, ETrustPayParameter.EURL.getName(), settings.getEurl());
+		}
+
+		if (settings.getCurl() != null) {
+			fill(params, ETrustPayParameter.CURL.getName(), settings.getCurl());
+		}
 
 		Set<ConstraintViolation<TrustPayRequest>> violations = validate(request);
 		if (violations.size() > 0) {

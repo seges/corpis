@@ -1,7 +1,7 @@
 /**
  * 
  */
-package sk.seges.corpis.domain.shared.pay.trust;
+package sk.seges.corpis.domain.shared.pay.homecredit;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
@@ -14,11 +14,11 @@ import sk.seges.corpis.domain.shared.pay.PaymentMethodSettings;
 /**
  * @author stefan.sivak
  *
- * @since Dec 4, 2013
+ * @since Dec 10, 2013
  */
-public class TrustPaySettings implements PaymentMethodSettings, HasKeyPaymentMethodSettings {
+public class HomecreditSettings implements PaymentMethodSettings, HasKeyPaymentMethodSettings {
 
-	private static final long serialVersionUID = -2831352361943446362L;
+	private static final long serialVersionUID = 5675875799481360519L;
 
 	public static final String MID_ATTRIBUTE = "mid";
 
@@ -32,9 +32,6 @@ public class TrustPaySettings implements PaymentMethodSettings, HasKeyPaymentMet
 	@NotNull
 	protected String key;
 
-	/**
-	 * MID = AID
-	 */
 	@Column
 	@NotNull
 	protected String mid;
@@ -44,18 +41,6 @@ public class TrustPaySettings implements PaymentMethodSettings, HasKeyPaymentMet
 	@Column
 	@NotNull
 	private String url;
-
-	@Column
-	private String nurl;
-
-	@Column
-	private String rurl;
-
-	@Column
-	private String eurl;
-
-	@Column
-	private String curl;
 
 	/*
 	 * (non-Javadoc)
@@ -92,8 +77,8 @@ public class TrustPaySettings implements PaymentMethodSettings, HasKeyPaymentMet
 		return mid;
 	}
 
-	public void setMid(String aid) {
-		this.mid = aid;
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
 
 	public String getUrl() {
@@ -102,38 +87,6 @@ public class TrustPaySettings implements PaymentMethodSettings, HasKeyPaymentMet
 
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	public String getNurl() {
-		return nurl;
-	}
-
-	public void setNurl(String nurl) {
-		this.nurl = nurl;
-	}
-
-	public String getRurl() {
-		return rurl;
-	}
-
-	public void setRurl(String rurl) {
-		this.rurl = rurl;
-	}
-
-	public String getEurl() {
-		return eurl;
-	}
-
-	public void setEurl(String eurl) {
-		this.eurl = eurl;
-	}
-
-	public String getCurl() {
-		return curl;
-	}
-
-	public void setCurl(String curl) {
-		this.curl = curl;
 	}
 
 	@Override
@@ -152,7 +105,7 @@ public class TrustPaySettings implements PaymentMethodSettings, HasKeyPaymentMet
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TrustPaySettings other = (TrustPaySettings) obj;
+		HomecreditSettings other = (HomecreditSettings) obj;
 		if (mid == null) {
 			if (other.mid != null)
 				return false;
@@ -160,4 +113,5 @@ public class TrustPaySettings implements PaymentMethodSettings, HasKeyPaymentMet
 			return false;
 		return true;
 	}
+
 }
