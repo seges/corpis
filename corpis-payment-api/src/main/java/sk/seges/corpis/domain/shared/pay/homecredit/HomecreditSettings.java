@@ -42,6 +42,11 @@ public class HomecreditSettings implements PaymentMethodSettings, HasKeyPaymentM
 	@NotNull
 	private String url;
 
+	@Pattern(regexp = RegexConstants.WEB_URL)
+	@Column
+	@NotNull
+	protected String calcUrl;
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -87,6 +92,14 @@ public class HomecreditSettings implements PaymentMethodSettings, HasKeyPaymentM
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getCalcUrl() {
+		return calcUrl;
+	}
+
+	public void setCalcUrl(String calcUrl) {
+		this.calcUrl = calcUrl;
 	}
 
 	@Override

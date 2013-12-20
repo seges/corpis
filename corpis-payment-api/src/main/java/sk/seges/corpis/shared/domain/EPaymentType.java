@@ -18,7 +18,8 @@ public enum EPaymentType {
 	CASH("paymentType.cash", false),
 	INVOICE("paymentType.invoice", false),
     TRUSTPAY("paymentType.trustpay", true), 
-    HOMECREDIT("paymentType.homecredit", true)
+    HOMECREDIT("paymentType.homecredit",true),
+    HOMECREDIT_CALC("paymentType.homecreditCalc", true)
 
 	;
 	
