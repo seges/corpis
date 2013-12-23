@@ -43,7 +43,7 @@ public class TatraPayRequestBuilderTest {
 		
 		PaymentSigner signer = new DESSigner();
 		TatraPayRequestBuilder builder = new TatraPayRequestBuilder(factory.getValidator(), signer);
-		PaymentRequest paymentRequest = builder.generate(request);
+		PaymentRequest paymentRequest = builder.generate(request, null);
 		
 		assertEquals("12.70", paymentRequest.getParameters().get(TatraPayParameter.AMT.getName()));
 		assertNotNull("Sign not generated?", paymentRequest.getParameters().get(TatraPayParameter.SIGN.getName()));

@@ -11,9 +11,17 @@ import sk.seges.sesam.domain.IMutableDomainObject;
 public interface Sup extends IMutableDomainObject<Long>, HasWebId {
 
 	Sup parentSup();
+
 	String names();
+
 	String type();
+
 	String classType();
+
 	Unit unit();
+
+	Boolean required();
+
+	String extId();
 
 }

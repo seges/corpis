@@ -34,7 +34,7 @@ public class TatraPayRequestBuilder extends JSRValidatorAwarePaymentRequestBuild
 	}
 
 	@Override
-	public PaymentRequest generate(TatraPayRequest request) {
+	public PaymentRequest generate(TatraPayRequest request, String locale) {
 		Map<String, String> params = new LinkedHashMap<String, String>();
 
 		NumberFormat ff = new DecimalFormat("##0.00", DecimalFormatSymbols.getInstance(new Locale("en")));

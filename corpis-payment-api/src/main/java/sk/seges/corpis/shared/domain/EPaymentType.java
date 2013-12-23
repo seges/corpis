@@ -16,7 +16,12 @@ public enum EPaymentType {
 	UCBPAY("paymentType.ucbpay", true), 
 	COD("paymentType.cod", false),
 	CASH("paymentType.cash", false),
-	INVOICE("paymentType.invoice", false);
+	INVOICE("paymentType.invoice", false),
+    TRUSTPAY("paymentType.trustpay", true), 
+    HOMECREDIT("paymentType.homecredit",true),
+    HOMECREDIT_CALC("paymentType.homecreditCalc", true)
+
+	;
 	
 
 	private EPaymentType(String i18nKey, boolean electronic) {

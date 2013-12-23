@@ -17,6 +17,6 @@ public interface ElectronicPaymentRequestBuilder<T extends PaymentMethodRequest>
 	static final String METHOD_GET = "get";
 	static final String METHOD_POST = "post";
 	
-	PaymentRequest generate(T request);
+	PaymentRequest generate(T request, String locale);
 	Set<ConstraintViolation<T>> validate(T request);
 }

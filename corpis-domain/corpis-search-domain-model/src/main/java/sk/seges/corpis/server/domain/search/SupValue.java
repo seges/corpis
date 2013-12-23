@@ -10,7 +10,12 @@ import sk.seges.sesam.domain.IMutableDomainObject;
 public interface SupValue extends IMutableDomainObject<Long>, HasCodeListField {
 
 	Sup sup();
+
 	String locale();
-	String sValue();	
+
+	String sValue();
+
 	SupIndex supIndex();
+
+	String productExtId();
 }

@@ -33,7 +33,7 @@ public class CardPayRequestBuilder extends JSRValidatorAwarePaymentRequestBuilde
 	}
 	
 	@Override
-	public PaymentRequest generate(CardPayRequest request) {		
+	public PaymentRequest generate(CardPayRequest request, String locale) {
 		Map<String, String> params = new LinkedHashMap<String, String>();
 				
 		NumberFormat ff = new DecimalFormat("##0.00", DecimalFormatSymbols.getInstance(new Locale("en")));

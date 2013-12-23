@@ -7,7 +7,8 @@ package sk.seges.corpis.shared.domain.price.api;
  *  @author psloboda
  */
 public enum Unit {
-	METER("m"), M2("m&sup2");
+	METER("m"), M2("m&sup2"), CENTIMETER("cm"), MINUTES("min."), KILOGRAM("kg"),
+	DEGREE("°");
 	
 	private String sValue;
 		
