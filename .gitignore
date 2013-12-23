@@ -59,3 +59,13 @@
 /corpis-annotation-processors/corpis-service-converter-hibernate-processor/target
 /corpis-annotation-processors/corpis-service-local-interface-hibernate-processor/target
 /corpis-annotation-apis/corpis-service-api/target
+/corpis-scaffold/corpis-scaffold-model/target
+/corpis-scaffold/corpis-scaffold-processors/corpis-scaffold-data-domain-model-coverter-processor/target
+/corpis-scaffold/corpis-scaffold-processors/corpis-scaffold-data-domain-model-processor/target
+/corpis-scaffold/corpis-scaffold-processors/corpis-scaffold-data-interface-processor/target
+/corpis-scaffold/corpis-scaffold-processors/corpis-scaffold-data-service-converter-processor/target
+/corpis-scaffold/corpis-scaffold-processors/corpis-scaffold-jpamodel-processor/target
+/corpis-scaffold/corpis-scaffold-processors/corpis-scaffold-local-service-data-interface-processor/target
+/corpis-scaffold/corpis-scaffold-processors/corpis-scaffold-mapbasedobject-processor/target
+/corpis-scaffold/corpis-scaffold-processors/corpis-scaffold-model-base-processor/target
+/corpis-scaffold/corpis-scaffold-support/corpis-scaffold-model-support/target
