@@ -23,9 +23,7 @@ import javax.lang.model.element.TypeElement;
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class HibernateTransferObjectConverterProcessor extends TransferObjectConverterProcessor {
 
-	public HibernateTransferObjectConverterProcessor() {
-		int a = 0;
-	}
+	public HibernateTransferObjectConverterProcessor() {}
 
 	@Override
 	public synchronized void init(ProcessingEnvironment pe) {

@@ -49,7 +49,7 @@ public class VUBePlatbaRequestBuilderTest {
 		
 		
 		VUBePlatbaRequestBuilder builder = new VUBePlatbaRequestBuilder(factory.getValidator(), signer);
-		PaymentRequest paymentRequest = builder.generate(request);
+		PaymentRequest paymentRequest = builder.generate(request, null);
 		
 		assertEquals("12.70", paymentRequest.getParameters().get(VUBePlatbaParameter.AMT.getName()));
 		assertNotNull("Sign not generated?", paymentRequest.getParameters().get(VUBePlatbaParameter.SIGN.getName()));

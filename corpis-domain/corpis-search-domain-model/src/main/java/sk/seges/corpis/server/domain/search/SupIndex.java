@@ -10,4 +10,6 @@ import sk.seges.sesam.domain.IMutableDomainObject;
 public interface SupIndex extends IMutableDomainObject<Long>, HasCodeListField {
 
 	Sup sup();
+
+	String extId();
 }

@@ -23,25 +23,25 @@ public class JpaCodeList extends CodeListBase implements CodeListData {
 	public Long getId() {
 		return super.getId();
 	}
-	
+
 	@Override
 	@Column(nullable = false, length = 1024)
 	public String getNames() {
 		return super.getNames();
 	}
-	
+
 	@Override
 	@Column(nullable = false, length = 256)
 	public String getWebId() {
 		return super.getWebId();
 	}
-	
+
 	@Override
 	@Column(nullable = false)
 	public int getPosition() {
 		return super.getPosition();
 	}
-	
+
 	@Override
 	@Column(nullable = false, length = 256)
 	public String getType() {

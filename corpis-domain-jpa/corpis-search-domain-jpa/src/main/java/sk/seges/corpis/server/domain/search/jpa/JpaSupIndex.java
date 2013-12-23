@@ -15,11 +15,11 @@ import sk.seges.corpis.server.domain.search.server.model.data.SupIndexData;
 @Entity
 @Table(name = "sup_index")
 @SequenceGenerator(name = JpaSupIndex.SEQ_SUP_INDEX, sequenceName = JpaSupIndex.SEQ_SUP_INDEX, initialValue = 1)
-public class JpaSupIndex extends SupIndexBase implements SupIndexData{
+public class JpaSupIndex extends SupIndexBase implements SupIndexData {
 	private static final long serialVersionUID = 5527998192109816664L;
-	
+
 	protected static final String SEQ_SUP_INDEX = "seq_sup_index";
-	
+
 	@Override
 	@Id
 	@GeneratedValue(generator = JpaSupIndex.SEQ_SUP_INDEX)
@@ -46,6 +46,12 @@ public class JpaSupIndex extends SupIndexBase implements SupIndexData{
 	@Column
 	public String getNames() {
 		return super.getNames();
+	}
+
+	@Override
+	@Column
+	public String getExtId() {
+		return super.getExtId();
 	}
 
 	@Override

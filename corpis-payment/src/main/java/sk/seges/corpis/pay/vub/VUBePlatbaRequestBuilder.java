@@ -34,7 +34,7 @@ public class VUBePlatbaRequestBuilder extends JSRValidatorAwarePaymentRequestBui
 	}
 
 	@Override
-	public PaymentRequest generate(VUBePlatbaRequest request) {
+	public PaymentRequest generate(VUBePlatbaRequest request, String locale) {
 		Map<String, String> params = new LinkedHashMap<String, String>();
 
 		NumberFormat ff = new DecimalFormat("##0.00", DecimalFormatSymbols.getInstance(new Locale("en")));

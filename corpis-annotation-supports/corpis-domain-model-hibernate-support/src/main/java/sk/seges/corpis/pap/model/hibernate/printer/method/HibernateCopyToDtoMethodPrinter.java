@@ -42,7 +42,7 @@ public class HibernateCopyToDtoMethodPrinter extends CopyToDtoMethodPrinter {
         		pw.println("if (", ConverterUtils.class,".convertResult(" + HibernateParameterResolverDelegate.TRANSACTION_PROPAGATION_NAME + ", \"" + domainPathResolver.getPath() + "\")) {");
     		} else {
 	    		pw.println("if (", Hibernate.class,".isInitialized(" + TransferObjectElementPrinter.DOMAIN_NAME + "." + MethodHelper.toGetter(domainPathResolver.getPath()) + ")) {");
-   		}
+   			}
     		return true;
     	}
     	
