@@ -10,7 +10,9 @@ import sk.seges.sesam.domain.IMutableDomainObject;
 public interface PersonName extends IMutableDomainObject<Long> {
 
 	String firstName();
+
 	String surname();
+	
 	Salutation salutation();
 
 }

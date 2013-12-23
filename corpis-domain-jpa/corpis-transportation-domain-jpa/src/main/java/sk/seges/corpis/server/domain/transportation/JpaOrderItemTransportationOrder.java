@@ -1,9 +1,12 @@
 package sk.seges.corpis.server.domain.transportation;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Id;
 
 import sk.seges.corpis.server.domain.invoice.jpa.JpaOrderItem;
 import sk.seges.corpis.server.domain.invoice.server.model.data.AccountableItemData;
@@ -18,6 +21,15 @@ public class JpaOrderItemTransportationOrder extends JpaTransportationOrderBase 
 	
 	private AccountableItemData accountableItem;
 	
+	private Long id;
+	
+	@Override
+	@Id
+	@GeneratedValue(generator = SEQ_ORDER_ITEM_TRANSPORTATION_ORDER)
+	public Long getId() {
+		return id;
+	}
+	
 	@ManyToOne(targetEntity = JpaOrderItem.class)
 	public AccountableItemData getAccountableItem() {
 		return accountableItem;
@@ -25,5 +37,5 @@ public class JpaOrderItemTransportationOrder extends JpaTransportationOrderBase 
 	
 	public void setAccountableItem(AccountableItemData accountableItem) {
 		this.accountableItem = accountableItem;
-	}
+	}	
 }

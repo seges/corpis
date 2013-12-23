@@ -19,7 +19,9 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 import sk.seges.corpis.server.domain.invoice.server.model.base.InvoiceItemBase;
-import sk.seges.corpis.server.domain.invoice.server.model.data.PriceData;
+import sk.seges.corpis.server.domain.invoice.server.model.data.AccountableItemData;
+import sk.seges.corpis.server.domain.jpa.JpaPrice;
+import sk.seges.corpis.server.domain.server.model.data.PriceData;
 
 @Entity
 @Table(name = "invoice_items")//$NON-NLS-1$
@@ -53,16 +55,22 @@ public class JpaInvoiceItemBase extends InvoiceItemBase {
 		return super.getVersion();
 	}
 
-	@Column(name = "COUNT", nullable = false)//$NON-NLS-1$
+	@Column(name = "count", nullable = false)//$NON-NLS-1$
 	public Float getCount() {
 		return super.getCount();
 	}
 
-	@Column(name = "DESCRIPTION", length = DESCRIPTION_LENGTH)//$NON-NLS-1$
+	@Column(name = "description", length = DESCRIPTION_LENGTH)//$NON-NLS-1$
 	public String getDescription() {
 		return super.getDescription();
 	}
 
+	@Override
+	@ManyToOne(targetEntity = JpaOrderItem.class)
+	public AccountableItemData getOrderItem() {
+		return super.getOrderItem();
+	}
+	
 	@Embedded
 	@AttributeOverrides({
 		@AttributeOverride(name = PriceData.VALUE, column = @Column(name = "PRICE")),
@@ -71,7 +79,7 @@ public class JpaInvoiceItemBase extends InvoiceItemBase {
 		return (JpaPrice) super.getPrice();
 	}
 
-	@Column(name = "UNIT")//$NON-NLS-1$
+	@Column(name = "unit")//$NON-NLS-1$
 	public JpaUnitBase getUnit() {
 		return (JpaUnitBase) super.getUnit();
 	}

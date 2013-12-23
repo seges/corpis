@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import sk.seges.corpis.server.domain.customer.jpa.JpaPersonName;
+import sk.seges.corpis.server.domain.jpa.JpaPersonName;
 import sk.seges.corpis.server.domain.transportation.server.model.base.TransportationBase;
 import sk.seges.corpis.server.domain.transportation.server.model.data.TransportationUnitData;
 import sk.seges.corpis.server.domain.transportation.server.model.data.VehicleData;
@@ -27,6 +27,8 @@ public class JpaTransportation extends TransportationBase {
 
 	protected static final String SEQ_TRANSPORTATION = "seqTransporation";
 
+	private Long id;
+	
 	public JpaTransportation() {
 		setPerson(new JpaPersonName());
 	}
@@ -35,7 +37,7 @@ public class JpaTransportation extends TransportationBase {
 	@Id
 	@GeneratedValue(generator = SEQ_TRANSPORTATION)
 	public Long getId() {
-		return super.getId();
+		return id;
 	}
 
 	@Override

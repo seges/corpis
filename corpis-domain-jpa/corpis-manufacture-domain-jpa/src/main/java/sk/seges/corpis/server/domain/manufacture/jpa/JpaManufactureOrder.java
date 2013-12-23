@@ -15,9 +15,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.Valid;
 
-import sk.seges.corpis.server.domain.customer.jpa.JpaPersonName;
 import sk.seges.corpis.server.domain.invoice.jpa.JpaOrderItem;
 import sk.seges.corpis.server.domain.invoice.server.model.data.AccountableItemData;
+import sk.seges.corpis.server.domain.jpa.JpaPersonName;
 import sk.seges.corpis.server.domain.manufacture.server.model.base.ManufactureOrderBase;
 import sk.seges.corpis.server.domain.server.model.data.PersonNameData;
 import sk.seges.corpis.server.domain.stock.jpa.JpaStockItem;
@@ -31,7 +31,8 @@ public class JpaManufactureOrder extends ManufactureOrderBase {
 
 	protected static final String SEQ_MANUFACTURE_ORDER = "seqManufactureOrder";
 	public static final String TABLE_PREFIX = "manufacture_";
-
+	private Long id;
+	
 	public JpaManufactureOrder() {
 		setResponsiblePerson(new JpaPersonName());
 	}
@@ -40,7 +41,7 @@ public class JpaManufactureOrder extends ManufactureOrderBase {
 	@Id
 	@GeneratedValue(generator = SEQ_MANUFACTURE_ORDER)
 	public Long getId() {
-		return super.getId();
+		return id;
 	}
 
 	@Override

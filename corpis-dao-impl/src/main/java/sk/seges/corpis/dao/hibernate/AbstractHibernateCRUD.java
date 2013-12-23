@@ -373,8 +373,9 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 		if (embedableClassSet == null) {
 			findEmbeddableClasses();
 		}
-		Set<Class<?>> embedableClassCopySet = new HashSet<Class<?>>(embedableClassSet);
 
+		Set<Class<?>> embedableClassCopySet = new HashSet<Class<?>>(embedableClassSet);
+		
 		Class<?> clazz = resultClass;
 		StringBuilder newProperty = new StringBuilder(property.length());
 		int fieldIndex = property.indexOf(FIELD_DELIM);

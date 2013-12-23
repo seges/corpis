@@ -9,7 +9,7 @@ import javax.lang.model.element.TypeElement;
 import org.hibernate.Hibernate;
 
 import sk.seges.corpis.pap.model.hibernate.resolver.HibernateEntityResolver;
-import sk.seges.corpis.shared.converter.utils.ConverterUtils;
+import sk.seges.corpis.shared.converter.utils.utils.ConverterUtils;
 import sk.seges.sesam.core.pap.model.PathResolver;
 import sk.seges.sesam.core.pap.utils.MethodHelper;
 import sk.seges.sesam.core.pap.writer.FormattedPrintWriter;
@@ -42,7 +42,7 @@ public class HibernateCopyToDtoMethodPrinter extends CopyToDtoMethodPrinter {
         		pw.println("if (", ConverterUtils.class,".convertResult(" + HibernateParameterResolverDelegate.TRANSACTION_PROPAGATION_NAME + ", \"" + domainPathResolver.getPath() + "\")) {");
     		} else {
 	    		pw.println("if (", Hibernate.class,".isInitialized(" + TransferObjectElementPrinter.DOMAIN_NAME + "." + MethodHelper.toGetter(domainPathResolver.getPath()) + ")) {");
-   		}
+   			}
     		return true;
     	}
     	

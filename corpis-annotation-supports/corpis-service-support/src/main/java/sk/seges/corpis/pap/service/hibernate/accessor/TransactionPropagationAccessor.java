@@ -8,7 +8,7 @@ import javax.lang.model.element.Element;
 import org.springframework.transaction.annotation.Transactional;
 
 import sk.seges.corpis.service.annotation.TransactionPropagation;
-import sk.seges.corpis.service.annotation.TransactionPropagation.PropagationType;
+import sk.seges.corpis.service.annotation.PropagationType;
 import sk.seges.corpis.service.annotation.TransactionPropagationModel;
 import sk.seges.corpis.service.annotation.TransactionPropagations;
 import sk.seges.sesam.core.pap.accessor.AnnotationAccessor;

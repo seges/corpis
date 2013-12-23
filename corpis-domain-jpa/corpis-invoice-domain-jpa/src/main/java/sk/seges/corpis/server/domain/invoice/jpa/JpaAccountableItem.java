@@ -9,6 +9,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
 import sk.seges.corpis.server.domain.invoice.server.model.base.AccountableItemBase;
+import sk.seges.corpis.server.domain.jpa.JpaPrice;
 
 /**
  * @author eldzi
@@ -21,7 +22,13 @@ public abstract class JpaAccountableItem extends AccountableItemBase {
 	private static final short DESCRIPTION_LENGTH = 250;
 	
 	public JpaAccountableItem() {
-		setPrice(new JpaPrice());
+		setBasePrice(new JpaPrice());
+	}
+
+	@Embedded
+	@Column(nullable = false)
+	public JpaPrice getBasePrice() {
+		return (JpaPrice)super.getBasePrice();
 	}
 
 	@Column(length = DESCRIPTION_LENGTH)
@@ -32,12 +39,6 @@ public abstract class JpaAccountableItem extends AccountableItemBase {
 	@Column(nullable = false)
 	public Float getAmount() {
 		return super.getAmount();
-	}
-
-	@Embedded
-	@Column(nullable = false)
-	public JpaPrice getPrice() {
-		return (JpaPrice) super.getPrice();
 	}
 
 	@Column
@@ -53,5 +54,10 @@ public abstract class JpaAccountableItem extends AccountableItemBase {
 	@OneToOne
 	public JpaVat getVat() {
 		return (JpaVat) super.getVat();
+	}
+
+	@Column
+	public String getExtId() {
+		return super.getExtId();
 	}
 }

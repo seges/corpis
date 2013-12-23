@@ -7,7 +7,9 @@ import sk.seges.corpis.pap.model.printer.converter.HibernateConverterProviderPri
 import sk.seges.corpis.pap.model.printer.converter.HibernateServiceConverterProviderParameterResolver;
 import sk.seges.corpis.pap.service.hibernate.printer.HibernateServiceMethodConverterPrinter;
 import sk.seges.corpis.pap.service.hibernate.printer.ServiceConverterProviderContextMethodPrinter;
+import sk.seges.sesam.core.pap.model.api.PropagationType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableReferenceType;
+import sk.seges.sesam.pap.model.hibernate.resolver.HibernateConverterProviderParameterResolver;
 import sk.seges.sesam.pap.model.hibernate.resolver.HibernateServiceParameterResolver;
 import sk.seges.sesam.pap.model.printer.converter.ConverterProviderPrinter;
 import sk.seges.sesam.pap.model.resolver.CacheableConverterConstructorParametersResolverProvider;
@@ -37,64 +39,37 @@ public class HibernateServiceConverterProcessor extends ServiceConverterProcesso
 				public ConverterConstructorParametersResolver constructParameterResolver(UsageType usageType) {
 					switch (usageType) {
 						case CONVERTER_PROVIDER_OUTSIDE_USAGE:
-							return new HibernateServiceConverterProviderParameterResolver(getParametersResolverProvider(serviceTypeElement), 
-									processingEnv, serviceTypeElement);
+							return new HibernateConverterProviderParameterResolver(processingEnv) {
+								@Override
+								protected PropagationType getConverterCacheParameterPropagation() {
+									return PropagationType.INSTANTIATED;
+								}
+							};
 						case CONVERTER_PROVIDER_CONSTRUCTOR_USAGE:
 							return new HibernateServiceParameterResolver(processingEnv) {
 								@Override
-								protected boolean isConverterCacheParameterPropagated() {
-									return true;
-								}
-							};
-						case CONVERTER_PROVIDER_CONTEXT_CONSTRUCTOR:
-							return new HibernateServiceParameterResolver(processingEnv) {
-								
-								@Override
-								protected boolean isConverterCacheParameterPropagated() {
-									return true;
-								}
-								
-								@Override
-								public boolean isEntityManagerPropagated() {
-									return true;
-								}
-
-								@Override
-								protected boolean isTransactionPropagationPropagated() {
-									return true;
-								}
-
-								@Override
-								protected boolean isConverterProviderContextParameterPropagated() {
-									return false;
+								protected PropagationType getConverterCacheParameterPropagation() {
+									return PropagationType.PROPAGATED_MUTABLE;
 								}
 							};
 						case CONVERTER_PROVIDER_INSIDE_USAGE:
-							return new HibernateServiceParameterResolver(processingEnv) {
-	//							@Override
-	//							protected MutableReferenceType getConverterProviderReference() {
-	//								return processingEnv.getTypeUtils().getReference(null, THIS);
-	//							};
-							};
+							return new HibernateServiceParameterResolver(processingEnv);
 						case CONVERTER_PROVIDER_CONSTRUCTOR: 
 							return new HibernateServiceParameterResolver(processingEnv) {
-								public boolean isEntityManagerPropagated() {
-									return true;
-								};
 
 								@Override
-								protected boolean isTransactionPropagationPropagated() {
-									return true;
+								protected PropagationType getTransactionPropagationPropagation() {
+									return PropagationType.PROPAGATED_IMUTABLE;
 								}
 
 								@Override
-								protected boolean isConverterProviderContextParameterPropagated() {
-									return true;
+								protected PropagationType getConverterProviderContextParameterPropagation() {
+									return PropagationType.PROPAGATED_IMUTABLE;
 								}
-								
+
 								@Override
-								protected boolean isConverterCacheParameterPropagated() {
-									return true;
+								protected PropagationType getConverterCacheParameterPropagation() {
+									return PropagationType.PROPAGATED_MUTABLE;
 								}
 
 								@Override
@@ -103,7 +78,12 @@ public class HibernateServiceConverterProcessor extends ServiceConverterProcesso
 								}
 							};
 						default:
-							return new HibernateServiceParameterResolver(processingEnv);
+							return new HibernateServiceParameterResolver(processingEnv) {
+								@Override
+								protected PropagationType getConverterCacheParameterPropagation() {
+									return PropagationType.INSTANTIATED;
+								}
+							};
 					}
 				}
 			};
@@ -125,8 +105,7 @@ public class HibernateServiceConverterProcessor extends ServiceConverterProcesso
 				new ConverterParameterFieldPrinter(processingEnv, getParametersFilter(), getParametersResolverProvider(serviceTypeElement)),
 				new ServiceConstructorDefinitionPrinter(processingEnv, getParametersFilter(), getParametersResolverProvider(serviceTypeElement)),
 				new ServiceConstructorBodyPrinter(processingEnv, getParametersFilter(), getParametersResolverProvider(serviceTypeElement)),
-				new HibernateServiceMethodConverterPrinter(processingEnv, getParametersResolverProvider(serviceTypeElement), getConverterProviderPrinter(serviceTypeElement)),
-				new ServiceConverterProviderContextMethodPrinter(processingEnv, getParametersResolverProvider(serviceTypeElement), converterProviderPrinter, getClassPathTypes())
+				new HibernateServiceMethodConverterPrinter(processingEnv, getParametersResolverProvider(serviceTypeElement), getConverterProviderPrinter(serviceTypeElement))
 		};
 	}
 	

@@ -18,13 +18,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
-import sk.seges.corpis.server.domain.customer.jpa.JpaCustomerBase;
-import sk.seges.corpis.server.domain.customer.jpa.JpaPersonName;
+import sk.seges.corpis.server.domain.customer.jpa.JpaCustomerCore;
 import sk.seges.corpis.server.domain.invoice.server.model.base.InvoiceBase;
 import sk.seges.corpis.server.domain.invoice.server.model.data.InvoiceItemData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.RemittanceData;
+import sk.seges.corpis.server.domain.jpa.JpaPersonCore;
 import sk.seges.corpis.shared.domain.invoice.RemittanceType;
 import sk.seges.corpis.shared.domain.invoice.TransportType;
 
@@ -33,7 +34,7 @@ import sk.seges.corpis.shared.domain.invoice.TransportType;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType=DiscriminatorType.INTEGER)
 @DiscriminatorValue(value="1")
-@Table(name = "INVOICE"/*, uniqueConstraints = {@UniqueConstraint(columnNames = {"invoiceId","prepaid","incomingInvoiceType"})}*/)//$NON-NLS-1$
+@Table(name = "invoice"/*, uniqueConstraints = {@UniqueConstraint(columnNames = {"invoiceId","prepaid","incomingInvoiceType"})}*/)//$NON-NLS-1$
 public class JpaInvoiceBase extends InvoiceBase {
 
 	private static final long serialVersionUID = 7242853578333348764L;
@@ -41,31 +42,38 @@ public class JpaInvoiceBase extends InvoiceBase {
 	public JpaInvoiceBase() {
 		setInvoiceItems(new HashSet<InvoiceItemData>());
 		setRemittances(new HashSet<RemittanceData>());
+		setPaid(false);
 	}
 
-	@Column(name = "TAX_DATE")//$NON-NLS-1$
+	@Override
+	@Transient
+	public Double getFinalPrice() {
+		return super.getFinalPrice();
+	}
+
+	@Column(name = "tax_date")//$NON-NLS-1$
 	public Date getTaxDate() {
 		return super.getTaxDate();
 	}
 
-	@Column(name = "PAYBACK_DATE")//$NON-NLS-1$
+	@Column(name = "payback_date")//$NON-NLS-1$
 	public Date getPaybackDate() {
 		return super.getPaybackDate();
 	}
 
-	@Column(name = "CREATION_DATE")//$NON-NLS-1$
+	@Column(name = "creation_date")//$NON-NLS-1$
 	public Date getCreationDate() {
 		return super.getCreationDate();
 	}
 
-	@Column(name = "INVOICE_ID", insertable = true, updatable = true) //$NON-NLS-1$
+	@Column(name = "invoice_id", insertable = true, updatable = true) //$NON-NLS-1$
 	public Integer getInvoiceId() {
 		return super.getInvoiceId();
 	}
 
 	@ManyToOne
-	public JpaCustomerBase getCustomer() {
-		return (JpaCustomerBase) super.getCustomer();
+	public JpaCustomerCore getCustomer() {
+		return (JpaCustomerCore) super.getCustomer();
 	}
 
 	@Id
@@ -74,42 +82,42 @@ public class JpaInvoiceBase extends InvoiceBase {
 		return super.getId();
 	}
 
-	@Column(name = "CSYMBOL")//$NON-NLS-1$
+	@Column(name = "csymbol")//$NON-NLS-1$
 	public String getCsymbol() {
 		return super.getCsymbol();
 	}
 
-	@Column(name = "SSYMBOL")//$NON-NLS-1$
+	@Column(name = "ssymbol")//$NON-NLS-1$
 	public String getSsymbol() {
 		return super.getSsymbol();
 	}
 
-	@Column(name = "VSYMBOL")//$NON-NLS-1$
+	@Column(name = "vsymbol")//$NON-NLS-1$
 	public String getVsymbol() {
 		return super.getVsymbol();
 	}
 
-	@Column(name = "PAID")//$NON-NLS-1$
+	@Column(name = "paid")//$NON-NLS-1$
 	public Boolean getPaid() {
 		return super.getPaid();
 	}
 
-	@Column(name = "PREPAID")//$NON-NLS-1$
+	@Column(name = "prepaid")//$NON-NLS-1$
 	public Boolean getPrepaid() {
 		return super.getPrepaid();
 	}
 
-	@Column(name = "INCOMMING_INVOICE_TYPE")//$NON-NLS-1$
+	@Column(name = "incomming_invoice_type")//$NON-NLS-1$
 	public Boolean getIncomingInvoiceType() {
 		return super.getIncomingInvoiceType();
 	}
 
-	@OneToMany(mappedBy = "invoice", cascade = { CascadeType.PERSIST })//$NON-NLS-1$
+	@OneToMany(mappedBy = "invoice", cascade = { CascadeType.PERSIST }, targetEntity = JpaInvoiceItemBase.class)//$NON-NLS-1$
 	public Set<InvoiceItemData> getInvoiceItems() {
 		return super.getInvoiceItems();
 	}
 
-	@Column(name="PENNY_BALANCE")
+	@Column(name="penny_balance")
 	public Double getPennyBalance() {
 		return super.getPennyBalance();
 	}
@@ -125,26 +133,26 @@ public class JpaInvoiceBase extends InvoiceBase {
 	}
 
 	@ManyToOne
-	public JpaPersonName getCreator() {
-		return (JpaPersonName) super.getCreator();
+	public JpaPersonCore getCreator() {
+		return (JpaPersonCore) super.getCreator();
 	}
 
-	@Column(name="TEXT")
+	@Column(name="text")
 	public String getInvoiceText() {
 		return super.getInvoiceText();
 	}
 
-	@Column(name = "REMITTANCE_TYPE")//$NON-NLS-1$
+	@Column(name = "remittance_type")
 	public RemittanceType getRemittanceType() {
 		return super.getRemittanceType();
 	}
 
-	@Column(name = "TRANSPORT_TYPE")//$NON-NLS-1$
+	@Column(name = "transport_type")
 	public TransportType getTransportType() {
 		return super.getTransportType();
 	}
 
-	@Column(name="ADD_VAT")
+	@Column(name="add_vat")
 	public Boolean getAddVAT() {
 		return super.getAddVAT();
 	}
