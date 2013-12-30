@@ -1,27 +1,7 @@
 package sk.seges.corpis.server.domain.product.jpa;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
+import org.hibernate.annotations.Type;
+import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.customer.jpa.JpaCustomerCore;
 import sk.seges.corpis.server.domain.customer.server.model.data.CustomerCoreData;
 import sk.seges.corpis.server.domain.invoice.jpa.JpaDescription;
@@ -37,10 +17,17 @@ import sk.seges.corpis.server.domain.search.server.model.data.SupValueData;
 import sk.seges.corpis.server.domain.server.model.data.DescriptionData;
 import sk.seges.corpis.server.domain.server.model.data.NameData;
 import sk.seges.corpis.server.domain.server.model.data.VatData;
+import sk.seges.sesam.security.shared.domain.ISecuredObject;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.*;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "product")
+@Table(name = DBNamespace.TABLE_PREFIX + "product", uniqueConstraints = { @UniqueConstraint(columnNames = { ProductData.WEB_ID,
+		ProductData.EXT_ID }) })
 @SequenceGenerator(name = JpaProduct.SEQ_PRODUCT, sequenceName = "seq_products", initialValue = 1)
 public class JpaProduct extends ProductBase {
 
@@ -48,6 +35,10 @@ public class JpaProduct extends ProductBase {
 
 	protected static final int EXT_ID_MIN_LENGTH = 1;
 	protected static final int EXT_ID_MAX_LENGTH = 30;
+
+	public JpaProduct() {
+		setVisible(true);
+	}
 
 	@Override
 	@Id
@@ -83,14 +74,20 @@ public class JpaProduct extends ProductBase {
 	}
 
 	@Override
+	@Column(name = "image_path")
+	public String getImagePath() {
+		return super.getImagePath();
+	}
+
+	@Override
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE }, targetEntity = JpaDescription.class)
 	public List<DescriptionData> getDescriptions() {
 		return super.getDescriptions();
 	}
 	
 	@Override
-	@Lob
-	@Column(columnDefinition = "text", name = "description")
+	@Type(type = "text")
+	@Column(name = "description")
 	public String getDescription() {
 		return super.getDescription();
 	}
@@ -108,7 +105,7 @@ public class JpaProduct extends ProductBase {
 	}
 	
 	@Override
-	@Column(name = IMPORTED_DATE)
+	@Column(name = "imported_date")
 	public Date getImportedDate() {
 		return super.getImportedDate();
 	}
@@ -122,7 +119,7 @@ public class JpaProduct extends ProductBase {
 	@Override
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = JpaProductPrice.class)
 	@OrderBy(ProductPriceData.PRIORITY)
-	@JoinTable(name = "product_product_prices")
+	@JoinTable(name = DBNamespace.TABLE_PREFIX + "product_product_prices")
 	public List<ProductPriceData> getPrices() {
 		return super.getPrices();
 	}
@@ -130,7 +127,7 @@ public class JpaProduct extends ProductBase {
 	@Override
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = JpaProductPrice.class)
 	@OrderBy(value = ProductPriceData.PRIORITY)
-	@JoinTable(name = "product_product_fees")
+	@JoinTable(name = DBNamespace.TABLE_PREFIX + "product_product_fees")
 	public Set<ProductPriceData> getFees() {
 		return super.getFees();
 	}
@@ -184,6 +181,12 @@ public class JpaProduct extends ProductBase {
 		return super.getTags();
 	}
 
+	@Override
+	@Transient
+	public String getRoleName() {
+		return super.getRoleName();
+	}
+
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = JpaSupValue.class, orphanRemoval=true)
 	@JoinColumn(name="product_id")
 	public Set<SupValueData> getSups() {
@@ -197,6 +200,12 @@ public class JpaProduct extends ProductBase {
 	}
 
 	@Override
+	@Transient
+	public Boolean getVisible() {
+		return super.getVisible();
+	}
+
+	@Override
 	@ManyToOne(targetEntity = JpaCustomerCore.class)
 	public CustomerCoreData getSeller() {
 		return super.getSeller();
@@ -207,4 +216,102 @@ public class JpaProduct extends ProductBase {
 	public ProductData getVariant() {
 		return super.getVariant();
 	}
+
+	public ProductData clone() {
+		List<ProductCategoryData> newCategories = null;
+		if (getCategories() != null) {
+			newCategories = new ArrayList<ProductCategoryData>();
+			for (ProductCategoryData productCategory : getCategories()) {
+				newCategories.add(productCategory.clone());
+			}
+		}
+
+		List<DescriptionData> newDescriptions = null;
+		if (getDescriptions() != null) {
+			newDescriptions = new ArrayList<DescriptionData>();
+			for (DescriptionData description : getDescriptions()) {
+				newDescriptions.add(description.clone());
+			}
+		}
+
+		Set<ProductPriceData> newFees = null;
+		if (getFees() != null) {
+			newFees = new HashSet<ProductPriceData>();
+			for (ProductPriceData productPrice : getFees()) {
+				newFees.add(productPrice.clone());
+			}
+		}
+
+		List<NameData> newNames = null;
+		if (getNames() != null) {
+			newNames = new ArrayList<NameData>();
+			for (NameData name : getNames()) {
+				newNames.add(name.clone());
+			}
+		}
+
+		List<ProductPriceData> newPrices = null;
+		if (getPrices() != null) {
+			newPrices = new ArrayList<ProductPriceData>();
+			for (ProductPriceData productPrice : getPrices()) {
+				newPrices.add(productPrice.clone());
+			}
+		}
+
+		List<ProductData> newRelatedProducts = null;
+		if (getRelatedProducts() != null) {
+			newRelatedProducts = new ArrayList<ProductData>();
+			for (ProductData product : getRelatedProducts()) {
+				newRelatedProducts.add(product.clone());
+			}
+		}
+
+		Set<TagData> newTags = null;
+		if (getTags() != null) {
+			newTags = new HashSet<TagData>();
+			for (TagData tag : getTags()) {
+				newTags.add(tag.clone());
+			}
+		}
+
+		ProductData newProduct = new JpaProduct();
+		newProduct.setCategories(newCategories);
+		newProduct.setCount(getCount());
+		newProduct.setDeleted(getDeleted());
+		newProduct.setDescription(getDescription());
+		newProduct.setDescriptions(newDescriptions);
+		newProduct.setExtId(getExtId());
+		newProduct.setFees(newFees);
+		newProduct.setId(getId());
+		newProduct.setManufacturer(getManufacturer());
+		newProduct.setNames(newNames);
+		newProduct.setPrices(newPrices);
+		newProduct.setRelatedProducts(newRelatedProducts);
+		newProduct.setRoleName(getRoleName());
+		newProduct.setSeller(getSeller());
+		newProduct.setTags(newTags);
+		newProduct.setThumbnailPath(getThumbnailPath());
+		newProduct.setUnitsPerPackage(getUnitsPerPackage());
+		newProduct.setVariant(getVariant());
+		newProduct.setVat(getVat());
+		newProduct.setVisible(getVisible());
+		newProduct.setWebId(getWebId());
+		newProduct.setWeight(getWeight());
+		newProduct.setPriority(getPriority());
+		newProduct.setImportedDate(getImportedDate());
+		newProduct.setExternalId(getExternalId());
+
+		return newProduct;
+	}
+
+	@Override
+	public Long getIdForACL() {
+		return getId();
+	}
+
+	@Override
+	public ISecuredObject<?> getParent() {
+		return null;
+	}
+
 }

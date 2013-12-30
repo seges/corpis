@@ -3,15 +3,15 @@
  */
 package sk.seges.corpis.server.domain.jpa;
 
-import java.math.BigDecimal;
+import sk.seges.corpis.server.domain.server.model.base.PriceBase;
+import sk.seges.corpis.server.domain.server.model.data.CurrencyData;
+import sk.seges.corpis.server.domain.server.model.data.PriceData;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-
-import sk.seges.corpis.server.domain.server.model.base.PriceBase;
-import sk.seges.corpis.server.domain.server.model.data.CurrencyData;
+import java.math.BigDecimal;
 
 /**
  * @author eldzi
@@ -21,7 +21,7 @@ public class JpaPrice extends PriceBase {
 	private static final long serialVersionUID = -1630656583722890660L;
 	
 	public JpaPrice() {
-		
+		setValue(new BigDecimal(0));
 	}
 	
 	public JpaPrice(BigDecimal value) {
@@ -38,5 +38,15 @@ public class JpaPrice extends PriceBase {
 	@ManyToOne(targetEntity = JpaCurrency.class)
 	public CurrencyData getCurrency() {
 		return super.getCurrency();
-	}	
+	}
+
+	@Override
+	public PriceData clone() {
+		PriceData newPrice = new JpaPrice();
+
+		newPrice.setCurrency(getCurrency());
+		newPrice.setValue(getValue());
+
+		return newPrice;
+	}
 }

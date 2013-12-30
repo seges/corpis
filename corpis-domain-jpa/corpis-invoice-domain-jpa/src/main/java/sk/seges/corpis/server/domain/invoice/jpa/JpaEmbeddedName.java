@@ -1,9 +1,9 @@
 package sk.seges.corpis.server.domain.invoice.jpa;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-
 import sk.seges.corpis.server.domain.server.model.base.NameBase;
+import sk.seges.corpis.server.domain.server.model.data.NameData;
+
+import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class JpaEmbeddedName extends NameBase {
@@ -17,15 +17,17 @@ public class JpaEmbeddedName extends NameBase {
 		setValue(value);
 	}
 	
-	@Column
-	@Override
-	public String getLanguage() {
-		return super.getLanguage();
+	protected NameData getInstance() {
+		return new JpaEmbeddedName();
 	}
 
-	@Column
 	@Override
-	public String getValue() {
-		return super.getValue();
+	public NameData clone() {
+		NameData newTagName = getInstance();
+
+		newTagName.setLanguage(getLanguage());
+		newTagName.setValue(getValue());
+
+		return newTagName;
 	}
 }

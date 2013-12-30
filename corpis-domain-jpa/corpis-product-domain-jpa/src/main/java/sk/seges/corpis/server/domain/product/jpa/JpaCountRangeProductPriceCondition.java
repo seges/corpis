@@ -13,6 +13,7 @@ import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
 @Entity
 @DiscriminatorValue("2")
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames={"lowerBoundary", "upperBoundary"})})
+
 public class JpaCountRangeProductPriceCondition extends JpaProductPriceCondition implements CountRangeProductPriceConditionData {
 
 	private static final long serialVersionUID = -394994292273092661L;
@@ -57,21 +58,21 @@ public class JpaCountRangeProductPriceCondition extends JpaProductPriceCondition
         return isWithinRange(orderItem.getAmount());
     }
 
-    private boolean isWithinRange(Float count) {
-        if(null == count) {
-            throw new IllegalArgumentException("Can't validate null count");
-        }
-        boolean result = false;
-        if(null == lowerBoundary && null == upperBoundary) {
-            result = true;
-        } else if(null == lowerBoundary) {
-            result = count <= upperBoundary;
-        } else if(null == upperBoundary) {
-            result = count >= lowerBoundary;
-        } else {
-            result = count >= lowerBoundary && count <= upperBoundary;
-        }
+	private boolean isWithinRange(Float count) {
+		if(null == count) {
+			throw new IllegalArgumentException("Can't validate null count");
+		}
+		boolean result = false;
+		if(null == lowerBoundary && null == upperBoundary) {
+			result = true;
+		} else if(null == lowerBoundary) {
+			result = count <= upperBoundary;
+		} else if(null == upperBoundary) {
+			result = count >= lowerBoundary;
+		} else {
+			result = count >= lowerBoundary && count <= upperBoundary;
+		}
 
-        return result;
-    }
+		return result;
+	}
 }

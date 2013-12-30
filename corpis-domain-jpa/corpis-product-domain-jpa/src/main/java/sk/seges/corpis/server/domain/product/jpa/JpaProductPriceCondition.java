@@ -11,12 +11,14 @@ import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.product.server.model.base.ProductPriceConditionBase;
+import sk.seges.corpis.server.domain.product.server.model.data.ProductPriceConditionData;
 import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
 
 @Entity
-@Table(name = "product_price_condition")
-@SequenceGenerator(name = JpaProductPriceCondition.SEQ_PRODUCT_PRICE_CONDITIONS, sequenceName = "seq_price_conditions", initialValue = 1)
+@Table(name = DBNamespace.TABLE_PREFIX + "product_price_condition")
+@SequenceGenerator(name = JpaProductPriceCondition.SEQ_PRODUCT_PRICE_CONDITIONS, sequenceName = DBNamespace.TABLE_PREFIX + "seq_price_conditions", initialValue = 1)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "condition_type", discriminatorType = DiscriminatorType.INTEGER)
 public class JpaProductPriceCondition extends ProductPriceConditionBase {
@@ -41,5 +43,15 @@ public class JpaProductPriceCondition extends ProductPriceConditionBase {
 	@Override
 	public boolean applies(PriceConditionContext context) {
 		return false;
+	}
+
+	@Override
+	public ProductPriceConditionData clone() {
+		ProductPriceConditionData newProductPriceCondition = new JpaProductPriceCondition();
+
+		newProductPriceCondition.setConditionDescription(getConditionDescription());
+		newProductPriceCondition.setId(getId());
+
+		return newProductPriceCondition;
 	}
 }

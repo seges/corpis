@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeKind;
@@ -18,12 +19,17 @@ import sk.seges.corpis.appscaffold.model.pap.accessor.DomainInterfaceAccessor;
 import sk.seges.corpis.appscaffold.model.pap.model.DomainDataInterfaceType;
 import sk.seges.sesam.core.pap.model.api.ClassSerializer;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableDeclaredType;
+import sk.seges.sesam.core.pap.model.mutable.api.MutableExecutableType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableTypeMirror;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableTypeMirror.MutableTypeKind;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableTypeVariable;
+import sk.seges.sesam.core.pap.model.mutable.api.element.MutableVariableElement;
 import sk.seges.sesam.core.pap.printer.ConstantsPrinter;
 import sk.seges.sesam.core.pap.processor.MutableAnnotationProcessor;
+import sk.seges.sesam.core.pap.utils.MethodHelper;
 import sk.seges.sesam.core.pap.utils.ProcessorUtils;
+import sk.seges.sesam.pap.model.accessor.ReadOnlyAccessor;
+import sk.seges.sesam.pap.model.annotation.ReadOnly;
 
 public abstract class AbstractDataProcessor extends MutableAnnotationProcessor {
 
@@ -31,7 +37,21 @@ public abstract class AbstractDataProcessor extends MutableAnnotationProcessor {
 	protected void processElement(ProcessorContext context) {
 		new ConstantsPrinter(context.getPrintWriter(), processingEnv).copyConstants(context.getTypeElement());
 	}
-	
+
+	protected MutableExecutableType toPrintableElement(TypeElement owner, ExecutableElement method) {
+		MutableExecutableType mutableExecutableType = processingEnv.getElementUtils().toMutableElement(method).asType();
+		mutableExecutableType.setReturnType(toPrintableType(owner, castToDomainDataInterface(method.getReturnType())));
+
+		List<MutableVariableElement> printableParameters = new ArrayList<MutableVariableElement>();
+
+		for (MutableVariableElement parameter: mutableExecutableType.getParameters()) {
+			printableParameters.add(processingEnv.getElementUtils().getParameterElement(toPrintableType(owner, castToDomainDataInterface(parameter.asType())), parameter.getSimpleName()));
+		}
+		mutableExecutableType.setParameters(printableParameters);
+
+		return mutableExecutableType;
+	}
+
 	private Set<MutableTypeMirror> toPrintableTypes(TypeElement owner, Set<? extends MutableTypeMirror> bounds) {
 		Set<MutableTypeMirror> result = new HashSet<MutableTypeMirror>();
 		for (MutableTypeMirror bound: bounds) {
@@ -39,7 +59,12 @@ public abstract class AbstractDataProcessor extends MutableAnnotationProcessor {
 		}
 		return result;
 	}
-	
+
+	protected boolean isReadOnlyMethod(ReadOnlyAccessor readOnlyAccessor, ExecutableElement method) {
+		return readOnlyAccessor.isReadonly() && (!MethodHelper.toField(method).equals(method.getSimpleName().toString()) ||
+				ReadOnly.PropertyType.METHOD.equals(readOnlyAccessor.getPropertyType()));
+	}
+
 	protected boolean isPrimitiveBoolean(MutableTypeMirror type) {
 		return type.toString(ClassSerializer.CANONICAL).equals(TypeKind.BOOLEAN.toString().toLowerCase());
 	}
@@ -94,12 +119,17 @@ public abstract class AbstractDataProcessor extends MutableAnnotationProcessor {
 			return null;
 		}
 		
-		MutableTypeMirror returnType = processingEnv.getTypeUtils().toMutableType(type);
-		
+		return castToDomainDataInterface(processingEnv.getTypeUtils().toMutableType(type));
+	}
+
+	protected MutableTypeMirror castToDomainDataInterface(MutableTypeMirror mutableType) {
+
+		TypeMirror type = processingEnv.getTypeUtils().fromMutableType(mutableType);
+
 		if (type.getKind().equals(TypeKind.DECLARED)) {
 			Element element = ((DeclaredType)type).asElement();
 			if (new DomainInterfaceAccessor(element, processingEnv).isValid()) {
-				returnType = new DomainDataInterfaceType((MutableDeclaredType)returnType, processingEnv);
+				mutableType = new DomainDataInterfaceType((MutableDeclaredType)mutableType, processingEnv);
 			}
 			
 			List<MutableTypeVariable> arguments = new LinkedList<MutableTypeVariable>();
@@ -126,9 +156,9 @@ public abstract class AbstractDataProcessor extends MutableAnnotationProcessor {
 				}
 			}
 			
-			((MutableDeclaredType)returnType).setTypeVariables(arguments.toArray(new MutableTypeVariable[] {}));
+			((MutableDeclaredType)mutableType).setTypeVariables(arguments.toArray(new MutableTypeVariable[] {}));
 		}
 
-		return returnType;
+		return mutableType;
 	}
 }

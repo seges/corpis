@@ -1,16 +1,14 @@
 package sk.seges.corpis.server.domain.invoice.jpa;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-
+import sk.seges.corpis.server.domain.DBNamespace;
+import sk.seges.corpis.server.domain.server.model.data.NameData;
 import sk.seges.sesam.domain.IMutableDomainObject;
 
+import javax.persistence.*;
+
 @Entity
-@Table(name = "name")
-@SequenceGenerator(name = JpaName.SEQ_OLEA_NAMES, sequenceName = "seq_name", initialValue = 1)
+@Table(name = DBNamespace.TABLE_PREFIX + "name")
+@SequenceGenerator(name = JpaName.SEQ_OLEA_NAMES, sequenceName = DBNamespace.TABLE_PREFIX + "seq_name", initialValue = 1)
 public class JpaName extends JpaEmbeddedName implements IMutableDomainObject<Long >{
 
 	private static final long serialVersionUID = -5163495413909118691L;
@@ -35,5 +33,10 @@ public class JpaName extends JpaEmbeddedName implements IMutableDomainObject<Lon
 	@Override
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	@Override
+	protected NameData getInstance() {
+		return new JpaName();
 	}
 }

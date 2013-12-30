@@ -33,5 +33,13 @@
 			<groupId>sk.seges.corpis</groupId>
 			<artifactId>corpis-search-domain-jpa</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>sk.seges.sesam</groupId>
+			<artifactId>sesam-security-api</artifactId>
+		</dependency>
 	</dependencies>
 </project>

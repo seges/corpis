@@ -3,42 +3,44 @@
  */
 package sk.seges.corpis.server.domain.invoice.jpa;
 
-import java.util.Date;
-
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
-import javax.validation.Valid;
-
 import sk.seges.corpis.server.domain.customer.jpa.JpaAddress;
 import sk.seges.corpis.server.domain.customer.jpa.JpaBasicContact;
+import sk.seges.corpis.server.domain.customer.jpa.JpaCompanyName;
 import sk.seges.corpis.server.domain.customer.jpa.JpaCustomerCore;
 import sk.seges.corpis.server.domain.invoice.server.model.base.OrderCoreBase;
 import sk.seges.corpis.server.domain.invoice.server.model.data.DeliveryPersonData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.OrderCoreData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.OrderStatusData;
 import sk.seges.corpis.server.domain.jpa.JpaCurrency;
+import sk.seges.corpis.server.domain.jpa.JpaPersonName;
 import sk.seges.corpis.server.domain.server.model.data.AddressData;
 import sk.seges.corpis.server.domain.server.model.data.BasicContactData;
+import sk.seges.corpis.server.domain.server.model.data.CompanyNameData;
+import sk.seges.corpis.server.domain.server.model.data.PersonNameData;
 import sk.seges.corpis.shared.domain.EPaymentType;
 import sk.seges.corpis.shared.domain.invoice.ETransports;
+
+import javax.persistence.*;
+import javax.validation.Valid;
+import java.util.Date;
 
 /**
  * @author eldzi
  */
 @MappedSuperclass
-public abstract class JpaOrderBase extends OrderCoreBase implements OrderCoreData {
+public abstract class JpaOrderCore extends OrderCoreBase implements OrderCoreData {
 
 	private static final long serialVersionUID = -6186188601422302822L;
 
-	public JpaOrderBase() {
+	public JpaOrderCore() {
 		setDeliveryContact(new JpaBasicContact());
 		setDeliveryPerson(new JpaDeliveryPerson());
 		setDeliveryAddress(new JpaAddress());
+
+		setCustomerAddress(new JpaAddress());
+		setCustomerContact(new JpaBasicContact());
+		setCustomerPersonName(new JpaPersonName());
+		setCustomerCompanyName(new JpaCompanyName());
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -120,6 +122,12 @@ public abstract class JpaOrderBase extends OrderCoreBase implements OrderCoreDat
 		return super.getIcDph();
 	}
 
+	@Override
+	@Column(name="dic")
+	public String getDic() {
+		return super.getDic();
+	}
+
 	@Column
 	public EPaymentType getPaymentType() {
 		return super.getPaymentType();
@@ -146,5 +154,31 @@ public abstract class JpaOrderBase extends OrderCoreBase implements OrderCoreDat
 	@Column(name = "same_delivery_address")
 	public Boolean getSameDeliveryAddress() {
 		return super.getSameDeliveryAddress();
+	}
+
+	@Column
+	@Override
+	public String getUserName() {
+		return super.getUserName();
+	}
+
+	@Override
+	public BasicContactData getCustomerContact() {
+		return super.getCustomerContact();
+	}
+
+	@Embedded
+	public AddressData getCustomerAddress() {
+		return super.getCustomerAddress();
+	}
+
+	@Embedded
+	public PersonNameData getCustomerPersonName() {
+		return super.getCustomerPersonName();
+	}
+
+	@Embedded
+	public CompanyNameData getCustomerCompanyName() {
+		return super.getCustomerCompanyName();
 	}
 }

@@ -7,22 +7,20 @@ import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
 import sk.seges.corpis.shared.domain.product.EAssignmentTagsType;
 import sk.seges.corpis.shared.domain.product.ESystemTagsType;
 import sk.seges.sesam.domain.IMutableDomainObject;
+import sk.seges.sesam.pap.model.annotation.ReadOnly;
 
 @DomainInterface
 @BaseObject
 public interface Tag extends IMutableDomainObject<Long> {
 
 	List<? extends TagName> tagNames();
-	
 	Tag parent();
-	
 	String webId();
-	
 	Long priority();
-
 	ESystemTagsType type();
-	
 	EAssignmentTagsType assignmentType();
-	
 	Integer index();
+
+	@ReadOnly(ReadOnly.PropertyType.METHOD)
+	Tag clone();
 }

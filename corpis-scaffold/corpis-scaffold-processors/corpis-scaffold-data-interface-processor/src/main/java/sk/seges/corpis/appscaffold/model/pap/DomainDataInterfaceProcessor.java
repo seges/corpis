@@ -16,10 +16,12 @@ import sk.seges.sesam.core.pap.configuration.api.ProcessorConfigurer;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableDeclaredType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableTypeMirror;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableTypeMirror.MutableTypeKind;
+import sk.seges.sesam.core.pap.model.mutable.api.element.MutableExecutableElement;
 import sk.seges.sesam.core.pap.printer.MethodPrinter;
 import sk.seges.sesam.core.pap.utils.MethodHelper;
 import sk.seges.sesam.core.pap.writer.FormattedPrintWriter;
 import sk.seges.sesam.pap.model.accessor.ReadOnlyAccessor;
+import sk.seges.sesam.pap.model.annotation.ReadOnly;
 
 /**
  * 
@@ -48,25 +50,29 @@ public class DomainDataInterfaceProcessor extends AbstractDataProcessor {
 			
 			MutableTypeMirror returnType = castToDomainDataInterface(method.getReturnType());
 
-			boolean readOnlyProperty = new ReadOnlyAccessor(method, processingEnv).isReadonly();
-			
+			ReadOnlyAccessor readOnlyAccessor = new ReadOnlyAccessor(method, processingEnv);
+
+			boolean readOnlyProperty = readOnlyAccessor.isReadonly();
+
 			if (!readOnlyProperty) {
 				pw.println("public static final String " + getConvertedPropertyName(method.getSimpleName().toString()) + " = \"" + method.getSimpleName() + "\";");
 				pw.println();
 			}
 
-			if (readOnlyProperty && !MethodHelper.toField(method).equals(method.getSimpleName().toString())) {
-				//its getter or setter method, so just copy it
-				new MethodPrinter(pw, processingEnv).printMethodDefinition(method, context.getTypeElement());
+			MutableTypeMirror printableRetutnType = toPrintableType(context.getTypeElement(), returnType);
+
+			if (isReadOnlyMethod(readOnlyAccessor, method)) {
+				//it's getter or setter method, so just copy it
+
+				new MethodPrinter(pw, processingEnv).printMethodDefinition(toPrintableElement(context.getTypeElement(), method));
 				pw.println(";");
 				pw.println();
 			} else {
-				//to strip wildcards
-				MutableTypeMirror printableType = toPrintableType(context.getTypeElement(), returnType);
-				if (printableType.getKind().equals(MutableTypeKind.CLASS) || printableType.getKind().equals(MutableTypeKind.INTERFACE)) {
-					printableType = ((MutableDeclaredType)printableType).clone().stripTypeParametersTypes().stripWildcards();
+				if (printableRetutnType.getKind().equals(MutableTypeKind.CLASS) || printableRetutnType.getKind().equals(MutableTypeKind.INTERFACE)) {
+					printableRetutnType = ((MutableDeclaredType)printableRetutnType).clone().stripTypeParametersTypes().stripWildcards();
 				}
-				pw.print(printableType, " ");
+				//to strip wildcards
+				pw.print(printableRetutnType, " ");
 				if (isPrimitiveBoolean(returnType)) {
 					pw.print(MethodHelper.toIsGetter(method));
 				} else {

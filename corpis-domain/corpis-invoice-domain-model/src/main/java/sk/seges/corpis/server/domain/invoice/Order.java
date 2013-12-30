@@ -9,6 +9,6 @@ import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
 @BaseObject
 public interface Order extends OrderCore {
 
-	List<OrderItem> orderItems();
+	List<? extends OrderItem> orderItems();
 
 }

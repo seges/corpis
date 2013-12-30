@@ -1,18 +1,15 @@
 package sk.seges.corpis.server.domain.invoice.jpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-
+import org.hibernate.annotations.Type;
+import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.server.model.base.DescriptionBase;
+import sk.seges.corpis.server.domain.server.model.data.DescriptionData;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name = "description")
-@SequenceGenerator(name = JpaDescription.SEQ_OLEA_DESC, sequenceName = "seq_desc", initialValue = 1)
+@Table(name = DBNamespace.TABLE_PREFIX + "description")
+@SequenceGenerator(name = JpaDescription.SEQ_OLEA_DESC, sequenceName = DBNamespace.TABLE_PREFIX + "seq_desc", initialValue = 1)
 public class JpaDescription extends DescriptionBase {
 
 	private static final long serialVersionUID = -1671832806412598227L;
@@ -36,8 +33,9 @@ public class JpaDescription extends DescriptionBase {
 	}
 
 	@Override
-	@Lob
-	@Column(columnDefinition = "text", name = "description")
+	@Type(type = "text")
+//	@Lob
+	@Column(name = "description")
 	public String getValue() {
 		return super.getValue();
 	}
@@ -47,4 +45,15 @@ public class JpaDescription extends DescriptionBase {
 	public String getLanguage() {
 		return super.getLanguage();
 	}
+
+	@Override
+	public DescriptionData clone() {
+		DescriptionData newDescription = new JpaDescription();
+
+		newDescription.setLanguage(getLanguage());
+		newDescription.setValue(getValue());
+
+		return newDescription;
+	}
+
 }

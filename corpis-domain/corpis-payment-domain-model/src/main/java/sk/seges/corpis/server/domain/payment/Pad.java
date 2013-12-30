@@ -8,10 +8,11 @@ import sk.seges.corpis.server.domain.Price;
 import sk.seges.corpis.server.domain.Vat;
 import sk.seges.corpis.server.domain.invoice.Delivery;
 import sk.seges.sesam.domain.IMutableDomainObject;
+import sk.seges.sesam.security.shared.domain.ISecuredObject;
 
 @DomainInterface
 @BaseObject
-public interface Pad extends IMutableDomainObject<Long>, HasWebId {
+public interface Pad extends IMutableDomainObject<Long>, HasWebId, ISecuredObject<Long> {
 
 	String locale();
 

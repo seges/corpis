@@ -10,16 +10,26 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.product.server.model.base.RelatedProductBase;
 import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 
 @Entity
-@Table(name = "related_product", uniqueConstraints = { @UniqueConstraint(columnNames = {"product", "related_product" }) })
-@SequenceGenerator(name = JpaRelatedProduct.SEQ_RELATED_PRODUCTS, sequenceName = "seq_related_products", initialValue = 1)
+@Table(name = DBNamespace.TABLE_PREFIX + "related_product", uniqueConstraints = { @UniqueConstraint(columnNames = {"product", "related_product" }) })
+@SequenceGenerator(name = JpaRelatedProduct.SEQ_RELATED_PRODUCTS, sequenceName = DBNamespace.TABLE_PREFIX + "seq_related_products", initialValue = 1)
 public class JpaRelatedProduct extends RelatedProductBase {
 	private static final long serialVersionUID = -5614882896518185987L;
 
 	protected static final String SEQ_RELATED_PRODUCTS = "seqRelatedProducts";
+
+	public JpaRelatedProduct() {
+	}
+
+	public JpaRelatedProduct(ProductData product, ProductData relatedProduct) {
+		super();
+		setProduct(product);
+		setRelatedProduct(relatedProduct);
+	}
 
 	@Override
 	@Id

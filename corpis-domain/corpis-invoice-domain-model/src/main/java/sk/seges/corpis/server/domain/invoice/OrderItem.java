@@ -13,4 +13,5 @@ public interface OrderItem extends AccountableItem, IMutableDomainObject<Long> {
 	Order order();
 	
 	List<InvoiceItem> invoiceItems();
+
 }

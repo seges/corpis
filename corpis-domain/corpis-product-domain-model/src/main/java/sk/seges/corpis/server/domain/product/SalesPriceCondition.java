@@ -18,5 +18,4 @@ public interface SalesPriceCondition extends PriceCondition {
 	Boolean deleted();
 	Long extId();
 	String productExtId();
-
 }

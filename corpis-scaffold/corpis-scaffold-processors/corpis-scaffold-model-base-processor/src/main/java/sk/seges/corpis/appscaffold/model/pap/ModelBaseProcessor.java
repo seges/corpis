@@ -20,13 +20,17 @@ import sk.seges.corpis.pap.model.hibernate.resolver.HibernateEntityResolver;
 import sk.seges.sesam.core.pap.configuration.api.ProcessorConfigurer;
 import sk.seges.sesam.core.pap.model.api.ClassSerializer;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableDeclaredType;
+import sk.seges.sesam.core.pap.model.mutable.api.MutableExecutableType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableTypeMirror;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableTypeMirror.MutableTypeKind;
+import sk.seges.sesam.core.pap.model.mutable.api.element.MutableVariableElement;
+import sk.seges.sesam.core.pap.printer.MethodPrinter;
 import sk.seges.sesam.core.pap.utils.ElementSorter;
 import sk.seges.sesam.core.pap.utils.MethodHelper;
 import sk.seges.sesam.core.pap.utils.ProcessorUtils;
 import sk.seges.sesam.core.pap.writer.FormattedPrintWriter;
 import sk.seges.sesam.pap.model.accessor.ReadOnlyAccessor;
+import sk.seges.sesam.pap.model.annotation.ReadOnly;
 import sk.seges.sesam.pap.model.resolver.api.EntityResolver;
 import sk.seges.sesam.utils.CastUtils;
 
@@ -47,8 +51,10 @@ public class ModelBaseProcessor extends AbstractDataProcessor {
 	private void printAccessorForField(FormattedPrintWriter pw, TypeElement owner, MutableTypeMirror mutableReturnType, ExecutableElement method) {
 		
 		String fieldName = MethodHelper.toField(method);
-		
-		boolean readOnlyProperty = new ReadOnlyAccessor(method, processingEnv).isReadonly();
+
+		ReadOnlyAccessor readOnlyAccessor = new ReadOnlyAccessor(method, processingEnv);
+
+		boolean readOnlyProperty = readOnlyAccessor.isReadonly();
 
 		MutableTypeMirror printableType = toPrintableType(owner, mutableReturnType);
 		//TODO, same as in DomainDataInterfaceProcessor
@@ -60,29 +66,36 @@ public class ModelBaseProcessor extends AbstractDataProcessor {
 			pw.println("private ", printableType, " " + fieldName + ";");
 			pw.println();
 		}
-		
+
 		pw.print("public ");
-		
+
 		if (readOnlyProperty) {
 			pw.print("abstract ");
 		}
-		
-		pw.print(printableType, " ");
-		if (isPrimitiveBoolean(mutableReturnType)) {
-			pw.print(MethodHelper.toIsGetter(fieldName));
-		} else {
-			pw.print(MethodHelper.toGetter(fieldName));
-		}
-		
-		if (!readOnlyProperty) {
-			pw.println(" {");
-			pw.println("return " + fieldName + ";");
-			pw.println("}");
-		} else {
+
+		if (isReadOnlyMethod(readOnlyAccessor, method)) {
+			new MethodPrinter(pw, processingEnv).printMethodDefinition(toPrintableElement(owner, method));
 			pw.println(";");
+			pw.println();
+		} else {
+
+			pw.print(printableType, " ");
+			if (isPrimitiveBoolean(mutableReturnType)) {
+				pw.print(MethodHelper.toIsGetter(fieldName));
+			} else {
+				pw.print(MethodHelper.toGetter(fieldName));
+			}
+
+			if (!readOnlyProperty) {
+				pw.println(" {");
+				pw.println("return " + fieldName + ";");
+				pw.println("}");
+			} else {
+				pw.println(";");
+			}
+			pw.println();
 		}
-		pw.println();
-		
+
 		if (!readOnlyProperty) {
 			
 			MutableTypeMirror setterType = toPrintableType(owner, mutableReturnType);

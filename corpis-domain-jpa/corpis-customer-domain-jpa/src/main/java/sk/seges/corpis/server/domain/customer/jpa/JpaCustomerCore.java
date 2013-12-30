@@ -48,6 +48,8 @@ import sk.seges.corpis.shared.domain.validation.customer.CompanyCustomerFormChec
 public class JpaCustomerCore extends CustomerCoreBase {
 	private static final long serialVersionUID = -7070969291047080272L;
 
+	public static final String TABLE_PREFIX = "customer_";
+
 	public JpaCustomerCore() {
 		setCompany(new JpaCompanyName());
 		setPerson(new JpaPersonName());

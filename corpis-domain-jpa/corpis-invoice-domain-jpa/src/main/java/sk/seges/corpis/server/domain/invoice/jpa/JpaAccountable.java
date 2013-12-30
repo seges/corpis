@@ -5,14 +5,12 @@ package sk.seges.corpis.server.domain.invoice.jpa;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 import sk.seges.corpis.server.domain.customer.jpa.JpaCustomerCore;
 import sk.seges.corpis.server.domain.invoice.server.model.base.AccountableBase;
 import sk.seges.corpis.server.domain.jpa.JpaCurrency;
+import sk.seges.sesam.security.shared.domain.ISecuredObject;
 
 /**
  * @author eldzi
@@ -35,5 +33,23 @@ public abstract class JpaAccountable extends AccountableBase {
 	@ManyToOne
 	public JpaCurrency getCurrency() {
 		return (JpaCurrency) super.getCurrency();
+	}
+
+	@Column
+	@Override
+	public String getProcessId() {
+		return super.getProcessId();
+	}
+
+	@Override
+	@Transient
+	public Long getIdForACL() {
+		return getId();
+	}
+
+	@Override
+	@Transient
+	public ISecuredObject<?> getParent() {
+		return null;
 	}
 }
