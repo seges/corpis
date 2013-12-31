@@ -30,6 +30,7 @@ import javax.validation.constraints.Size;
 import sk.seges.corpis.server.domain.DBConstraints;
 import sk.seges.corpis.server.domain.customer.server.model.base.CustomerCoreBase;
 import sk.seges.corpis.server.domain.customer.server.model.data.CustomerCoreData;
+import sk.seges.corpis.server.domain.customer.server.model.data.CustomerData;
 import sk.seges.corpis.server.domain.jpa.JpaPersonName;
 import sk.seges.corpis.server.domain.server.model.data.AddressData;
 import sk.seges.corpis.shared.domain.validation.customer.CompanyCustomerFormCheck;
@@ -110,6 +111,7 @@ public class JpaCustomerCore extends CustomerCoreBase {
 	}
 
 	@Override
+	@Column
 	public Boolean getCompanyType() {
 		return super.getCompanyType();
 	}
@@ -123,9 +125,9 @@ public class JpaCustomerCore extends CustomerCoreBase {
 		this.version = version;
 	}
 
-	@AttributeOverride(name = JpaCompanyName.COMPANY_NAME, column = @Column(unique = true, nullable = true))
-	@Embedded
 	@Valid
+	@Embedded
+	@AttributeOverride(name = JpaCompanyName.COMPANY_NAME, column = @Column(unique = true, nullable = true))
 	public JpaCompanyName getCompany() {
 		return (JpaCompanyName) super.getCompany();
 	}
@@ -136,8 +138,8 @@ public class JpaCustomerCore extends CustomerCoreBase {
 		return (JpaPersonName) super.getPerson();
 	}
 
-	@Embedded
 	@Valid
+	@Embedded
 	public JpaAddress getAddress() {
 		return (JpaAddress) super.getAddress();
 	}

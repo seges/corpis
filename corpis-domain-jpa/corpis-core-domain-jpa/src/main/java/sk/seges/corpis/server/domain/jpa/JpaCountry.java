@@ -30,6 +30,7 @@ public class JpaCountry extends CountryBase {
 	}
 	
 	@Override
+	@Column
 	public String getLabel() {
 		return super.getLabel();
 	}

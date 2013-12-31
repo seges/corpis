@@ -15,6 +15,7 @@ import javax.persistence.UniqueConstraint;
 import sk.seges.corpis.server.domain.invoice.server.model.base.DeliveryBase;
 import sk.seges.corpis.server.domain.invoice.server.model.data.DeliveryData;
 import sk.seges.corpis.shared.domain.invoice.ETransports;
+import sk.seges.sesam.security.shared.domain.ISecuredObject;
 
 @Entity
 @Table(name = "delivery", uniqueConstraints = @UniqueConstraint(columnNames = { DeliveryData.WEB_ID,
@@ -45,8 +46,8 @@ public class JpaDelivery extends DeliveryBase {
 	}
 	
 	@Column
-	@Enumerated(EnumType.STRING)
 	@Override
+	@Enumerated(EnumType.STRING)
 	public ETransports getTransportType() {
 		return super.getTransportType();
 	}
@@ -57,21 +58,31 @@ public class JpaDelivery extends DeliveryBase {
 		return super.getPriceCondition();
 	}
 
-	@Override
 	@Column
+	@Override
 	public Boolean getPriceConditionWithVAT() {
 		return super.getPriceConditionWithVAT();
 	}
-	
-	@Override
+
 	@Column
+	@Override
 	public Float getAmountCondition() {
 		return super.getAmountCondition();
 	}
-	
-	@Override
+
 	@Column
+	@Override
 	public Float getWeightCondition() {
 		return super.getWeightCondition();
+	}
+
+	@Override
+	public Long getIdForACL() {
+		return getId();
+	}
+
+	@Override
+	public ISecuredObject<?> getParent() {
+		return null;
 	}
 }

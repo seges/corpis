@@ -1,16 +1,6 @@
 package sk.seges.corpis.server.domain.jpa;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import sk.seges.corpis.server.domain.server.model.base.PersonCoreBase;
 
@@ -38,4 +28,63 @@ public class JpaPersonCore extends PersonCoreBase {
 	public JpaPersonName getPerson() {
 		return (JpaPersonName) super.getPerson();
 	}
+
+	/**
+	 * Use {@link sk.seges.corpis.server.domain.server.model.data.PersonNameData}
+	 * @return
+	 */
+	@Transient
+	@Deprecated
+	public String getFirstName() {
+		String result = null;
+		if(null != getPerson()) {
+			result = getPerson().getFirstName();
+		}
+		return result;
+	}
+
+	/**
+	 * Use {@link sk.seges.corpis.server.domain.server.model.data.PersonNameData}
+	 * @return
+	 */
+	@Deprecated
+	public void setFirstName(String firstName) {
+		if(null != getPerson()) {
+			getPerson().setFirstName(firstName);
+		}
+	}
+
+	/**
+	 * Use {@link sk.seges.corpis.server.domain.server.model.data.PersonNameData}
+	 * @return
+	 */
+	@Transient
+	@Deprecated
+	public String getLastName() {
+		String result = null;
+		if(null != getPerson()) {
+			result = getPerson().getSurname();
+		}
+		return result;
+	}
+
+	/**
+	 * Use {@link sk.seges.corpis.server.domain.server.model.data.PersonNameData}
+	 * @return
+	 */
+	@Deprecated
+	public void setLastName(String lastName) {
+		if (null != getPerson()) {
+			getPerson().setSurname(lastName);
+		}
+	}
+
+	@Transient
+	public String getDisplayName() {
+		if (getPerson() == null) {
+			return null;
+		}
+		return getPerson().toString();
+	}
+
 }

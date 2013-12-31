@@ -28,7 +28,7 @@ public class JpaDeliveryPerson extends DeliveryPersonBase {
 	@Embedded
 	@AttributeOverrides({
 			@AttributeOverride(name = CompanyNameData.COMPANY_NAME, column = @Column(name = TABLE_PREFIX + CompanyNameData.COMPANY_NAME)),
-			@AttributeOverride(name = CompanyNameData.DEPARTMENT, column = @Column(name = TABLE_PREFIX+ CompanyNameData.DEPARTMENT)) })
+			@AttributeOverride(name = CompanyNameData.DEPARTMENT, column = @Column(name = TABLE_PREFIX + CompanyNameData.DEPARTMENT)) })
 	@Valid
 	public JpaCompanyName getCompany() {
 		return (JpaCompanyName) super.getCompany();

@@ -12,6 +12,7 @@ import sk.seges.corpis.server.domain.DBConstraints;
 import sk.seges.corpis.server.domain.jpa.JpaCountry;
 import sk.seges.corpis.server.domain.server.model.base.AddressBase;
 import sk.seges.corpis.shared.domain.validation.customer.CustomerFormCheck;
+import sk.seges.corpis.shared.domain.validation.customer.OneTimePurchaseCheck;
 import sk.seges.corpis.shared.domain.validation.customer.OrderDeliveryCheck;
 
 /**
@@ -22,20 +23,20 @@ public class JpaAddress extends AddressBase implements Serializable {
 	private static final long serialVersionUID = 2682133037971063332L;
 
 	@Column
-	@NotNull(groups = {CustomerFormCheck.class, OrderDeliveryCheck.class})
-	@Size(min = 1, groups = {CustomerFormCheck.class, OrderDeliveryCheck.class})
+	@NotNull(groups = {CustomerFormCheck.class, OrderDeliveryCheck.class, OneTimePurchaseCheck.class})
+	@Size(min = 1, groups = {CustomerFormCheck.class, OrderDeliveryCheck.class, OneTimePurchaseCheck.class})
 	public String getStreet() {
 		return super.getStreet();
 	}
 	@Column
-	@NotNull(groups = {CustomerFormCheck.class, OrderDeliveryCheck.class})
-	@Size(min = 1, groups = {CustomerFormCheck.class, OrderDeliveryCheck.class})
+	@NotNull(groups = {CustomerFormCheck.class, OrderDeliveryCheck.class, OneTimePurchaseCheck.class})
+	@Size(min = 1, groups = {CustomerFormCheck.class, OrderDeliveryCheck.class, OneTimePurchaseCheck.class})
 	public String getCity() {
 		return super.getCity();
 	}
 	
 	@ManyToOne(targetEntity = JpaCountry.class)
-	@NotNull(groups = {CustomerFormCheck.class, OrderDeliveryCheck.class})
+	@NotNull(groups = {CustomerFormCheck.class, OrderDeliveryCheck.class, OneTimePurchaseCheck.class})
 	public JpaCountry getCountry() {
 		return (JpaCountry) super.getCountry();
 	}
@@ -46,8 +47,8 @@ public class JpaAddress extends AddressBase implements Serializable {
 	}
 	
 	@Column(length = DBConstraints.ZIP_LENGTH)
-	@NotNull(groups = {CustomerFormCheck.class, OrderDeliveryCheck.class})
-	@Size(min = 1, max = DBConstraints.ZIP_LENGTH, groups = {CustomerFormCheck.class, OrderDeliveryCheck.class})
+	@NotNull(groups = {CustomerFormCheck.class, OrderDeliveryCheck.class, OneTimePurchaseCheck.class})
+	@Size(min = 1, max = DBConstraints.ZIP_LENGTH, groups = {CustomerFormCheck.class, OrderDeliveryCheck.class, OneTimePurchaseCheck.class})
 	public String getZip() {
 		return super.getZip();
 	}	

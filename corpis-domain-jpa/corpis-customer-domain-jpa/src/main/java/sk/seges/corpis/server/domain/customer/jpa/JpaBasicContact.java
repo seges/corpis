@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 
 import sk.seges.corpis.server.domain.server.model.base.BasicContactBase;
 import sk.seges.corpis.shared.domain.validation.customer.CustomerFormCheck;
+import sk.seges.corpis.shared.domain.validation.customer.OneTimePurchaseCheck;
 
 /**
  * @author ladislav.gazo
@@ -30,7 +31,7 @@ public class JpaBasicContact extends BasicContactBase implements Serializable {
 	}
 	
 	@Column
-    @NotNull(groups = CustomerFormCheck.class)
+	@NotNull(groups = {CustomerFormCheck.class, OneTimePurchaseCheck.class})
 	public String getEmail() {
 		return super.getEmail();
 	}

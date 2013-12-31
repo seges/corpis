@@ -1,16 +1,11 @@
 package sk.seges.corpis.server.domain.payment.jpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 import sk.seges.corpis.server.domain.payment.server.model.base.PaymentMethodBase;
 import sk.seges.corpis.server.domain.payment.server.model.data.PaymentMethodData;
 import sk.seges.corpis.shared.domain.EPaymentType;
+import sk.seges.sesam.security.shared.domain.ISecuredObject;
 
 @Entity
 @Table(name = "payment_method", uniqueConstraints = @UniqueConstraint(columnNames = { PaymentMethodData.WEB_ID,
@@ -34,13 +29,24 @@ public class JpaPaymentMethod extends PaymentMethodBase {
 	}
 
 	@Override
+	@Column
 	public String getWebId() {
 		return super.getWebId();
 	}
 
 	@Override
-	@Column
+	@Enumerated(EnumType.STRING)
 	public EPaymentType getPaymentType() {
 		return super.getPaymentType();
+	}
+
+	@Override
+	public Long getIdForACL() {
+		return getId();
+	}
+
+	@Override
+	public ISecuredObject<?> getParent() {
+		return null;
 	}
 }
