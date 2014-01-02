@@ -118,13 +118,25 @@ public abstract class AbstractDataProcessor extends MutableAnnotationProcessor {
 		if (type == null) {
 			return null;
 		}
-		
-		return castToDomainDataInterface(processingEnv.getTypeUtils().toMutableType(type));
+
+		MutableTypeMirror mutableTypeMirror = processingEnv.getTypeUtils().toMutableType(type);
+
+		MutableTypeMirror result = castToDomainDataInterface(mutableTypeMirror);
+
+		if (result == null) {
+			return mutableTypeMirror;
+		}
+
+		return result;
 	}
 
 	protected MutableTypeMirror castToDomainDataInterface(MutableTypeMirror mutableType) {
 
 		TypeMirror type = processingEnv.getTypeUtils().fromMutableType(mutableType);
+
+		if (type == null) {
+			return null;
+		}
 
 		if (type.getKind().equals(TypeKind.DECLARED)) {
 			Element element = ((DeclaredType)type).asElement();

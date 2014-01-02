@@ -11,23 +11,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.stock.server.model.base.WarehouseBase;
 import sk.seges.corpis.server.domain.stock.server.model.data.StockItemData;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "warehouse")
-@SequenceGenerator(name = JpaWarehouse.SEQ_WAREHOUSE, sequenceName = "seq_warehouse", initialValue = 1)
+@Table(name = DBNamespace.TABLE_PREFIX + "warehouse")
+@SequenceGenerator(name = JpaWarehouse.SEQ_WAREHOUSE, sequenceName = DBNamespace.TABLE_PREFIX + "seq_warehouse", initialValue = 1)
 public class JpaWarehouse extends WarehouseBase {
 
 	protected static final String SEQ_WAREHOUSE = "seqWarehouses";
-	private Integer id;
-	
+
 	@Override
 	@Id
 	@GeneratedValue(generator = SEQ_WAREHOUSE)
 	public Integer getId() {
-		return id;
+		return super.getId();
 	}
 
 	@Override

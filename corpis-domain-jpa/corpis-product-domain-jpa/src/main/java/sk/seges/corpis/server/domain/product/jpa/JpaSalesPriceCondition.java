@@ -34,6 +34,21 @@ public class JpaSalesPriceCondition extends JpaPriceCondition implements SalesPr
 	private Long extId;
 	private String productExtId;
 
+	public JpaSalesPriceCondition() {}
+
+	public JpaSalesPriceCondition(Date validFrom, Date validTo, String salesName, String color, Boolean active, Boolean activeForWeb, Boolean deleted,
+							   Long extId, String productExtId) {
+		this.validFrom = validFrom;
+		this.validTo = validTo;
+		this.salesName = salesName;
+		this.color = color;
+		this.active = active;
+		this.activeForWeb = activeForWeb;
+		this.deleted = deleted;
+		this.extId = extId;
+		this.productExtId = productExtId;
+	}
+
 	@Column(name = VALID_FROM)
 	public Date getValidFrom() {
 		return validFrom;
@@ -99,9 +114,9 @@ public class JpaSalesPriceCondition extends JpaPriceCondition implements SalesPr
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
-	
-	@Column(name = EXT_ID)
+
 	@NotNull
+	@Column(name = EXT_ID)
 	public Long getExtId() {
 		return extId;
 	}

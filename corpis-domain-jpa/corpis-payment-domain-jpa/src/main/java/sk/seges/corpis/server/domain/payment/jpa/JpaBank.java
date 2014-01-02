@@ -6,10 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.payment.server.model.base.BankBase;
 
 @Entity
-@Table(name = "bank")
+@Table(name = DBNamespace.TABLE_PREFIX + "bank")
 public class JpaBank extends BankBase {
 
 	private static final long serialVersionUID = 1430587109294119553L;

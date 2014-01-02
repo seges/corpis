@@ -5,13 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.server.model.base.TransportPriceBase;
 
 
 @Entity
-@Table(name = "transportprice")
-//Ids taken from voipac csv import files, id is set manualy
-//@SequenceGenerator(name = "seqTransportList", sequenceName = "SEQ_TRANSPORT", initialValue = 1)
+@Table(name = DBNamespace.TABLE_PREFIX + "transportprice")
 public class JpaTransportPrice extends TransportPriceBase {
 	private static final long serialVersionUID = 3960395362304929231L;
 

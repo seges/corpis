@@ -39,7 +39,9 @@ public interface CustomerCore extends IMutableDomainObject<Long> {
 	Date registrationDate();
 	
 	Boolean commision();
-	
+
+	Integer version();
+
 	@ReadOnly
 	boolean isCompanyCustomerType();
 	

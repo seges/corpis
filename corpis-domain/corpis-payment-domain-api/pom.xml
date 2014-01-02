@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>sk.seges.corpis</groupId>
-	<artifactId>corpis-payment-domain-model</artifactId>
-	<name>CorpIS Payment Domain Model</name>
+	<artifactId>corpis-payment-domain-api</artifactId>
+	<name>CorpIS Payment Domain API</name>
 	
 	<parent>
 		<groupId>sk.seges.corpis</groupId>
@@ -15,10 +15,6 @@
 	
 	<dependencies>	
 		<!-- Corpis dependencies -->
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>corpis-invoice-domain-model</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>corpis-application-scaffold-mapbasedobject-processor</artifactId>
@@ -36,7 +32,7 @@
 		</dependency>
 		<dependency>
 			<groupId>sk.seges.corpis</groupId>
-			<artifactId>corpis-payment-domain-api</artifactId>
+			<artifactId>corpis-invoice-domain-model</artifactId>
 		</dependency>
 	</dependencies>
 </project>

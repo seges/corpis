@@ -14,12 +14,13 @@ import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.payment.server.model.base.PaymentBase;
 
 @Entity
-@Table(name = "payment")
+@Table(name = DBNamespace.TABLE_PREFIX + "payment")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@SequenceGenerator(name = "seqPayment", sequenceName = "seq_payment", initialValue = 1)
+@SequenceGenerator(name = JpaPayment.SEQ_PAYMENT, sequenceName = DBNamespace.TABLE_PREFIX + "seq_payment", initialValue = 1)
 @DiscriminatorColumn(name = "payment_type", discriminatorType = DiscriminatorType.INTEGER)
 @DiscriminatorValue("1")
 public class JpaPayment extends PaymentBase {
@@ -30,17 +31,10 @@ public class JpaPayment extends PaymentBase {
 
 	@Override
 	@Id
-	@GeneratedValue(generator = "seqPayment")
-	@Column
+	@GeneratedValue(generator = SEQ_PAYMENT)
 	public Long getId() {
 		return super.getId();
 	}
-
-//	@Override
-//	@OneToOne(cascade = { CascadeType.REFRESH }, mappedBy = "invoice", targetEntity = JpaInvoiceBase.class)
-//	public InvoiceData getInvoice() {
-//		return super.getInvoice();
-//	}
 
 	@Override
 	@Column(name = "pay_date")

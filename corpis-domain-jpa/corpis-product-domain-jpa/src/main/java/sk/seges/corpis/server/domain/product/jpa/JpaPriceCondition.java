@@ -16,6 +16,7 @@ import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.customer.jpa.JpaCustomerCore;
 import sk.seges.corpis.server.domain.customer.server.model.data.CustomerCoreData;
 import sk.seges.corpis.server.domain.customer.server.model.data.CustomerData;
@@ -26,7 +27,7 @@ import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
 import sk.seges.sesam.domain.IDomainObject;
 
 @Entity
-@Table(name = "price_conditions", uniqueConstraints = { @UniqueConstraint(columnNames={PriceConditionData.CUSTOMER + "_" + CustomerData.ID, 
+@Table(name = DBNamespace.TABLE_PREFIX + "price_conditions", uniqueConstraints = { @UniqueConstraint(columnNames={PriceConditionData.CUSTOMER + "_" + CustomerData.ID,
 		PriceConditionData.PRODUCT + "_" + ProductData.ID, PriceConditionData.WEB_ID})})
 @SequenceGenerator(name = JpaPriceCondition.SEQ_PRICE_CONDITIONS, sequenceName = "SEQ_PRICE_CONDITIONS", initialValue = 1)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

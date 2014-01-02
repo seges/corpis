@@ -302,6 +302,11 @@
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>sk.seges.corpis</groupId>
+				<artifactId>corpis-payment-domain-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>corpis-payment-domain-jpa</artifactId>
 				<version>${project.version}</version>

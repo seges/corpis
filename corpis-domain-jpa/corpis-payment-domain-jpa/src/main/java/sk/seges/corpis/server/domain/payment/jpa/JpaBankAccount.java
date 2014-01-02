@@ -12,6 +12,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.customer.jpa.JpaCustomerCore;
 import sk.seges.corpis.server.domain.customer.server.model.data.CustomerCoreData;
 import sk.seges.corpis.server.domain.payment.server.model.base.BankAccountBase;
@@ -19,13 +20,13 @@ import sk.seges.corpis.server.domain.payment.server.model.data.BankAccountData;
 import sk.seges.corpis.server.domain.payment.server.model.data.BankData;
 
 @Entity
-@Table(name = "bank_account", uniqueConstraints = @UniqueConstraint(columnNames = {
+@Table(name = DBNamespace.TABLE_PREFIX + "bank_account", uniqueConstraints = @UniqueConstraint(columnNames = {
 		JpaBankAccount.BANK_JOIN, BankAccountData.BANK_ACCOUNT }))
-@SequenceGenerator(name = JpaBankAccount.SEQ, sequenceName = "seq_bank_account", initialValue = 1)
+@SequenceGenerator(name = JpaBankAccount.SEQ, sequenceName = DBNamespace.TABLE_PREFIX + "seq_bank_account", initialValue = 1)
 public class JpaBankAccount extends BankAccountBase {
 
 	private static final long serialVersionUID = 7591683343596826189L;
-	
+
 	protected static final String SEQ = "seqBankAccount";
 	protected static final String BANK_JOIN = "bank_id";
 
@@ -35,15 +36,15 @@ public class JpaBankAccount extends BankAccountBase {
 		return super.getId();
 	}
 
-	@ManyToOne(targetEntity = JpaBank.class)
 	@JoinColumn(name = BANK_JOIN)
+	@ManyToOne(targetEntity = JpaBank.class)
 	public BankData getBank() {
 		return super.getBank();
 	}
 
-	@Column(length = 20, nullable = false)
-	@Size(min = 0, max = 20)
 	@NotNull
+	@Size(min = 0, max = 20)
+	@Column(length = 20, nullable = false)
 	public String getBankAccount() {
 		return super.getBankAccount();
 	}

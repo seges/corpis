@@ -7,6 +7,7 @@ import javax.persistence.Table;
 import sk.seges.corpis.server.domain.product.server.model.data.DiscountedPriceConditionData;
 import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
 import sk.seges.corpis.shared.domain.price.api.TerminalPriceCondition;
+import sk.seges.corpis.shared.domain.product.PriceConditionAccessor;
 
 
 @Entity
@@ -16,8 +17,6 @@ public class JpaDiscountedPriceCondition extends JpaProductPriceCondition implem
 
 	private static final long serialVersionUID = 8766508644651589311L;
 	
-	public static final String CTX_DISCOUNT_TYPE = "discountType";
-
 	public JpaDiscountedPriceCondition() {}
 
 	public JpaDiscountedPriceCondition(String discountType) {
@@ -27,6 +26,6 @@ public class JpaDiscountedPriceCondition extends JpaProductPriceCondition implem
 	@Override
 	public boolean applies(PriceConditionContext context) {
 		return (getConditionDescription() != null && getConditionDescription().equals(
-				context.get(CTX_DISCOUNT_TYPE)));
+				context.get(PriceConditionAccessor.CTX_DISCOUNT_TYPE)));
 	}
 }

@@ -57,6 +57,7 @@
 		<module>corpis-invoice-domain-model</module>
 		<module>corpis-manufacture-domain-model</module>
 		<module>corpis-stock-domain-model</module>
+		<module>corpis-payment-domain-api</module>
 		<module>corpis-payment-domain-model</module>
 		<module>corpis-transportation-domain-model</module>
 		<module>corpis-price-domain-api</module>

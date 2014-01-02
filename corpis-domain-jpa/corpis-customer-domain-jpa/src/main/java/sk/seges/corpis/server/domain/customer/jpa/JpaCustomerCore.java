@@ -58,8 +58,6 @@ public class JpaCustomerCore extends CustomerCoreBase {
 		setContact(new JpaBasicContact());
 	}
 
-	private Integer version;
-
 	@Id
 	@GeneratedValue(generator = "seqCustomers")
 	public Long getId() {
@@ -118,11 +116,7 @@ public class JpaCustomerCore extends CustomerCoreBase {
 
 	@Version
 	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
+		return super.getVersion();
 	}
 
 	@Valid
