@@ -14,6 +14,20 @@ public class JpaSup extends SupBase implements SupData {
 
 	protected static final String SEQ_SUP = "seq_sups";
 
+	public JpaSup() {}
+
+	public JpaSup(String classType, String extId, Long id, String names, SupData parentSup, Boolean required, String type, Unit unit, String webId) {
+		setClassType(classType);
+		setExtId(extId);
+		setId(id);
+		setNames(names);
+		setParentSup(parentSup);
+		setRequired(required);
+		setType(type);
+		setUnit(unit);
+		setWebId(webId);
+	}
+
 	@Override
 	@Id
 	@GeneratedValue(generator = SEQ_SUP)

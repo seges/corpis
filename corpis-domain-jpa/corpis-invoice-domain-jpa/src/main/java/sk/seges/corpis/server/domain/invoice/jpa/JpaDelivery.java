@@ -2,15 +2,7 @@ package sk.seges.corpis.server.domain.invoice.jpa;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 import sk.seges.corpis.server.domain.invoice.server.model.base.DeliveryBase;
 import sk.seges.corpis.server.domain.invoice.server.model.data.DeliveryData;
@@ -77,11 +69,13 @@ public class JpaDelivery extends DeliveryBase {
 	}
 
 	@Override
+	@Transient
 	public Long getIdForACL() {
 		return getId();
 	}
 
 	@Override
+	@Transient
 	public ISecuredObject<?> getParent() {
 		return null;
 	}

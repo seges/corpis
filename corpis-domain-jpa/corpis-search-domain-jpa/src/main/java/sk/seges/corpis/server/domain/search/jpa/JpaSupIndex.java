@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import sk.seges.corpis.server.domain.search.server.model.base.SupIndexBase;
+import sk.seges.corpis.server.domain.search.server.model.data.SupData;
 import sk.seges.corpis.server.domain.search.server.model.data.SupIndexData;
 
 @Entity
@@ -19,6 +20,18 @@ public class JpaSupIndex extends SupIndexBase implements SupIndexData {
 	private static final long serialVersionUID = 5527998192109816664L;
 
 	protected static final String SEQ_SUP_INDEX = "seq_sup_index";
+
+	public JpaSupIndex() {}
+
+	public JpaSupIndex(String extId, Long id, String names, int position, SupData sup, String webId, String type) {
+	    setExtId(extId);
+		setId(id);
+		setNames(names);
+		setPosition(position);
+		setSup(sup);
+		setWebId(webId);
+		setType(type);
+	}
 
 	@Override
 	@Id

@@ -38,6 +38,7 @@ public class JpaTagName extends JpaEmbeddedName implements TagNameData {
 	}
 
 	@Override
+	@Transient
 	protected NameData getInstance() {
 		return new JpaTagName();
 	}

@@ -13,7 +13,7 @@ import sk.seges.corpis.shared.domain.product.PriceConditionAccessor;
 @Entity
 @DiscriminatorValue("3")
 @Table
-public class JpaDiscountedPriceCondition extends JpaProductPriceCondition implements TerminalPriceCondition {
+public class JpaDiscountedPriceCondition extends JpaProductPriceCondition implements TerminalPriceCondition, DiscountedPriceConditionData {
 
 	private static final long serialVersionUID = 8766508644651589311L;
 	

@@ -12,6 +12,7 @@ import sk.seges.corpis.server.domain.stock.server.model.data.WarehouseData;
 @Entity
 @SuppressWarnings("serial")
 @Table(name = DBNamespace.TABLE_PREFIX + "stock_item")
+@SequenceGenerator(name = JpaStockItem.SEQ_PRODUCT_ITEM, sequenceName = DBNamespace.TABLE_PREFIX + "SEQ_ITEMS", initialValue = 1)//$NON-NLS-1$ //$NON-NLS-2$
 public class JpaStockItem extends StockItemBase {
 
 	protected static final String SEQ_PRODUCT_ITEM = "seqItems";

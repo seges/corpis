@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
+import sk.seges.corpis.server.domain.invoice.server.model.data.OrderCoreData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.OrderData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.OrderItemData;
 
@@ -21,12 +22,14 @@ public abstract class JpaOrderItemBase extends JpaAccountableItem implements Ord
 	
 	private OrderData order;
 
+	@Override
 	@ManyToOne(fetch=FetchType.LAZY, targetEntity = JpaOrder.class)
 	@JoinColumn(name = "orders_id")
 	public OrderData getOrder() {
 		return order;
 	}
 
+	@Override
 	public void setOrder(OrderData order) {
 		this.order = order;
 	}

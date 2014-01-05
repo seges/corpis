@@ -6,7 +6,6 @@ import sk.seges.corpis.server.domain.HasDescription;
 import sk.seges.corpis.server.domain.HasPrice;
 import sk.seges.corpis.server.domain.HasVersion;
 import sk.seges.corpis.server.domain.Vat;
-import sk.seges.corpis.server.domain.invoice.server.model.base.InvoiceItemBase;
 import sk.seges.sesam.domain.IMutableDomainObject;
 import sk.seges.sesam.pap.model.annotation.ReadOnly;
 

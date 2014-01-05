@@ -36,6 +36,7 @@ public class JpaName extends JpaEmbeddedName implements IMutableDomainObject<Lon
 	}
 
 	@Override
+	@Transient
 	protected NameData getInstance() {
 		return new JpaName();
 	}

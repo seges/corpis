@@ -15,8 +15,6 @@ import sk.seges.corpis.server.domain.jpa.JpaCurrency;
 import sk.seges.corpis.server.domain.jpa.JpaPersonName;
 import sk.seges.corpis.server.domain.server.model.data.AddressData;
 import sk.seges.corpis.server.domain.server.model.data.BasicContactData;
-import sk.seges.corpis.server.domain.server.model.data.CompanyNameData;
-import sk.seges.corpis.server.domain.server.model.data.PersonNameData;
 import sk.seges.corpis.shared.domain.EPaymentType;
 import sk.seges.corpis.shared.domain.invoice.ETransports;
 
@@ -89,29 +87,6 @@ public abstract class JpaOrderCore extends OrderCoreBase implements OrderCoreDat
 		return super.getStatus();
 	}
 
-	@Embedded
-	@Valid
-	@AttributeOverrides( {
-		@AttributeOverride(name = AddressData.STREET, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + AddressData.STREET)),
-		@AttributeOverride(name = AddressData.CITY, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + AddressData.CITY)),
-		@AttributeOverride(name = AddressData.COUNTRY, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + AddressData.COUNTRY)),
-		@AttributeOverride(name = AddressData.STATE, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + AddressData.STATE)),
-		@AttributeOverride(name = AddressData.ZIP, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + AddressData.ZIP)) })
-	public JpaAddress getDeliveryAddress() {
-		return (JpaAddress) super.getDeliveryAddress();
-	}
-
-	@Embedded
-	@AttributeOverrides( {
-			@AttributeOverride(name = BasicContactData.PHONE, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + BasicContactData.PHONE)),
-			@AttributeOverride(name = BasicContactData.FAX, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + BasicContactData.FAX)),
-			@AttributeOverride(name = BasicContactData.EMAIL, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + BasicContactData.EMAIL)),
-			@AttributeOverride(name = BasicContactData.MOBILE, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + BasicContactData.MOBILE)),
-			@AttributeOverride(name = BasicContactData.WEB, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + BasicContactData.WEB)) })
-	public JpaBasicContact getDeliveryContact() {
-		return (JpaBasicContact) super.getDeliveryContact();
-	}
-
 	@Column(name = "ico")
 	public String getIco() {
 		return super.getIco();
@@ -143,14 +118,6 @@ public abstract class JpaOrderCore extends OrderCoreBase implements OrderCoreDat
 		return super.getProjectNumber();
 	}
 
-	@Embedded
-	@AttributeOverrides( {
-		@AttributeOverride(name = DeliveryPersonData.COMPANY, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + DeliveryPersonData.COMPANY)),
-		@AttributeOverride(name = DeliveryPersonData.PERSON, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + DeliveryPersonData.PERSON)) })
-	public DeliveryPersonData getDeliveryPerson() {
-		return super.getDeliveryPerson();
-	}
-
 	@Column(name = "same_delivery_address")
 	public Boolean getSameDeliveryAddress() {
 		return super.getSameDeliveryAddress();
@@ -160,25 +127,5 @@ public abstract class JpaOrderCore extends OrderCoreBase implements OrderCoreDat
 	@Override
 	public String getUserName() {
 		return super.getUserName();
-	}
-
-	@Override
-	public BasicContactData getCustomerContact() {
-		return super.getCustomerContact();
-	}
-
-	@Embedded
-	public AddressData getCustomerAddress() {
-		return super.getCustomerAddress();
-	}
-
-	@Embedded
-	public PersonNameData getCustomerPersonName() {
-		return super.getCustomerPersonName();
-	}
-
-	@Embedded
-	public CompanyNameData getCustomerCompanyName() {
-		return super.getCustomerCompanyName();
 	}
 }

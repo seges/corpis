@@ -217,6 +217,7 @@ public class JpaProductCategory extends ProductCategoryBase {
 		getProducts().remove(original);
 	}
 
+	@Transient
 	@Override
 	public Long getIdForACL() {
 		return getId();

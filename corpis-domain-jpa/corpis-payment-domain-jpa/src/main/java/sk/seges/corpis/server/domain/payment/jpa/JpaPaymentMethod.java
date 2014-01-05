@@ -41,10 +41,12 @@ public class JpaPaymentMethod extends PaymentMethodBase {
 	}
 
 	@Override
+	@Transient
 	public Long getIdForACL() {
 		return getId();
 	}
 
+	@Transient
 	@Override
 	public ISecuredObject<?> getParent() {
 		return null;

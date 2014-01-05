@@ -304,11 +304,13 @@ public class JpaProduct extends ProductBase {
 		return newProduct;
 	}
 
+	@Transient
 	@Override
 	public Long getIdForACL() {
 		return getId();
 	}
 
+	@Transient
 	@Override
 	public ISecuredObject<?> getParent() {
 		return null;

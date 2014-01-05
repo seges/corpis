@@ -4,6 +4,7 @@ import sk.seges.corpis.server.domain.server.model.base.NameBase;
 import sk.seges.corpis.server.domain.server.model.data.NameData;
 
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 
 @MappedSuperclass
 public class JpaEmbeddedName extends NameBase {
@@ -16,7 +17,8 @@ public class JpaEmbeddedName extends NameBase {
 		setLanguage(language);
 		setValue(value);
 	}
-	
+
+	@Transient
 	protected NameData getInstance() {
 		return new JpaEmbeddedName();
 	}

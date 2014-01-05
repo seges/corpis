@@ -155,7 +155,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 			@AttributeOverride(name = AddressData.STATE, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + AddressData.STATE)),
 			@AttributeOverride(name = AddressData.ZIP, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + AddressData.ZIP)) })
 	public JpaAddress getDeliveryAddress() {
-		return super.getDeliveryAddress();
+		return (JpaAddress) super.getDeliveryAddress();
 	}
 
 	@Embedded
@@ -180,7 +180,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 			@AttributeOverride(name = BasicContactData.MOBILE, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + BasicContactData.MOBILE)),
 			@AttributeOverride(name = BasicContactData.WEB, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + BasicContactData.WEB)) })
 	public JpaBasicContact getDeliveryContact() {
-		return super.getDeliveryContact();
+		return (JpaBasicContact) super.getDeliveryContact();
 	}
 
 	@Embedded
