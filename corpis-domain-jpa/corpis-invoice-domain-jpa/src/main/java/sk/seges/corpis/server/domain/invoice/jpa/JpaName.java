@@ -29,7 +29,19 @@ public class JpaName extends JpaEmbeddedName implements IMutableDomainObject<Lon
 	public Long getId() {
 		return id;
 	}
-	
+
+	@Column
+	@Override
+	public String getLanguage() {
+		return super.getLanguage();
+	}
+
+	@Override
+	@Column
+	public String getValue() {
+		return super.getValue();
+	}
+
 	@Override
 	public void setId(Long id) {
 		this.id = id;
