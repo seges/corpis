@@ -26,12 +26,15 @@ import java.util.*;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = DBNamespace.TABLE_PREFIX + "product", uniqueConstraints = { @UniqueConstraint(columnNames = { ProductData.WEB_ID,
-		ProductData.EXT_ID }) })
+@Table(name = DBNamespace.TABLE_PREFIX + "product", uniqueConstraints = { @UniqueConstraint(columnNames = { ProductData.WEB_ID, JpaProduct.EXT_ID_COLUMN }) })
 @SequenceGenerator(name = JpaProduct.SEQ_PRODUCT, sequenceName = "seq_products", initialValue = 1)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class JpaProduct extends ProductBase {
 
 	protected static final String SEQ_PRODUCT = "seqProduct";
+
+	public static final String EXT_ID_COLUMN = "ext_id";
+	public static final String EXTERNAL_ID_COLUMN = "external_id";
 
 	protected static final int EXT_ID_MIN_LENGTH = 1;
 	protected static final int EXT_ID_MAX_LENGTH = 30;
@@ -55,14 +58,14 @@ public class JpaProduct extends ProductBase {
 	@Override
 	@NotNull
 	@Size(min = EXT_ID_MIN_LENGTH, max = EXT_ID_MAX_LENGTH)
-	@Column(name = ProductData.EXT_ID, nullable = false, length = EXT_ID_MAX_LENGTH)
+	@Column(name = EXT_ID_COLUMN, nullable = false, length = EXT_ID_MAX_LENGTH)
 	public String getExtId() {
 		return super.getExtId();
 	}
 
 	@Override
 	@Size(min = EXT_ID_MIN_LENGTH, max = EXT_ID_MAX_LENGTH)
-	@Column(name = ProductData.EXTERNAL_ID, nullable = true, length = EXT_ID_MAX_LENGTH)
+	@Column(name = EXTERNAL_ID_COLUMN, nullable = true, length = EXT_ID_MAX_LENGTH)
 	public String getExternalId() {
 		return super.getExternalId();
 	}
