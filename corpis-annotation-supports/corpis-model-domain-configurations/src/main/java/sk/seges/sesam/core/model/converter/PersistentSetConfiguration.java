@@ -6,5 +6,5 @@ import sk.seges.sesam.server.domain.converter.PersistentConverter;
 
 import java.util.Set;
 
-@TransferObjectMapping(domainClass = PersistentSet.class, dtoClass = Set.class, converter = PersistentConverter.class)
+@TransferObjectMapping(domainInterface = Set.class, dtoClass = Set.class, converter = PersistentConverter.class)
 public class PersistentSetConfiguration {}
