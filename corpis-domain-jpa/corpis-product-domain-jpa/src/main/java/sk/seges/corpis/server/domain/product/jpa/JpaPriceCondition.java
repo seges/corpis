@@ -29,7 +29,7 @@ import sk.seges.sesam.domain.IDomainObject;
 @Entity
 @Table(name = DBNamespace.TABLE_PREFIX + "price_conditions", uniqueConstraints = { @UniqueConstraint(columnNames={PriceConditionData.CUSTOMER + "_" + CustomerData.ID,
 		PriceConditionData.PRODUCT + "_" + ProductData.ID, PriceConditionData.WEB_ID})})
-@SequenceGenerator(name = JpaPriceCondition.SEQ_PRICE_CONDITIONS, sequenceName = "SEQ_PRICE_CONDITIONS", initialValue = 1)
+@SequenceGenerator(name = JpaPriceCondition.SEQ_PRICE_CONDITIONS, sequenceName = DBNamespace.TABLE_PREFIX + "seq_price_condition", initialValue = 1)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "CONDITION_TYPE", discriminatorType = DiscriminatorType.INTEGER)
 public class JpaPriceCondition extends PriceConditionBase {

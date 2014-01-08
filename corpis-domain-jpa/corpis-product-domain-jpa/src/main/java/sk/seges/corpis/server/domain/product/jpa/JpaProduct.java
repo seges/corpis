@@ -27,7 +27,7 @@ import java.util.*;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = DBNamespace.TABLE_PREFIX + "product", uniqueConstraints = { @UniqueConstraint(columnNames = { ProductData.WEB_ID, JpaProduct.EXT_ID_COLUMN }) })
-@SequenceGenerator(name = JpaProduct.SEQ_PRODUCT, sequenceName = "seq_products", initialValue = 1)
+@SequenceGenerator(name = JpaProduct.SEQ_PRODUCT, sequenceName = DBNamespace.TABLE_PREFIX + "seq_products", initialValue = 1)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class JpaProduct extends ProductBase {
 

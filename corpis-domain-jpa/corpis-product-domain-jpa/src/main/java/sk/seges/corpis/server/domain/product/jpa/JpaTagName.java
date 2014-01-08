@@ -1,12 +1,16 @@
 package sk.seges.corpis.server.domain.product.jpa;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.invoice.jpa.JpaEmbeddedName;
 import sk.seges.corpis.server.domain.product.server.model.data.TagNameData;
 import sk.seges.corpis.server.domain.server.model.data.NameData;
-import sk.seges.sesam.domain.IMutableDomainObject;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = DBNamespace.TABLE_PREFIX + "tag_name")

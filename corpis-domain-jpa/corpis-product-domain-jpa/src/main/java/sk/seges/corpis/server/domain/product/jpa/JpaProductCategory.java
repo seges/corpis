@@ -25,6 +25,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.IndexColumn;
+
 import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.invoice.jpa.JpaName;
 import sk.seges.corpis.server.domain.product.server.model.base.ProductCategoryBase;
@@ -33,11 +34,10 @@ import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 import sk.seges.corpis.server.domain.product.server.model.data.TagData;
 import sk.seges.corpis.server.domain.server.model.data.NameData;
 import sk.seges.corpis.shared.domain.product.EProductCategoryType;
-import sk.seges.sesam.security.shared.domain.ISecuredObject;
 
 @Entity
 @Table (name = DBNamespace.TABLE_PREFIX + "product_category", uniqueConstraints = @UniqueConstraint(columnNames = { ProductCategoryData.WEB_ID, JpaProductCategory.EXT_ID_COLUMN }))
-@SequenceGenerator(name = JpaProductCategory.SEQ_PRODUCT_CATEGORY, sequenceName = DBNamespace.TABLE_PREFIX + "seq_product_category", initialValue = 1)
+@SequenceGenerator(name = JpaProductCategory.SEQ_PRODUCT_CATEGORY, sequenceName = DBNamespace.TABLE_PREFIX + "seq_product_categories", initialValue = 1)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class JpaProductCategory extends ProductCategoryBase {
 
