@@ -6,4 +6,4 @@ import sk.seges.sesam.server.domain.converter.PersistentCollectionConverter;
 import java.util.Collection;
 
 @TransferObjectMapping(domainInterface = Collection.class, dtoInterface = Collection.class, converter = PersistentCollectionConverter.class)
-public interface CollectionPersistentConfiguration {}
+public interface PersistentCollectionConfiguration {}
