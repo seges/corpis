@@ -7,9 +7,9 @@ import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class PersistentConverter<DTO, DOMAIN> extends CollectionConverter<DTO, DOMAIN> {
+public class PersistentCollectionConverter<DTO, DOMAIN> extends CollectionConverter<DTO, DOMAIN> {
 
-	public PersistentConverter(ConverterProviderContext converterProviderContext) {
+	public PersistentCollectionConverter(ConverterProviderContext converterProviderContext) {
 		super(converterProviderContext);
 	}
 
