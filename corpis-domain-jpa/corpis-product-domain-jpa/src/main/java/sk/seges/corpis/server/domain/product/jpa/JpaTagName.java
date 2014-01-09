@@ -1,5 +1,6 @@
 package sk.seges.corpis.server.domain.product.jpa;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -41,6 +42,18 @@ public class JpaTagName extends JpaEmbeddedName implements TagNameData {
 		this.id = id;
 	}
 
+	@Override
+	@Column
+	public String getLanguage() {
+		return super.getLanguage();
+	}
+	
+	@Override
+	@Column
+	public String getValue() {
+		return super.getValue();
+	}
+	
 	@Override
 	@Transient
 	protected NameData getInstance() {
