@@ -54,7 +54,7 @@ public class TransactionPropagationAccessor extends AnnotationAccessor {
 	public TransactionPropagationModel[] getPropagations() {
 		List<TransactionPropagationModel> result = new ArrayList<TransactionPropagationModel>();
 
-		if (transactional == null) {
+		if (transactionPropagations.size() == 0 && transactionPropagations == null) {
 			TransactionPropagationModel transactionPropagationModel = new TransactionPropagationModel();
 			transactionPropagationModel.setValue(PropagationType.ISOLATE);
 			result.add(transactionPropagationModel);
