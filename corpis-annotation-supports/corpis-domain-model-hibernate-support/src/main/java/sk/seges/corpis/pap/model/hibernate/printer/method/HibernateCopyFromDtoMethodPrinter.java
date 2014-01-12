@@ -44,17 +44,14 @@ public class HibernateCopyFromDtoMethodPrinter extends CopyFromDtoMethodPrinter 
     		String converterName = "converter" + MethodHelper.toMethod("", context.getDtoFieldName());
     		pw.print(context.getConverter().getConverterBase(), " " + converterName + " = ");
     		Field field = new Field(TransferObjectElementPrinter.DTO_NAME  + "." + MethodHelper.toGetter(context.getDtoFieldName()), context.getConverter().getDto());
-    		//converterProviderPrinter.printDtoEnsuredConverterMethodName(converter.getDto(), field, domainMethod, pw, false);
-    		
+
     		TransferObjectMappingAccessor transferObjectMappingAccessor = new TransferObjectMappingAccessor(context.getDtoMethod(), processingEnv);
     		if (transferObjectMappingAccessor.isValid() && transferObjectMappingAccessor.getConverter() != null) {
-//    			converterProviderPrinter.printDtoEnsuredConverterMethodName(converter.getDto(), field, dtoMethod, pw, false);
-    			converterProviderPrinter.printDtoGetConverterMethodName(context.getConverter().getDto(), field, context.getDtoMethod(), pw, false);
+  				converterProviderPrinter.printDtoGetConverterMethodName(context.getConverter().getDto(), field, context.getDtoMethod(), pw, false);
     		} else {
     			converterProviderPrinter.printObtainConverterFromCache(pw, ConverterTargetType.DTO, context.getConverter().getConfiguration().getInstantiableDomain(), field, context.getDomainMethod(), true);
     		}
 
-    		
     		pw.println(";");
     		pw.print(TransferObjectElementPrinter.RESULT_NAME + "." + MethodHelper.toSetter(domainPathResolver.getPath()) + "(");
     		
@@ -65,19 +62,13 @@ public class HibernateCopyFromDtoMethodPrinter extends CopyFromDtoMethodPrinter 
     		if (isCastReuqired(parameterType)) {
     			pw.print(CastUtils.class, ".cast(");
     		}
+
     		pw.print(converterName + ".convertFromDto(");
-    		
-//    		if (context.getConverter().getDomain().getKind().isDeclared() && ((DomainDeclaredType)context.getConverter().getDomain()).hasTypeParameters()) {
-	    		pw.print(CastUtils.class, ".cast(");
-	    		//pw.print("(", getDelegateCast(converter.getDomain()), ")");
-	    		pw.print(TransferObjectElementPrinter.RESULT_NAME  + "." + MethodHelper.toGetter(domainPathResolver.getCurrent()) + ", ");
-	    		
-//	    		pw.print(getTypeVariableDelegate(getDelegateCast(context.getConverter().getDomain(), true)), ".class), ");
-	    		printCastDomainType(context, domainPathResolver, context.getConverter().getDomain(), pw);
-	    		pw.print(".class), ");
- //   		} else {
-//	    		pw.print(TransferObjectElementPrinter.RESULT_NAME  + "." + MethodHelper.toGetter(domainPathResolver.getCurrent()) + ", ");
- //   		}
+			pw.print(CastUtils.class, ".cast(");
+			pw.print(TransferObjectElementPrinter.RESULT_NAME  + "." + MethodHelper.toGetter(domainPathResolver.getCurrent()) + ", ");
+
+			printCastDomainType(context, domainPathResolver, context.getConverter().getDomain(), pw);
+			pw.print(".class), ");
 
     		if (context.getConverter().getDto().getKind().isDeclared() && ((DtoDeclaredType)context.getConverter().getDto()).hasTypeParameters()) {
 	    		pw.print(CastUtils.class, ".cast(");
