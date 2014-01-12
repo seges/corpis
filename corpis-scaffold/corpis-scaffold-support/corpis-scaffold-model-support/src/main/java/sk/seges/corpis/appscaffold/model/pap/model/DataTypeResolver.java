@@ -1,20 +1,5 @@
 package sk.seges.corpis.appscaffold.model.pap.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.Modifier;
-import javax.lang.model.type.DeclaredType;
-import javax.lang.model.type.TypeMirror;
-import javax.lang.model.util.ElementFilter;
-import javax.tools.Diagnostic.Kind;
-
 import sk.seges.corpis.appscaffold.shared.annotation.DomainData;
 import sk.seges.sesam.core.pap.model.api.ClassSerializer;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableDeclaredType;
@@ -23,11 +8,18 @@ import sk.seges.sesam.core.pap.model.mutable.api.MutableTypeVariable;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableWildcardType;
 import sk.seges.sesam.core.pap.model.mutable.delegate.DelegateMutableDeclaredType;
 import sk.seges.sesam.core.pap.utils.MethodHelper;
-import sk.seges.sesam.core.pap.utils.ProcessorUtils;
 import sk.seges.sesam.pap.model.model.ConfigurationContext;
 import sk.seges.sesam.pap.model.model.EnvironmentContext;
 import sk.seges.sesam.pap.model.model.TransferObjectProcessingEnvironment;
 import sk.seges.sesam.pap.model.model.api.domain.DomainDeclaredType;
+
+import javax.lang.model.element.*;
+import javax.lang.model.type.DeclaredType;
+import javax.lang.model.type.TypeKind;
+import javax.lang.model.type.TypeMirror;
+import javax.lang.model.util.ElementFilter;
+import javax.tools.Diagnostic.Kind;
+import java.util.*;
 
 public class DataTypeResolver {
 
@@ -49,7 +41,7 @@ public class DataTypeResolver {
 			findDomainData((MutableDeclaredType)interfaces, domainDataTypes);
 		}
 
-		MutableDeclaredType superClass = null;
+		MutableDeclaredType superClass;
 		
 		if (declaredType instanceof DelegateMutableDeclaredType) {
 			superClass = ((DelegateMutableDeclaredType)declaredType).ensureDelegateType().getSuperClass();
@@ -69,7 +61,7 @@ public class DataTypeResolver {
 		findDomainData(declaredType, dataTypes);
 
 		for (MutableDeclaredType dataType: dataTypes) {
-			if (!hasCustomProperties((MutableDeclaredType) declaredType, dataType)) {
+			if (!hasCustomProperties(declaredType, dataType)) {
 				result.add(dataType);
 			}
 		}
@@ -77,15 +69,40 @@ public class DataTypeResolver {
 		return result;
 	}
 
+	private static Set<String> getMethodNames(TypeElement typeElement) {
+		assert typeElement != null;
+
+		Set<String> result = new HashSet<String>();
+		List<ExecutableElement> methods = ElementFilter.methodsIn(typeElement.getEnclosedElements());
+
+		for (ExecutableElement method: methods) {
+			result.add(method.getSimpleName().toString());
+		}
+
+		if (typeElement.getSuperclass() != null && typeElement.getSuperclass().getKind().equals(TypeKind.DECLARED)) {
+			result.addAll(getMethodNames((TypeElement) ((DeclaredType)typeElement.getSuperclass()).asElement()));
+		}
+
+		for (TypeMirror interfaceType: typeElement.getInterfaces()) {
+			if (interfaceType.getKind().equals(TypeKind.DECLARED)) {
+				result.addAll(getMethodNames((TypeElement) ((DeclaredType)interfaceType).asElement()));
+			}
+		}
+
+		return result;
+	}
+
 	public boolean hasCustomProperties(Element domainElement, Element dataElement) {
 		List<ExecutableElement> methods = ElementFilter.methodsIn(domainElement.getEnclosedElements());
-		
+
+		Set<String> dataMethodNames = getMethodNames((TypeElement) dataElement);
+
 		for (ExecutableElement method: methods) {
 			boolean isGetter = MethodHelper.isGetterMethod(method);
 			boolean isPublic = method.getModifiers().contains(Modifier.PUBLIC);
 
 			if (isGetter && isPublic) {
-				if (!ProcessorUtils.hasMethod(method.getSimpleName().toString(), dataElement)) {
+				if (!dataMethodNames.contains(method.getSimpleName().toString())) {
 					return true;
 				}
 			}
@@ -116,13 +133,13 @@ public class DataTypeResolver {
 			}
 			
 			Element dataElement = toElement(dataType);
-	
+
 			if (dataElement == null) {
 				return false;
 			}
-			
+
 			return hasCustomProperties(domainElement, dataElement);
-			
+
 		} else if (domainDeclared.hasTypeParameters() && dataType.hasTypeParameters()) {
 			
 			if (domainDeclared.getTypeVariables().size() != dataType.getTypeVariables().size()) {
@@ -166,7 +183,7 @@ public class DataTypeResolver {
 			while (domainIterator.hasNext()) {
 				MutableTypeMirror domain = domainIterator.next();
 				
-				DomainDeclaredType domainDeclaredType = null;
+				DomainDeclaredType domainDeclaredType;
 				
 				if (!(domain instanceof DomainDeclaredType)) {
 					domainDeclaredType = (DomainDeclaredType) envContext.getProcessingEnv().getTransferObjectUtils().getDomainType(domain);
@@ -196,24 +213,28 @@ public class DataTypeResolver {
 			
 			for (MutableTypeVariable typeVariable: domainType.getTypeVariables()) {
 
-				Set<? extends MutableTypeMirror> lbounds = new HashSet<MutableTypeMirror>();
+				Set<? extends MutableTypeMirror> lbounds;
 				
 				if (typeVariable.getLowerBounds().size() > 0) {
 					lbounds = processBounds(typeVariable.getLowerBounds());
+				} else {
+					lbounds = new HashSet<MutableTypeMirror>();
 				}
 
-				Set<? extends MutableTypeMirror> ubounds = new HashSet<MutableTypeMirror>();
+				Set<? extends MutableTypeMirror> ubounds;
 
 				if (typeVariable.getUpperBounds().size() > 0) {
 					ubounds = processBounds(typeVariable.getUpperBounds());
+				} else {
+					ubounds = new HashSet<MutableTypeMirror>();
 				}
-				typeParams.add(envContext.getProcessingEnv().getTypeUtils().getTypeVariable(typeVariable.getVariable(), ubounds.toArray(new MutableTypeMirror[] {}), lbounds.toArray(new MutableTypeMirror[] {})));
+				typeParams.add(envContext.getProcessingEnv().getTypeUtils().getTypeVariable(typeVariable.getVariable(), ubounds.toArray(new MutableTypeMirror[ubounds.size()]), lbounds.toArray(new MutableTypeMirror[] {})));
 			}
 			
 			DomainDeclaredType superClass = domainType.getSuperClass();
 			List<? extends MutableTypeMirror> interfaces = domainDeclared.getInterfaces();
 			
-			domainType.setTypeVariables(typeParams.toArray(new MutableTypeVariable[] {}));
+			domainType.setTypeVariables(typeParams.toArray(new MutableTypeVariable[typeParams.size()]));
 			
 			domainType.setSuperClass(superClass);
 			domainDeclared.setInterfaces(interfaces);
@@ -230,28 +251,28 @@ public class DataTypeResolver {
 
 	private Set<? extends MutableTypeMirror> processBounds(Set<? extends MutableTypeMirror> bounds) {
 		if (bounds.size() > 0) {
-			Set<MutableTypeMirror> newBounds = new HashSet<MutableTypeMirror>(); 
+			Set<MutableTypeMirror> newBounds = new HashSet<MutableTypeMirror>();
 			Iterator<? extends MutableTypeMirror> iterator = bounds.iterator();
-			
+
 			while (iterator.hasNext()) {
 				MutableTypeMirror next = iterator.next();
-				
+
 				if (next.getKind().isDeclared()) {
-					
+
 					List<MutableDeclaredType> dataInterfaces = new ArrayList<MutableDeclaredType>();
 					findDomainData(((MutableDeclaredType)next), dataInterfaces);
-					
+
 					if (dataInterfaces.size() > 0) {
 						MutableDeclaredType dtoType = (MutableDeclaredType)envContext.getProcessingEnv().getTransferObjectUtils().getDomainType(next).getDto();
 						DomainDeclaredType domainDeclared = new DataDomainDeclared(dataInterfaces.get(0), dtoType, envContext, null/*, configurationContext*/);
 						domainDeclared.setTypeVariables(new MutableTypeVariable[]{});
-						
+
 						if (!hasCustomProperties((MutableDeclaredType) next, dataInterfaces.get(0))) {
 							newBounds.add(domainDeclared);
 						} else {
 							newBounds.add(next);
 						}
-						
+
 					} else {
 						newBounds.add(next);
 					}

@@ -39,7 +39,7 @@ public class DataConfigurationTypeElement extends TransactionalConfigurationType
 
 	@Override
 	protected ConfigurationTypeElement getConfigurationTypeElement(Element configurationElement, EnvironmentContext<TransferObjectProcessingEnvironment> envContext, ConfigurationContext configurationContext) {
-		return new DataConfigurationTypeElement(transferObjectConfiguration.getConfiguration(), envContext, configurationContext);
+		return new DataConfigurationTypeElement(getTransferObjectMappingAccessor().getConfiguration(), envContext, configurationContext);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class DataConfigurationTypeElement extends TransactionalConfigurationType
 
 	@Override
 	public boolean appliesForDomainType(MutableTypeMirror domainType) {
-		TypeElement declaredDomainType = transferObjectConfiguration.getDomain();
+		TypeElement declaredDomainType = getTransferObjectMappingAccessor().getDomain();
 		if (declaredDomainType != null) {
 			List<MutableDeclaredType> mutableDomainData = dataTypeResolver.getDomainData(getTypeUtils().toMutableType(declaredDomainType));
 			if (mutableDomainData.size() > 0) {
