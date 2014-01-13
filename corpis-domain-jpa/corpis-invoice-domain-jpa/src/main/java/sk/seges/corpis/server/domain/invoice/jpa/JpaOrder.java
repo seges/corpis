@@ -34,7 +34,7 @@ public class JpaOrder extends JpaOrderCore implements OrderData {
 		this.id = id;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = JpaOrderItem.class, mappedBy = "order")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = JpaOrderItem.class, mappedBy = OrderItemData.ORDER)
 	public List<OrderItemData> getOrderItems() {
 		return orderItems;
 	}

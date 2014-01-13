@@ -3,28 +3,22 @@
  */
 package sk.seges.corpis.server.domain.invoice.jpa;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
-
-import sk.seges.corpis.server.domain.invoice.server.model.data.OrderCoreData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.OrderData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.OrderItemData;
 
 /**
  * @author eldzi
  */
-@MappedSuperclass
+//@MappedSuperclass
 public abstract class JpaOrderItemBase extends JpaAccountableItem implements OrderItemData {
 
 	private static final long serialVersionUID = -7389416843335701988L;
 	
 	private OrderData order;
-
+	
 	@Override
-	@ManyToOne(fetch=FetchType.LAZY, targetEntity = JpaOrder.class)
-	@JoinColumn(name = "orders_id")
+//	@ManyToOne(fetch=FetchType.LAZY, targetEntity = JpaOrderCore.class)
+//	@JoinColumn(name = "orders_id")
 	public OrderData getOrder() {
 		return order;
 	}

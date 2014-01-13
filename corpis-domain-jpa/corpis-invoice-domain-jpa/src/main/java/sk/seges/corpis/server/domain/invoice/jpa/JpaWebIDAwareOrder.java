@@ -12,8 +12,10 @@ import javax.validation.Valid;
 import sk.seges.corpis.server.domain.HasWebId;
 import sk.seges.corpis.server.domain.customer.jpa.JpaAddress;
 import sk.seges.corpis.server.domain.customer.jpa.JpaBasicContact;
+import sk.seges.corpis.server.domain.customer.jpa.JpaCompanyName;
 import sk.seges.corpis.server.domain.customer.jpa.JpaCustomerCore;
 import sk.seges.corpis.server.domain.invoice.server.model.data.*;
+import sk.seges.corpis.server.domain.jpa.JpaPersonName;
 import sk.seges.corpis.server.domain.server.model.data.AddressData;
 import sk.seges.corpis.server.domain.server.model.data.BasicContactData;
 import sk.seges.corpis.server.domain.server.model.data.CompanyNameData;
@@ -168,8 +170,8 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 			@AttributeOverride(name = AddressData.COUNTRY, column = @Column(name = JpaCustomerCore.TABLE_PREFIX + AddressData.COUNTRY))})
 	@AssociationOverride(name = AddressData.COUNTRY, joinColumns = @JoinColumn(name = JpaCustomerCore.TABLE_PREFIX
 			+ AddressData.COUNTRY + "_id"))
-	public AddressData getCustomerAddress() {
-		return super.getCustomerAddress();
+	public JpaAddress getCustomerAddress() {
+		return (JpaAddress) super.getCustomerAddress();
 	}
 
 	@Embedded
@@ -189,16 +191,16 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 			@AttributeOverride(name = BasicContactData.EMAIL, column = @Column(name = JpaCustomerCore.TABLE_PREFIX + BasicContactData.EMAIL)),
 			@AttributeOverride(name = BasicContactData.MOBILE, column = @Column(name = JpaCustomerCore.TABLE_PREFIX + BasicContactData.MOBILE)),
 			@AttributeOverride(name = BasicContactData.WEB, column = @Column(name = JpaCustomerCore.TABLE_PREFIX + BasicContactData.WEB)) })
-	public BasicContactData getCustomerContact() {
-		return super.getCustomerContact();
+	public JpaBasicContact getCustomerContact() {
+		return (JpaBasicContact) super.getCustomerContact();
 	}
 
 	@Embedded
 	@AttributeOverrides( {
 			@AttributeOverride(name = DeliveryPersonData.COMPANY, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + DeliveryPersonData.COMPANY)),
 			@AttributeOverride(name = DeliveryPersonData.PERSON, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + DeliveryPersonData.PERSON)) })
-	public DeliveryPersonData getDeliveryPerson() {
-		return super.getDeliveryPerson();
+	public JpaDeliveryPerson getDeliveryPerson() {
+		return (JpaDeliveryPerson) super.getDeliveryPerson();
 	}
 
 	@Embedded
@@ -207,8 +209,8 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 			@AttributeOverride(name = PersonNameData.SALUTATION, column = @Column(name = JpaCustomerCore.TABLE_PREFIX + PersonNameData.SALUTATION)),
 			@AttributeOverride(name = PersonNameData.FIRST_NAME, column = @Column(name = JpaCustomerCore.TABLE_PREFIX + PersonNameData.FIRST_NAME)),
 			@AttributeOverride(name = PersonNameData.SURNAME, column = @Column(name = JpaCustomerCore.TABLE_PREFIX + PersonNameData.SURNAME)) })
-	public PersonNameData getCustomerPersonName() {
-		return super.getCustomerPersonName();
+	public JpaPersonName getCustomerPersonName() {
+		return (JpaPersonName) super.getCustomerPersonName();
 	}
 
 	@Embedded
@@ -216,7 +218,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 	@AttributeOverrides({
 			@AttributeOverride(name = CompanyNameData.COMPANY_NAME, column = @Column(name = JpaCustomerCore.TABLE_PREFIX + CompanyNameData.COMPANY_NAME)),
 			@AttributeOverride(name = CompanyNameData.DEPARTMENT, column = @Column(name = JpaCustomerCore.TABLE_PREFIX + CompanyNameData.DEPARTMENT)) })
-	public CompanyNameData getCustomerCompanyName() {
-		return super.getCustomerCompanyName();
+	public JpaCompanyName getCustomerCompanyName() {
+		return (JpaCompanyName) super.getCustomerCompanyName();
 	}
 }
