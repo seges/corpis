@@ -1,6 +1,33 @@
 package sk.seges.corpis.server.domain.product.jpa;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.hibernate.annotations.Type;
+
 import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.customer.jpa.JpaCustomerCore;
 import sk.seges.corpis.server.domain.customer.server.model.data.CustomerCoreData;
@@ -18,11 +45,6 @@ import sk.seges.corpis.server.domain.server.model.data.DescriptionData;
 import sk.seges.corpis.server.domain.server.model.data.NameData;
 import sk.seges.corpis.server.domain.server.model.data.VatData;
 import sk.seges.sesam.security.shared.domain.ISecuredObject;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.*;
 
 @SuppressWarnings("serial")
 @Entity
@@ -319,4 +341,49 @@ public class JpaProduct extends ProductBase {
 		return null;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getExtId() == null) ? 0 : getExtId().hashCode());
+		result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+		result = prime * result + ((getWebId() == null) ? 0 : getWebId().hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		ProductData other = (ProductData) obj;
+		if (getExtId() == null) {
+			if (other.getExtId() != null) {
+				return false;
+			}
+		} else if (!getExtId().equals(other.getExtId())) {
+			return false;
+		}
+		if (getId() == null) {
+			if (other.getId() != null) {
+				return false;
+			}
+		} else if (!getId().equals(other.getId())) {
+			return false;
+		}
+		if (getWebId() == null) {
+			if (other.getWebId() != null) {
+				return false;
+			}
+		} else if (!getWebId().equals(other.getWebId())) {
+			return false;
+		}
+		return true;
+	}
 }
