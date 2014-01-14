@@ -50,7 +50,7 @@ public class JpaProductCategory extends ProductCategoryBase {
 	public JpaProductCategory() {
 		setPrecedency(Integer.valueOf(0));
 		setVisible(true);
-		setContentCategory(true);
+		setContentCategory(false);
 		setLoadTagsFromParent(true);
 	}
 
