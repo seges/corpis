@@ -6,8 +6,11 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 
+import java.util.ArrayList;
+
 import sk.seges.corpis.pap.model.hibernate.TransactionalConfigurationTypeElement;
 import sk.seges.corpis.pap.model.hibernate.TransactionalConverterTypeElement;
+import sk.seges.sesam.core.pap.model.InitializableValue;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableDeclaredType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableTypeMirror;
 import sk.seges.sesam.pap.model.model.*;
@@ -57,19 +60,32 @@ public class DataConfigurationTypeElement extends TransactionalConfigurationType
 		return dataTypeResolver.getDomainDataType(super.getDomain(domainType, dtoType, envContext, configurationContext), domainType, configurationContext);
 	}
 
-	@Override
-	public boolean appliesForDomainType(MutableTypeMirror domainType) {
+	private InitializableValue<List<MutableDeclaredType>> dataInterfacesValue = new InitializableValue<List<MutableDeclaredType>>();
+
+	private List<MutableDeclaredType> getDomainDataInterfaces() {
+		if (dataInterfacesValue.isInitialized()) {
+			return dataInterfacesValue.getValue();
+		}
+
 		TypeElement declaredDomainType = getTransferObjectMappingAccessor().getDomain();
 		if (declaredDomainType != null) {
-			List<MutableDeclaredType> mutableDomainData = dataTypeResolver.getDomainData(getTypeUtils().toMutableType(declaredDomainType));
-			if (mutableDomainData.size() > 0) {
-				for (MutableDeclaredType mutableDomain: mutableDomainData) {
-					if (getTypeUtils().isSameType(mutableDomain, domainType)) {
-						return true;
-					}
+			return dataInterfacesValue.setValue(dataTypeResolver.getDomainData(getTypeUtils().toMutableType(declaredDomainType)));
+		}
+
+		return dataInterfacesValue.setValue(new ArrayList<MutableDeclaredType>());
+	}
+
+	@Override
+	public boolean appliesForDomainType(MutableTypeMirror domainType) {
+		List<MutableDeclaredType> mutableDomainData = getDomainDataInterfaces();
+		if (mutableDomainData.size() > 0) {
+			for (MutableDeclaredType mutableDomain: mutableDomainData) {
+				if (getTypeUtils().isSameType(mutableDomain, domainType)) {
+					return true;
 				}
 			}
 		}
+
 		return super.appliesForDomainType(domainType);
 	}
 
