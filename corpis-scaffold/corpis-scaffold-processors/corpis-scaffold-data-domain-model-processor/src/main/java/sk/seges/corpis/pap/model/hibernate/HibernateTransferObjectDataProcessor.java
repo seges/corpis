@@ -1,9 +1,5 @@
 package sk.seges.corpis.pap.model.hibernate;
 
-import javax.annotation.processing.SupportedSourceVersion;
-import javax.lang.model.SourceVersion;
-import javax.lang.model.element.TypeElement;
-
 import sk.seges.corpis.appscaffold.model.pap.model.DataConfigurationTypeElement;
 import sk.seges.corpis.pap.model.hibernate.provider.DataClasspathConfigurationProvider;
 import sk.seges.corpis.pap.model.hibernate.resolver.HibernateEntityResolver;
@@ -12,6 +8,10 @@ import sk.seges.sesam.pap.model.model.ConfigurationContext;
 import sk.seges.sesam.pap.model.model.ConfigurationTypeElement;
 import sk.seges.sesam.pap.model.provider.api.ConfigurationProvider;
 import sk.seges.sesam.pap.model.resolver.api.EntityResolver;
+
+import javax.annotation.processing.SupportedSourceVersion;
+import javax.lang.model.SourceVersion;
+import javax.lang.model.element.TypeElement;
 
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class HibernateTransferObjectDataProcessor extends TransferObjectProcessor {
