@@ -74,7 +74,7 @@ public class TransactionPropagationAccessor extends AnnotationAccessor {
 	
 	public boolean isTransactionPropagated() {
 		if (transactionPropagations == null || transactionPropagations.size() == 0) {
-			return transactional != null;
+			return false;
 		}
 		
 		for (TransactionPropagation transactionPropagation: transactionPropagations) {
