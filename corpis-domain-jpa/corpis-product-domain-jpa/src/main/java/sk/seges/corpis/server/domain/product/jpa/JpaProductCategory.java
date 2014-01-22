@@ -174,6 +174,12 @@ public class JpaProductCategory extends ProductCategoryBase {
 	public boolean isLoadTagsFromParent() {
 		return super.isLoadTagsFromParent();
 	}
+	
+	@Override
+	@Column
+	public Boolean getVisible() {
+		return super.getVisible();
+	}
 
 	@Transient
 	public Long getProductsCount() {
