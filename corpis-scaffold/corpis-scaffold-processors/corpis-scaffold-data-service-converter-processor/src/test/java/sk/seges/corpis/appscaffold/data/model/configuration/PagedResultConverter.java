@@ -8,6 +8,8 @@ import sk.seges.sesam.shared.model.converter.BasicCachedConverter;
 import sk.seges.sesam.shared.model.converter.ConvertedInstanceCache;
 import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
 
+import java.io.Serializable;
+
 public class PagedResultConverter<DTO_T, DOMAIN_T> extends BasicCachedConverter<PagedResult<DTO_T>, PagedResult<DOMAIN_T>> {
 
 	public PagedResultConverter(EntityManager entityManager, ConverterProviderContext context) {
@@ -44,5 +46,10 @@ public class PagedResultConverter<DTO_T, DOMAIN_T> extends BasicCachedConverter<
 	public boolean equals(PagedResult<DOMAIN_T> domain, PagedResult<DTO_T> dto) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public PagedResult<DTO_T> createDtoInstance(Serializable id) {
+		return null;
 	}
 }
