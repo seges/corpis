@@ -34,6 +34,7 @@
 /corpis-domain/corpis-user-domain-model/target
 /corpis-dao-impl/target
 /corpis-dao-api/target
+/corpis-domain/corpis-payment-domain-api/target/
 /corpis-application-scaffold/corpis-application-scaffold-model/target
 /corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-domain-model-coverter-processor/target
 /corpis-application-scaffold/corpis-application-scaffold-processors/corpis-application-scaffold-data-domain-model-processor/target
