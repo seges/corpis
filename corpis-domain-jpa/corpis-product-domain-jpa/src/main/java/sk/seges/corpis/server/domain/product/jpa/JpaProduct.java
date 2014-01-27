@@ -63,6 +63,7 @@ public class JpaProduct extends ProductBase {
 
 	public JpaProduct() {
 		setVisible(true);
+		setDeleted(false);
 	}
 
 	@Override
