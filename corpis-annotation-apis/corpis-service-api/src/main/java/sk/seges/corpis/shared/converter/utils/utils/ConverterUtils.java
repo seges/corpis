@@ -5,14 +5,6 @@ import sk.seges.corpis.service.annotation.TransactionPropagationModel;
 
 public class ConverterUtils {
 
-//	public static boolean hasTransaction(TransactionPropagationModel[] transactionPropagations) {
-//		if (transactionPropagations != null && transactionPropagations.length == 1) {
-//			return !transactionPropagations[0].getValue().equals(PropagationType.ISOLATE);
-//		}
-//		
-//		return true;
-//	}
-	
 	public static boolean convertResult(TransactionPropagationModel[] transactionPropagations, String field) {
 		for (TransactionPropagationModel transactionPropagation: transactionPropagations) {
 			for (PropagationTarget target: transactionPropagation.getTarget()) {
@@ -26,7 +18,6 @@ public class ConverterUtils {
 		}
 
 		return false;
-//		return convert(transactionPropagations, field, PropagationTarget.RETURN_VALUE);
 	}
 
 	public static boolean convertArg(TransactionPropagationModel[] transactionPropagations, String field) {
