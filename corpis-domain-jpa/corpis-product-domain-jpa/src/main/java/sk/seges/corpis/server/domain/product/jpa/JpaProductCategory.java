@@ -293,5 +293,34 @@ public class JpaProductCategory extends ProductCategoryBase {
 
 		return newProductCategory;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getExtId() == null) ? 0 : getExtId().hashCode());
+		result = prime * result + ((getWebId() == null) ? 0 : getWebId().hashCode());
+		return result;
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ProductCategoryBase other = (ProductCategoryBase) obj;
+		if (getExtId() == null) {
+			if (other.getExtId() != null)
+				return false;
+		} else if (!getExtId().equals(other.getExtId()))
+			return false;		
+		if (getWebId() == null) {
+			if (other.getWebId() != null)
+				return false;
+		} else if (!getWebId().equals(other.getWebId()))
+			return false;
+		return true;
+	}
 }
