@@ -13,7 +13,8 @@ import sk.seges.sesam.pap.model.provider.api.ConfigurationProvider;
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class HibernateTransferObjectDataConverterProcessor extends HibernateTransferObjectConverterProcessor {
 
-	protected ConfigurationTypeElement getConfigurationTypeElement(TypeElement typeElement) {
+	@Override
+	protected ConfigurationTypeElement createTypeElement(TypeElement typeElement) {
 		ConfigurationContext configurationContext = new ConfigurationContext(environmentContext.getConfigurationEnv());
 		ConfigurationTypeElement configurationTypeElement = new DataConfigurationTypeElement(typeElement, getEnvironmentContext(), configurationContext);
 		configurationContext.addConfiguration(configurationTypeElement);

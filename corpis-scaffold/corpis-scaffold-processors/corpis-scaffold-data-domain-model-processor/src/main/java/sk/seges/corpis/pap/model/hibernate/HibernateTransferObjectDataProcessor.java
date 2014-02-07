@@ -16,7 +16,8 @@ import javax.lang.model.element.TypeElement;
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class HibernateTransferObjectDataProcessor extends TransferObjectProcessor {
 
-	protected ConfigurationTypeElement getConfigurationTypeElement(TypeElement typeElement) {
+	@Override
+	protected ConfigurationTypeElement createTypeElement(TypeElement typeElement) {
 		ConfigurationContext configurationContext = new ConfigurationContext(environmentContext.getConfigurationEnv());
 		ConfigurationTypeElement configurationTypeElement = new DataConfigurationTypeElement(typeElement, getEnvironmentContext(), configurationContext);
 		configurationContext.addConfiguration(configurationTypeElement);

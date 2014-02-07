@@ -31,7 +31,8 @@ public class HibernateTransferObjectConverterProcessor extends TransferObjectCon
 	}
 
 	@Override
-	protected ConfigurationTypeElement getConfigurationTypeElement(TypeElement typeElement) {
+	protected ConfigurationTypeElement createTypeElement(TypeElement typeElement) {
+
 		ConfigurationContext configurationContext = new ConfigurationContext(environmentContext.getConfigurationEnv());
 		TransactionalConfigurationTypeElement configurationTypeElement = new TransactionalConfigurationTypeElement(typeElement, getEnvironmentContext(), configurationContext);
 		configurationContext.addConfiguration(configurationTypeElement);

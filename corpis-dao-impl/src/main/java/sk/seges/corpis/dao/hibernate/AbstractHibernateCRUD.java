@@ -42,7 +42,7 @@ import sk.seges.sesam.dao.NullExpression;
 import sk.seges.sesam.dao.Page;
 import sk.seges.sesam.dao.PagedResult;
 import sk.seges.sesam.dao.SimpleExpression;
-import sk.seges.sesam.dao.SortInfo;
+import sk.seges.sesam.shared.model.dao.SortInfo;
 import sk.seges.sesam.domain.IDomainObject;
 
 public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends AbstractJPADAO<T> implements

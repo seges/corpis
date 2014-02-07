@@ -1,4 +1,4 @@
-package sk.seges.sesam.core.model.converter;
+package sk.seges.sesam.server.model.dto.configuration;
 
 import sk.seges.sesam.pap.model.annotation.TransferObjectMapping;
 import sk.seges.sesam.server.domain.converter.PersistentCollectionConverter;

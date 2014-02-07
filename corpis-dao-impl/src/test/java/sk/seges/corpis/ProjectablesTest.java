@@ -29,7 +29,7 @@ import sk.seges.corpis.domain.VATTestDO;
 import sk.seges.sesam.dao.Filter;
 import sk.seges.sesam.dao.Page;
 import sk.seges.sesam.dao.SimpleExpression;
-import sk.seges.sesam.dao.SortInfo;
+import sk.seges.sesam.shared.model.dao.SortInfo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:test-corpis-dao-context.xml" })

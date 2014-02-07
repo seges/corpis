@@ -9,7 +9,7 @@ import sk.seges.corpis.pap.converter.hibernate.TransactionalConverter;
 import sk.seges.corpis.pap.model.converter.MockStringConverter;
 import sk.seges.corpis.service.annotation.TransactionPropagationModel;
 import sk.seges.sesam.dao.Page;
-import sk.seges.sesam.dao.SortInfo;
+import sk.seges.sesam.shared.model.dao.SortInfo;
 import sk.seges.sesam.pap.model.annotation.TransferObjectMapping;
 import sk.seges.sesam.server.model.converter.common.CollectionConverter;
 import sk.seges.sesam.shared.model.converter.ConvertedInstanceCache;
