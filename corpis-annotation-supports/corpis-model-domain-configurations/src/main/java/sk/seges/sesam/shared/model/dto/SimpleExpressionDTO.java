@@ -15,8 +15,7 @@ import java.io.Serializable;
 		converterClassName = "sk.seges.sesam.server.model.dto.configuration.SimpleExpressionDTOConverter")
 @Generated(value = "sk.seges.corpis.pap.model.hibernate.HibernateTransferObjectProcessor")
 public class SimpleExpressionDTO implements CriterionDTO, HasCriterionProperty, Serializable {
-	 
-	 
+
 	public static final String OPERATION = "operation";
 	
 	private String operation;
@@ -64,5 +63,27 @@ public class SimpleExpressionDTO implements CriterionDTO, HasCriterionProperty, 
 	
 	public void setValue(PropertyHolder value) {
 		this.value = value;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof SimpleExpressionDTO)) return false;
+
+		SimpleExpressionDTO that = (SimpleExpressionDTO) o;
+
+		if (operation != null ? !operation.equals(that.operation) : that.operation != null) return false;
+		if (property != null ? !property.equals(that.property) : that.property != null) return false;
+		if (value != null ? !value.equals(that.value) : that.value != null) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = operation != null ? operation.hashCode() : 0;
+		result = 31 * result + (property != null ? property.hashCode() : 0);
+		result = 31 * result + (value != null ? value.hashCode() : 0);
+		return result;
 	}
 }

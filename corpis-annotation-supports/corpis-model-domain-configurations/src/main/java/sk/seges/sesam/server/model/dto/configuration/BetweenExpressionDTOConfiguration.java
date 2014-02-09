@@ -10,8 +10,8 @@ import sk.seges.sesam.shared.model.dto.BetweenExpressionDTO;
 import sk.seges.sesam.shared.model.dto.CriterionDTO;
 
 @TransferObjectMapping(domainClass = BetweenExpression.class, dtoClass = BetweenExpressionDTO.class, converter = BetweenExpressionDTOConverter.class)
-@GenerateHashcode(generate = false)
-@GenerateEquals(generate = false)
+@GenerateHashcode(generate = true, type = TraversalType.DEFAULT)
+@GenerateEquals(generate = true, type = TraversalType.DEFAULT)
 public interface BetweenExpressionDTOConfiguration extends CriterionDTO, HasCriterionProperty {
 
 	@ConstructorParameter(1)

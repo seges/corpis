@@ -10,12 +10,10 @@ import sk.seges.sesam.pap.model.annotation.TransferObjectMapping;
 import java.util.List;
 
 @TransferObjectMapping(domainClass = Junction.class)
-@GenerateHashcode(generate = false)
-@GenerateEquals(generate = false)
+@GenerateHashcode(generate = true)
+@GenerateEquals(generate = true)
 public interface JunctionDTOConfiguration extends CriterionDTO {
 
 	@Copy(methodBody = true)
 	void add();
-
-	List<CriterionDTO> junctions();
 }

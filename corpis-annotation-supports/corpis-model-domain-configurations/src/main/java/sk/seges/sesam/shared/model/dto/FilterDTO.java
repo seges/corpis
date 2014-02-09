@@ -4,6 +4,7 @@ import sk.seges.sesam.shared.model.api.PropertyHolder;
 import sk.seges.sesam.shared.model.dao.MatchMode;
 
 import java.util.Date;
+import java.util.ArrayList;
 
 public class FilterDTO {
 
@@ -19,7 +20,9 @@ public class FilterDTO {
 	public static final String LIKE = "like";
 
 	public static ConjunctionDTO conjunction() {
-		return new ConjunctionDTO();
+		ConjunctionDTO conjunction = new ConjunctionDTO();
+		conjunction.setJunctions(new ArrayList<CriterionDTO>());
+		return conjunction;
 	}
 
 	public static BetweenExpressionDTO between(String property) {
@@ -31,27 +34,31 @@ public class FilterDTO {
 	}
 
 	public static SimpleExpressionDTO eq(String property) {
-		return new SimpleExpressionDTO(property, EQ, null);
+		return new SimpleExpressionDTO(EQ, property, null);
 	}
 
 	public static SimpleExpressionDTO eq(String property, String value) {
-		return new SimpleExpressionDTO(property, EQ, new PropertyHolder(value));
+		return new SimpleExpressionDTO(EQ, property, new PropertyHolder(value));
+	}
+
+	public static SimpleExpressionDTO eq(String property, Long value) {
+		return new SimpleExpressionDTO(EQ, property, new PropertyHolder(value));
 	}
 
 	public static SimpleExpressionDTO ge(String property) {
-		return new SimpleExpressionDTO(property, GE, null);
+		return new SimpleExpressionDTO(GE, property, null);
 	}
 
 	public static SimpleExpressionDTO ge(String property, String value) {
-		return new SimpleExpressionDTO(property, GE, new PropertyHolder(value));
+		return new SimpleExpressionDTO(GE, property, new PropertyHolder(value));
 	}
 
 	public static  SimpleExpressionDTO gt(String property) {
-		return new SimpleExpressionDTO(property, GT, null);
+		return new SimpleExpressionDTO(GT, property, null);
 	}
 
 	public static SimpleExpressionDTO gt(String property, String value) {
-		return new SimpleExpressionDTO(property, GT, new PropertyHolder(value));
+		return new SimpleExpressionDTO(GT, property, new PropertyHolder(value));
 	}
 
 	public static LikeExpressionDTO ilike(String property) {
@@ -76,4 +83,15 @@ public class FilterDTO {
 		return new NotNullExpressionDTO(property);
 	}
 
+	public static LikeExpressionDTO like(String property) {
+		LikeExpressionDTO result = new LikeExpressionDTO(property, true, MatchMode.ANYWHERE, new PropertyHolder());
+		result.setOperation(LikeExpressionDTO.LIKE);
+		return result;
+	}
+
+	public static LikeExpressionDTO like(String property, String value) {
+		LikeExpressionDTO result = new LikeExpressionDTO(property, true, MatchMode.ANYWHERE, new PropertyHolder(value));
+		result.setOperation(LikeExpressionDTO.LIKE);
+		return result;
+	}
 }

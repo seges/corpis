@@ -54,4 +54,31 @@ public class BetweenExpressionDTO extends SimpleExpressionDTO implements Criteri
 	public PropertyHolder getLoValue() {
 		return getValue();
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof BetweenExpressionDTO)) return false;
+		if (!super.equals(o)) return false;
+
+		BetweenExpressionDTO that = (BetweenExpressionDTO) o;
+
+		if (getOperation() != null ? !getOperation().equals(that.getOperation()) : that.getOperation() != null) return false;
+		if (getProperty() != null ? !getProperty().equals(that.getProperty()) : that.getProperty() != null) return false;
+		if (getValue() != null ? !getValue().equals(that.getValue()) : that.getValue() != null) return false;
+		if (hiValue != null ? !hiValue.equals(that.hiValue) : that.hiValue != null) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (hiValue != null ? hiValue.hashCode() : 0);
+		result = getOperation() != null ? getOperation().hashCode() : 0;
+		result = 31 * result + (getProperty() != null ? getProperty().hashCode() : 0);
+		result = 31 * result + (getValue() != null ? getValue().hashCode() : 0);
+		return result;
+	}
+
 }

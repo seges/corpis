@@ -5,6 +5,9 @@ import sk.seges.sesam.pap.model.annotation.Copy;
 import sk.seges.sesam.pap.model.annotation.GenerateEquals;
 import sk.seges.sesam.pap.model.annotation.GenerateHashcode;
 import sk.seges.sesam.pap.model.annotation.TransferObjectMapping;
+import sk.seges.sesam.shared.model.dto.CriterionDTO;
+
+import java.util.List;
 
 @TransferObjectMapping(domainClass = Conjunction.class)
 @GenerateHashcode(generate = false)

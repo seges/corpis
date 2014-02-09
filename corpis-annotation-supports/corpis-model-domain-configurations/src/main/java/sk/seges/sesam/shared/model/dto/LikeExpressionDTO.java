@@ -50,4 +50,26 @@ public class LikeExpressionDTO extends SimpleExpressionDTO {
 	public void setMode(MatchMode mode) {
 		this.mode = mode;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof LikeExpressionDTO)) return false;
+		if (!super.equals(o)) return false;
+
+		LikeExpressionDTO that = (LikeExpressionDTO) o;
+
+		if (caseSensitive != that.caseSensitive) return false;
+		if (mode != that.mode) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (caseSensitive ? 1 : 0);
+		result = 31 * result + (mode != null ? mode.hashCode() : 0);
+		return result;
+	}
 }
