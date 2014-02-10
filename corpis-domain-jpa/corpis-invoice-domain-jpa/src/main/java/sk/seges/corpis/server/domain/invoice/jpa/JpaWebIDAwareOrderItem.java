@@ -50,7 +50,7 @@ public class JpaWebIDAwareOrderItem extends JpaOrderItemBase {
 	
 	@Override
 	@ManyToOne(fetch=FetchType.LAZY, targetEntity = JpaWebIDAwareOrder.class)
-	@JoinColumn(name = "orders_id")
+	@JoinColumn(name = "order_id")
 	public OrderData getOrder() {
 		return super.getOrder();
 	}

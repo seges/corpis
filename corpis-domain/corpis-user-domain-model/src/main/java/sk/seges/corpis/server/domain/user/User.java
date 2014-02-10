@@ -29,4 +29,6 @@ public interface User extends IMutableDomainObject<Long>, HasName, HasDescriptio
 	String contact();
 
 	UserPreferences userPreferences();
+	
+	List<UserRole> userRoles();
 }
