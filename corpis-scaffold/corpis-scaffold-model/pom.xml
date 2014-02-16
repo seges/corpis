@@ -12,6 +12,10 @@
 
 	<description>Application Scaffold Model</description>
 	
-	<dependencies>	
+	<dependencies>
+		<dependency>
+			<groupId>sk.seges.sesam</groupId>
+			<artifactId>sesam-core-api</artifactId>
+		</dependency>
 	</dependencies>
 </project>

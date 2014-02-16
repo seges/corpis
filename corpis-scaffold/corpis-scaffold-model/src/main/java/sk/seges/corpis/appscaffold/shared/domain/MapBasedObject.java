@@ -3,6 +3,8 @@
  */
 package sk.seges.corpis.appscaffold.shared.domain;
 
+import sk.seges.sesam.shared.model.api.PropertyHolder;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,22 +17,31 @@ import java.util.Set;
 public class MapBasedObject implements Serializable {
 	private static final long serialVersionUID = -1383864308128396L;
 	
-	protected Map<String, Object> map = new HashMap<String, Object>();
+	protected Map<String, PropertyHolder> map = new HashMap<String, PropertyHolder>();
 	
 	@SuppressWarnings("unchecked")
-	protected <T> T get(String key) {
-		return (T) map.get(key);
+	public <T> T get(String key) {
+		PropertyHolder propertyHolder = map.get(key);
+
+		if (propertyHolder == null) {
+			return null;
+		}
+		return (T) propertyHolder.getValue();
 	}
 	
 	public void set(String key, Object value) {
-		map.put(key, value);
+		map.put(key, new PropertyHolder(value));
 	}
 	
-	public Set<Entry<String, Object>> entrySet() {
+	public Set<Entry<String, PropertyHolder>> entrySet() {
 		return map.entrySet();
 	}
 	
-	public Map<String, Object> map() {
+	public Map<String, PropertyHolder> getMap() {
 		return map;
+	}
+
+	public void setMap(Map<String, PropertyHolder> map) {
+		this.map = map;
 	}
 }
