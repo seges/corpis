@@ -10,10 +10,11 @@ import sk.seges.corpis.server.domain.CompanyName;
 import sk.seges.corpis.server.domain.PersonName;
 import sk.seges.sesam.domain.IMutableDomainObject;
 import sk.seges.sesam.pap.model.annotation.ReadOnly;
+import sk.seges.sesam.security.shared.domain.ISecuredObject;
 
 @DomainInterface
 @BaseObject
-public interface CustomerCore extends IMutableDomainObject<Long> {
+public interface CustomerCore extends IMutableDomainObject<Long>, ISecuredObject<Long>{
 
 	String shortcut();
 

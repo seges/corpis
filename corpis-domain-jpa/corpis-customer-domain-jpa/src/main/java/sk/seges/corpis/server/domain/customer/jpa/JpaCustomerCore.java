@@ -34,6 +34,7 @@ import sk.seges.corpis.server.domain.customer.server.model.data.CustomerData;
 import sk.seges.corpis.server.domain.jpa.JpaPersonName;
 import sk.seges.corpis.server.domain.server.model.data.AddressData;
 import sk.seges.corpis.shared.domain.validation.customer.CompanyCustomerFormCheck;
+import sk.seges.sesam.security.shared.domain.ISecuredObject;
 
 /**
  * @author ladislav.gazo
@@ -207,5 +208,17 @@ public class JpaCustomerCore extends CustomerCoreBase {
 	@Deprecated
 	public boolean isCompanyCustomerType() {
 		return (getCompany() != null && getCompany().getCompanyName() != null && getCompany().getCompanyName().length() > 0);
+	}	
+
+	@Override
+	@Transient
+	public Long getIdForACL() {
+		return getId();
+	}
+	
+	@Override
+	@Transient
+	public ISecuredObject<?> getParent() {
+		return null;
 	}
 }

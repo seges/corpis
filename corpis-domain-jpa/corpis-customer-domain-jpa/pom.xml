@@ -25,5 +25,10 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>corpis-price-domain-api</artifactId>
 		</dependency>
+		<!-- Sesam dependencies -->		
+		<dependency>
+			<groupId>sk.seges.sesam</groupId>
+			<artifactId>sesam-security-api</artifactId>
+		</dependency>
 	</dependencies>
 </project>
