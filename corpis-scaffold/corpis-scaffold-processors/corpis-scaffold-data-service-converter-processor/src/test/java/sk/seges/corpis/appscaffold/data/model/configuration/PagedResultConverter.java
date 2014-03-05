@@ -20,31 +20,26 @@ public class PagedResultConverter<DTO_T, DOMAIN_T> extends BasicCachedConverter<
 
 	@Override
 	public PagedResult<DTO_T> convertToDto(PagedResult<DTO_T> result, PagedResult<DOMAIN_T> domain) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public PagedResult<DTO_T> toDto(PagedResult<DOMAIN_T> domain) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public PagedResult<DOMAIN_T> convertFromDto(PagedResult<DOMAIN_T> result, PagedResult<DTO_T> dto) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public PagedResult<DOMAIN_T> fromDto(PagedResult<DTO_T> dto) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean equals(PagedResult<DOMAIN_T> domain, PagedResult<DTO_T> dto) {
-		// TODO Auto-generated method stub
+	public boolean equals(Object domain, Object dto) {
 		return false;
 	}
 

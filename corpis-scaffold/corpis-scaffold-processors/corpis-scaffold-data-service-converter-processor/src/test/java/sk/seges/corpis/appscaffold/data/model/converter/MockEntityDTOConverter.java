@@ -28,7 +28,28 @@ public class MockEntityDTOConverter extends BasicCachedConverter<MockEntityDTO, 
 		this.transactionPropagations = transactionPropagations;
 	}
 
-	public boolean equals(MockEntity _domain,MockEntityDTO _dto) {
+	public boolean equals(Object _domainArg, Object _dtoArg) {
+
+		if (_domainArg == null) {
+			return (_dtoArg == null);
+		}
+
+		if (_dtoArg == null) {
+			return false;
+		}
+
+		if (!(_domainArg instanceof MockEntity)) {
+			return false;
+		}
+
+		MockEntity _domain = (MockEntity)_domainArg;
+
+		if (!(_dtoArg instanceof MockEntityDTO)) {
+			return false;
+		}
+
+		MockEntityDTO _dto = (MockEntityDTO)_dtoArg;
+
 		if (_domain.getBlob() == null) {
 			if (_dto.getContentDetached() != null)
 				return false;

@@ -1,17 +1,16 @@
 package sk.seges.sesam.server.domain.converter;
-import java.io.Serializable;
-
-import javax.annotation.Generated;
-import javax.persistence.EntityManager;
 
 import sk.seges.corpis.pap.converter.hibernate.TransactionalConverter;
 import sk.seges.sesam.dao.SimpleExpression;
 import sk.seges.sesam.pap.model.annotation.TransferObjectMapping;
-import sk.seges.sesam.server.domain.converter.PropertyHolderToObjectConverter;
 import sk.seges.sesam.shared.model.api.PropertyHolder;
 import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
 import sk.seges.sesam.shared.model.dto.SimpleExpressionDTO;
 import sk.seges.sesam.utils.CastUtils;
+
+import javax.annotation.Generated;
+import javax.persistence.EntityManager;
+import java.io.Serializable;
 
 @SuppressWarnings("serial")
 @TransferObjectMapping(dtoClass = SimpleExpressionDTO.class,
@@ -32,7 +31,27 @@ public class SimpleExpressionDTOConverter<DOMAIN_T extends Comparable<? extends 
 		this.converterProviderContext = converterProviderContext;
 	}
 	 
-	public boolean equals(SimpleExpression<DOMAIN_T> _domain, SimpleExpressionDTO _dto) {
+	public boolean equals(Object _domainArg, Object _dtoArg) {
+		if (_domainArg == null) {
+			return (_dtoArg == null);
+		}
+
+		if (_dtoArg == null) {
+			return false;
+		}
+
+		if (!(_domainArg instanceof SimpleExpression)) {
+			return false;
+		}
+
+		SimpleExpression<DOMAIN_T> _domain = (SimpleExpression<DOMAIN_T>)_domainArg;
+
+		if (!(_dtoArg instanceof SimpleExpressionDTO)) {
+			return false;
+		}
+
+		SimpleExpressionDTO _dto = (SimpleExpressionDTO)_dtoArg;
+
 		if (_domain.getOperation() == null) {
 			if (_dto.getOperation() != null)
 				return false;

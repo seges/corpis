@@ -1,12 +1,14 @@
 package sk.seges.sesam.server.domain.converter;
 
 import sk.seges.corpis.pap.converter.hibernate.TransactionalConverter;
+import sk.seges.sesam.dao.BetweenExpression;
 import sk.seges.sesam.dao.Page;
 import sk.seges.sesam.dao.PagedResult;
 import sk.seges.sesam.server.model.dto.configuration.PageDTOConverter;
 import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
 import sk.seges.sesam.shared.model.converter.api.DtoConverter;
 import sk.seges.sesam.shared.model.converter.api.InstantiableDtoConverter;
+import sk.seges.sesam.shared.model.dto.BetweenExpressionDTO;
 import sk.seges.sesam.shared.model.dto.PageDTO;
 import sk.seges.sesam.shared.model.dto.PagedResultDTO;
 import sk.seges.sesam.utils.CastUtils;
@@ -26,7 +28,27 @@ public class PagedResultDTOConverter<DTO_T, DOMAIN_T> extends TransactionalConve
 		this.converterProviderContext = converterProviderContext;
 	}
 	 
-	public boolean equals(PagedResult<DOMAIN_T> _domain, PagedResultDTO<DTO_T> _dto) {
+	public boolean equals(Object _domainArg, Object _dtoArg) {
+		if (_domainArg == null) {
+			return (_dtoArg == null);
+		}
+
+		if (_dtoArg == null) {
+			return false;
+		}
+
+		if (!(_domainArg instanceof PagedResult)) {
+			return false;
+		}
+
+		PagedResult<DOMAIN_T> _domain = (PagedResult<DOMAIN_T>)_domainArg;
+
+		if (!(_dtoArg instanceof PagedResultDTO)) {
+			return false;
+		}
+
+		PagedResultDTO<DTO_T> _dto = (PagedResultDTO<DTO_T>)_dtoArg;
+
 		if (_domain.getPage() == null) {
 			if (_dto.getPage() != null)
 				return false;

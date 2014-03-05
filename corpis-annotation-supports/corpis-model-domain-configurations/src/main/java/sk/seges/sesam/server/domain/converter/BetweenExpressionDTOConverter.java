@@ -2,10 +2,12 @@ package sk.seges.sesam.server.domain.converter;
 
 import sk.seges.corpis.pap.converter.hibernate.TransactionalConverter;
 import sk.seges.sesam.dao.BetweenExpression;
+import sk.seges.sesam.dao.Conjunction;
 import sk.seges.sesam.pap.model.annotation.TransferObjectMapping;
 import sk.seges.sesam.shared.model.api.PropertyHolder;
 import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
 import sk.seges.sesam.shared.model.dto.BetweenExpressionDTO;
+import sk.seges.sesam.shared.model.dto.ConjunctionDTO;
 import sk.seges.sesam.utils.CastUtils;
 
 import javax.annotation.Generated;
@@ -31,7 +33,27 @@ public class BetweenExpressionDTOConverter<DOMAIN_T extends Comparable<? extends
 		this.converterProviderContext = converterProviderContext;
 	}
 	 
-	public boolean equals(BetweenExpression<DOMAIN_T> _domain, BetweenExpressionDTO _dto) {
+	public boolean equals(Object _domainArg, Object _dtoArg) {
+		if (_domainArg == null) {
+			return (_dtoArg == null);
+		}
+
+		if (_dtoArg == null) {
+			return false;
+		}
+
+		if (!(_domainArg instanceof BetweenExpression)) {
+			return false;
+		}
+
+		BetweenExpression<DOMAIN_T> _domain = (BetweenExpression<DOMAIN_T>)_domainArg;
+
+		if (!(_dtoArg instanceof BetweenExpressionDTO)) {
+			return false;
+		}
+
+		BetweenExpressionDTO _dto = (BetweenExpressionDTO)_dtoArg;
+
 		if (_domain.getHiValue() == null) {
 			if (_dto.getHiValue() != null)
 				return false;

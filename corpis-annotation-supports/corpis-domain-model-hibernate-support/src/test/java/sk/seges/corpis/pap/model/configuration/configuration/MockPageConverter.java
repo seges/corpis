@@ -48,7 +48,28 @@ public class MockPageConverter extends TransactionalConverter<Page, Page> {
 		this.cache = cache;
 	}
 
-	public boolean equals(Page _domain, Page _dto) {
+	public boolean equals(Object _domainArg, Object _dtoArg) {
+
+		if (_domainArg == null) {
+			return (_dtoArg == null);
+		}
+
+		if (_dtoArg == null) {
+			return false;
+		}
+
+		if (!(_domainArg instanceof Page)) {
+			return false;
+		}
+
+		Page _domain = (Page)_domainArg;
+
+		if (!(_dtoArg instanceof Page)) {
+			return false;
+		}
+
+		Page _dto = (Page)_dtoArg;
+
 		if (_domain.getFilterable() == null) {
 			if (_dto.getFilterable() != null)
 				return false;

@@ -34,7 +34,7 @@ public class PropertyHolderToObjectConverter implements DtoConverter<PropertyHol
 	}
 
 	@Override
-	public boolean equals(Object o, PropertyHolder s) {
+	public boolean equals(Object o, Object s) {
 		if (o == null && s == null) {
 			return true;
 		}

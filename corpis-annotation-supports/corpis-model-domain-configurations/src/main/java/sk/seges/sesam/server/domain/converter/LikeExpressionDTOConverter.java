@@ -2,6 +2,7 @@ package sk.seges.sesam.server.domain.converter;
 
 import sk.seges.corpis.pap.converter.hibernate.TransactionalConverter;
 import sk.seges.sesam.dao.LikeExpression;
+import sk.seges.sesam.dao.SimpleExpression;
 import sk.seges.sesam.pap.model.annotation.TransferObjectMapping;
 import sk.seges.sesam.shared.model.api.PropertyHolder;
 import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
@@ -32,7 +33,29 @@ public class LikeExpressionDTOConverter<DOMAIN_T extends Comparable<? extends Se
 		this.converterProviderContext = converterProviderContext;
 	}
 	 
-	public boolean equals(LikeExpression<DOMAIN_T> _domain, LikeExpressionDTO _dto) {
+	public boolean equals(Object _domainArg, Object _dtoArg) {
+
+		if (_domainArg == null) {
+			return (_dtoArg == null);
+		}
+
+		if (_dtoArg == null) {
+			return false;
+		}
+
+		if (!(_domainArg instanceof LikeExpression)) {
+			return false;
+		}
+
+		LikeExpression<DOMAIN_T> _domain = (LikeExpression<DOMAIN_T>)_domainArg;
+
+		if (!(_dtoArg instanceof LikeExpressionDTO)) {
+			return false;
+		}
+
+		LikeExpressionDTO _dto = (LikeExpressionDTO)_dtoArg;
+
+
 		if (_domain.isCaseSensitive() != _dto.isCaseSensitive())
 			return false;
 		if (_domain.getMode() != _dto.getMode())

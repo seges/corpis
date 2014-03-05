@@ -10,26 +10,26 @@ public class MockStringConverter implements DtoConverter<String, String> {
 
 	@Override
 	public String convertToDto(String result, String s) {
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
+		return null;
 	}
 
 	@Override
 	public String toDto(String s) {
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
+		return null;
 	}
 
 	@Override
 	public String convertFromDto(String result, String s) {
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
+		return null;
 	}
 
 	@Override
 	public String fromDto(String s) {
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
+		return null;
 	}
 
 	@Override
-	public boolean equals(String s, String s2) {
-		return false;  //To change body of implemented methods use File | Settings | File Templates.
+	public boolean equals(Object s, Object s2) {
+		return false;
 	}
 }
