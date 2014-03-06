@@ -229,6 +229,7 @@ public class JpaProductCategory extends ProductCategoryBase {
 		return getId();
 	}
 
+	@Transient
 	@Override
 	public Class<?> getSecuredClass() {
 		return getClass();
