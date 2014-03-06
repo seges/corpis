@@ -51,4 +51,10 @@ public class JpaPaymentMethod extends PaymentMethodBase {
 	public ISecuredObject<?> getParent() {
 		return null;
 	}
+
+	@Override
+	@Transient
+	public Class<?> getSecuredClass() {
+		return getClass();
+	}
 }

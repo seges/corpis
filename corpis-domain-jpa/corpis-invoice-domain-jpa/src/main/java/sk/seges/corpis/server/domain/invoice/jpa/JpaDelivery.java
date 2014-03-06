@@ -79,4 +79,10 @@ public class JpaDelivery extends DeliveryBase {
 	public ISecuredObject<?> getParent() {
 		return null;
 	}
+
+	@Override
+	@Transient
+	public Class<?> getSecuredClass() {
+		return getClass();
+	}
 }

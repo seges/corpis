@@ -60,4 +60,9 @@ public class JpaOrder extends JpaOrderCore implements OrderData {
 		return null;
 	}
 
+	@Override
+	@Transient
+	public Class<?> getSecuredClass() {
+		return getClass();
+	}
 }

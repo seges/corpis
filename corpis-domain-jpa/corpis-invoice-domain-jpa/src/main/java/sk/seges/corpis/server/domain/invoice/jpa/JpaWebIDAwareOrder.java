@@ -145,6 +145,12 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 	}
 
 	@Override
+	@Transient
+	public Class<?> getSecuredClass() {
+		return getClass();
+	}
+
+	@Override
 	public List<? extends AccountableItemData> fetchAccountableItems() {
 		return orderItems;
 	}

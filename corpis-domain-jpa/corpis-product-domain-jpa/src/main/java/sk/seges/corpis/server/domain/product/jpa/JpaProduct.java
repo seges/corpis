@@ -343,6 +343,12 @@ public class JpaProduct extends ProductBase {
 	}
 
 	@Override
+	@Transient
+	public Class<?> getSecuredClass() {
+		return getClass();
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

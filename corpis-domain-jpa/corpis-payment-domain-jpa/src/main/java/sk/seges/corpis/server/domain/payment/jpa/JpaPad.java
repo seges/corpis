@@ -90,4 +90,10 @@ public class JpaPad extends PadBase {
 	public ISecuredObject<?> getParent() {
 		return null;
 	}
+
+	@Override
+	@Transient
+	public Class<?> getSecuredClass() {
+		return getClass();
+	}
 }

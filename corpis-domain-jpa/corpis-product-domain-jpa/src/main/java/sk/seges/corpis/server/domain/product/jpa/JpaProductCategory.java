@@ -230,6 +230,11 @@ public class JpaProductCategory extends ProductCategoryBase {
 	}
 
 	@Override
+	public Class<?> getSecuredClass() {
+		return getClass();
+	}
+
+	@Override
 	public ProductCategoryData clone() {
 		ProductCategoryData newProductCategory = new JpaProductCategory();
 
