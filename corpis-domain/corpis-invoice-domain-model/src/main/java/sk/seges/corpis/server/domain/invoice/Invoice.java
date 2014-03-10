@@ -5,7 +5,7 @@ import java.util.Set;
 
 import sk.seges.corpis.appscaffold.shared.annotation.BaseObject;
 import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
-import sk.seges.corpis.server.domain.HasVersion;
+import sk.seges.corpis.shared.domain.HasVersion;
 import sk.seges.corpis.server.domain.PersonCore;
 import sk.seges.corpis.server.domain.customer.CustomerCore;
 import sk.seges.corpis.shared.domain.invoice.RemittanceType;

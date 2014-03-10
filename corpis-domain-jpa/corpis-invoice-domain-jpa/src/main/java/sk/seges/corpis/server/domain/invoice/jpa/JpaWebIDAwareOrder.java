@@ -9,7 +9,7 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.Valid;
 
-import sk.seges.corpis.server.domain.HasWebId;
+import sk.seges.corpis.shared.domain.HasWebId;
 import sk.seges.corpis.server.domain.customer.jpa.JpaAddress;
 import sk.seges.corpis.server.domain.customer.jpa.JpaBasicContact;
 import sk.seges.corpis.server.domain.customer.jpa.JpaCompanyName;

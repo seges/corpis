@@ -5,7 +5,7 @@ import java.util.Set;
 import javax.annotation.processing.RoundEnvironment;
 
 import sk.seges.corpis.pap.model.hibernate.resolver.HibernateEntityResolver;
-import sk.seges.corpis.shared.converter.utils.utils.ConverterUtils;
+import sk.seges.corpis.server.converter.utils.ConverterUtils;
 import sk.seges.sesam.core.pap.model.PathResolver;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableTypeMirror;
 import sk.seges.sesam.core.pap.utils.MethodHelper;

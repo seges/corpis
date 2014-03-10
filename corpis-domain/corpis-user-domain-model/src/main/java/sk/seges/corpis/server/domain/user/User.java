@@ -4,10 +4,10 @@ import java.util.List;
 
 import sk.seges.corpis.appscaffold.shared.annotation.BaseObject;
 import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
-import sk.seges.corpis.server.domain.HasDescription;
-import sk.seges.corpis.server.domain.HasEmail;
-import sk.seges.corpis.server.domain.HasName;
-import sk.seges.corpis.server.domain.HasWebId;
+import sk.seges.corpis.shared.domain.HasDescription;
+import sk.seges.corpis.shared.domain.HasEmail;
+import sk.seges.corpis.shared.domain.HasName;
+import sk.seges.corpis.shared.domain.HasWebId;
 import sk.seges.sesam.domain.IMutableDomainObject;
 
 @DomainInterface

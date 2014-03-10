@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import sk.seges.corpis.pap.model.dto.MockEntityDTO;
 import sk.seges.corpis.pap.model.entity.MockEntity;
 import sk.seges.corpis.service.annotation.TransactionPropagationModel;
-import sk.seges.corpis.shared.converter.utils.utils.ConverterUtils;
+import sk.seges.corpis.server.converter.utils.ConverterUtils;
 import sk.seges.sesam.shared.model.converter.BasicCachedConverter;
 import sk.seges.sesam.shared.model.converter.MapConvertedInstanceCache;
 

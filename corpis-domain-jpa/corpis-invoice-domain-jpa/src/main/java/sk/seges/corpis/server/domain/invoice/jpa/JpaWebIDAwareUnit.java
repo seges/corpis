@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import sk.seges.corpis.server.domain.HasWebId;
+import sk.seges.corpis.shared.domain.HasWebId;
 
 /**
  * @author eldzi
