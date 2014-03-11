@@ -5,7 +5,6 @@ import sk.seges.corpis.server.domain.product.server.model.data.CountryPriceCondi
 import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 import sk.seges.corpis.shared.domain.price.api.ExplicitValuePriceCondition;
 import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
-import sk.seges.corpis.shared.domain.product.PriceConditionAccessor;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -38,8 +37,8 @@ public class JpaCountryPriceCondition extends JpaPriceCondition implements Count
 
 	@Override
 	public boolean applies(PriceConditionContext context, String webId, CustomerCoreData customer, ProductData product) {
-		return (super.applies(context, webId, customer, product) && context.get(PriceConditionAccessor.CTX_COUNTRY_CODE_PRICE_CONDITION) != null &&
-				context.get(PriceConditionAccessor.CTX_COUNTRY_CODE_PRICE_CONDITION).equals(getCountryCode()));
+		return (super.applies(context, webId, customer, product) && context.get(sk.seges.corpis.shared.domain.product.PriceConditionAccessor.CTX_COUNTRY_CODE_PRICE_CONDITION) != null &&
+				context.get(sk.seges.corpis.shared.domain.product.PriceConditionAccessor.CTX_COUNTRY_CODE_PRICE_CONDITION).equals(getCountryCode()));
 	}
 
 }

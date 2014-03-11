@@ -5,7 +5,6 @@ import sk.seges.corpis.server.domain.product.server.model.data.PaymentTypeDiscou
 import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 import sk.seges.corpis.shared.domain.EPaymentType;
 import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
-import sk.seges.corpis.shared.domain.product.PriceConditionAccessor;
 
 import javax.persistence.*;
 
@@ -41,7 +40,7 @@ public class JpaPaymentTypeDiscountPriceCondition extends JpaPriceCondition impl
 	
 	@Override
 	public boolean applies(PriceConditionContext context, String webId, CustomerCoreData customer, ProductData product) {
-		return (super.applies(context, webId, customer, product) && context.get(PriceConditionAccessor.CTX_PAYMENT_DISCOUNT_PRICE_CONDITION) != null
-				&& context.get(PriceConditionAccessor.CTX_PAYMENT_DISCOUNT_PRICE_CONDITION).equals(getPaymentType()));
+		return (super.applies(context, webId, customer, product) && context.get(sk.seges.corpis.shared.domain.product.PriceConditionAccessor.CTX_PAYMENT_DISCOUNT_PRICE_CONDITION) != null
+				&& context.get(sk.seges.corpis.shared.domain.product.PriceConditionAccessor.CTX_PAYMENT_DISCOUNT_PRICE_CONDITION).equals(getPaymentType()));
 	}
 }

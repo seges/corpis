@@ -5,7 +5,6 @@ import sk.seges.corpis.server.domain.product.server.model.data.OrderTypeDiscount
 import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 import sk.seges.corpis.shared.domain.customer.ECustomerDiscountType;
 import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
-import sk.seges.corpis.shared.domain.product.PriceConditionAccessor;
 
 import javax.persistence.*;
 
@@ -42,7 +41,7 @@ public class JpaOrderTypeDiscountPriceCondition extends JpaPriceCondition implem
 	
 	@Override
 	public boolean applies(PriceConditionContext context, String webId, CustomerCoreData customer, ProductData product) {
-		return (super.applies(context, webId, customer, product) && context.get(PriceConditionAccessor.CTX_ORDER_TYPE_DISCOUNT_PRICE_CONDITION) != null &&
-				context.get(PriceConditionAccessor.CTX_ORDER_TYPE_DISCOUNT_PRICE_CONDITION).equals(getOrderType()));
+		return (super.applies(context, webId, customer, product) && context.get(sk.seges.corpis.shared.domain.product.PriceConditionAccessor.CTX_ORDER_TYPE_DISCOUNT_PRICE_CONDITION) != null &&
+				context.get(sk.seges.corpis.shared.domain.product.PriceConditionAccessor.CTX_ORDER_TYPE_DISCOUNT_PRICE_CONDITION).equals(getOrderType()));
 	}
 }
