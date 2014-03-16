@@ -2,10 +2,8 @@ package sk.seges.corpis.server.model.converter.provider;
 
 import sk.seges.corpis.pap.converter.hibernate.TransactionalConverter;
 import sk.seges.corpis.service.annotation.TransactionPropagationModel;
-import sk.seges.sesam.shared.model.converter.ConvertedInstanceCache;
 import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
 import sk.seges.sesam.shared.model.converter.api.DtoConverter;
-import sk.seges.sesam.shared.model.converter.provider.AbstractConverterProvider;
 
 public abstract class AbstractContextualConverterProvider extends ConverterProviderContext {
 
