@@ -6,7 +6,6 @@ import java.util.List;
 import sk.seges.corpis.appscaffold.shared.annotation.BaseObject;
 import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
 import sk.seges.corpis.server.domain.Currency;
-import sk.seges.corpis.server.domain.customer.CustomerCore;
 import sk.seges.sesam.domain.IDomainObject;
 import sk.seges.sesam.pap.model.annotation.ReadOnly;
 import sk.seges.sesam.security.shared.domain.ISecuredObject;
@@ -15,7 +14,6 @@ import sk.seges.sesam.security.shared.domain.ISecuredObject;
 @BaseObject
 public interface Accountable extends IDomainObject<Long>, ISecuredObject<Long> {
 
-	CustomerCore customer();
 	Date creationDate();
 	Currency currency();
 	String processId();

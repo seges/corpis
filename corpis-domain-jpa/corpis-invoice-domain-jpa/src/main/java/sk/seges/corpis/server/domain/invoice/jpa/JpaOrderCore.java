@@ -3,24 +3,22 @@
  */
 package sk.seges.corpis.server.domain.invoice.jpa;
 
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+
 import sk.seges.corpis.server.domain.customer.jpa.JpaAddress;
 import sk.seges.corpis.server.domain.customer.jpa.JpaBasicContact;
 import sk.seges.corpis.server.domain.customer.jpa.JpaCompanyName;
-import sk.seges.corpis.server.domain.customer.jpa.JpaCustomerCore;
 import sk.seges.corpis.server.domain.invoice.server.model.base.OrderCoreBase;
-import sk.seges.corpis.server.domain.invoice.server.model.data.DeliveryPersonData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.OrderCoreData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.OrderStatusData;
 import sk.seges.corpis.server.domain.jpa.JpaCurrency;
 import sk.seges.corpis.server.domain.jpa.JpaPersonName;
-import sk.seges.corpis.server.domain.server.model.data.AddressData;
-import sk.seges.corpis.server.domain.server.model.data.BasicContactData;
 import sk.seges.corpis.shared.domain.EPaymentType;
 import sk.seges.corpis.shared.domain.invoice.ETransports;
-
-import javax.persistence.*;
-import javax.validation.Valid;
-import java.util.Date;
 
 /**
  * @author eldzi
@@ -29,7 +27,14 @@ import java.util.Date;
 public abstract class JpaOrderCore extends OrderCoreBase implements OrderCoreData {
 
 	private static final long serialVersionUID = -6186188601422302822L;
-
+	public static final String DELIVERY_CONTACT = "deliveryContact";
+	public static final String DELIVERY_PERSON = "deliveryPerson";
+	public static final String DELIVERY_ADDRESS = "deliveryAddress";
+	public static final String CUSTOMER_ADDRESS = "customerAddress";
+	public static final String CUSTOMER_CONTACT = "customerContact";
+	public static final String CUSTOMER_PERSON_NAME = "customerPersonName";
+	public static final String CUSTOMER_COMPANY_NAME = "customerCompanyName";
+	
 	public JpaOrderCore() {
 		setDeliveryContact(new JpaBasicContact());
 		setDeliveryPerson(new JpaDeliveryPerson());
@@ -39,11 +44,6 @@ public abstract class JpaOrderCore extends OrderCoreBase implements OrderCoreDat
 		setCustomerContact(new JpaBasicContact());
 		setCustomerPersonName(new JpaPersonName());
 		setCustomerCompanyName(new JpaCompanyName());
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	public JpaCustomerCore getCustomer() {
-		return (JpaCustomerCore) super.getCustomer();
 	}
 
 	@Column(name = "creation_date")
