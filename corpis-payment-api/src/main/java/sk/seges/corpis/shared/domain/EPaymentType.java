@@ -19,11 +19,8 @@ public enum EPaymentType {
 	INVOICE("paymentType.invoice", false),
     TRUSTPAY("paymentType.trustpay", true), 
     HOMECREDIT("paymentType.homecredit",true),
-    HOMECREDIT_CALC("paymentType.homecreditCalc", true)
-
-	;
+    HOMECREDIT_CALC("paymentType.homecreditCalc", true);
 	
-
 	private EPaymentType(String i18nKey, boolean electronic) {
 		this.i18nKey = i18nKey;
 		this.electronic = electronic;
