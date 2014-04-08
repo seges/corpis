@@ -14,11 +14,7 @@
 	<description>Incubator of portable invoice related domain objects</description>
 	
 	<dependencies>	
-		<!-- Corpis dependencies -->
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>corpis-customer-domain-model</artifactId>
-		</dependency>
+		<!-- Corpis dependencies -->		
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>corpis-core-domain-model</artifactId>

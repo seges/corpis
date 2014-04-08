@@ -21,7 +21,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
-import sk.seges.corpis.server.domain.customer.jpa.JpaCustomerCore;
 import sk.seges.corpis.server.domain.invoice.server.model.base.InvoiceBase;
 import sk.seges.corpis.server.domain.invoice.server.model.data.InvoiceItemData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.RemittanceData;
@@ -71,10 +70,10 @@ public class JpaInvoiceBase extends InvoiceBase {
 		return super.getInvoiceId();
 	}
 
-	@ManyToOne
-	public JpaCustomerCore getCustomer() {
-		return (JpaCustomerCore) super.getCustomer();
-	}
+	// @ManyToOne
+	// public JpaCustomerCore getCustomer() {
+	// return (JpaCustomerCore) super.getCustomer();
+	// }
 
 	@Id
 	@GeneratedValue(generator = "seqInvoices")//$NON-NLS-1$

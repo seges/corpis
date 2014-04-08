@@ -128,4 +128,8 @@ public abstract class JpaOrderCore extends OrderCoreBase implements OrderCoreDat
 	public String getUserName() {
 		return super.getUserName();
 	}
+
+	public Date getUpdatedDate() {
+		return super.getUpdatedDate();
+	}
 }
