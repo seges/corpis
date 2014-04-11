@@ -1,15 +1,20 @@
 package sk.seges.corpis.server.domain.invoice.jpa;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import sk.seges.corpis.server.domain.DBNamespace;
 import sk.seges.corpis.server.domain.server.model.data.NameData;
-import sk.seges.sesam.domain.IMutableDomainObject;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = DBNamespace.TABLE_PREFIX + "name")
 @SequenceGenerator(name = JpaName.SEQ_OLEA_NAMES, sequenceName = DBNamespace.TABLE_PREFIX + "seq_name", initialValue = 1)
-public class JpaName extends JpaEmbeddedName implements IMutableDomainObject<Long >{
+public class JpaName extends JpaEmbeddedName implements NameData {
 
 	private static final long serialVersionUID = -5163495413909118691L;
 

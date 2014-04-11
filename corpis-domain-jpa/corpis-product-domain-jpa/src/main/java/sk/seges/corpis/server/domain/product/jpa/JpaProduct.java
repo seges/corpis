@@ -73,7 +73,7 @@ public class JpaProduct extends ProductBase {
 		return super.getId();
 	}
 
-	@OneToMany(targetEntity = JpaProduct.class, mappedBy = "variant", cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE })
+	@OneToMany(targetEntity = JpaProduct.class, mappedBy = "variant")
 	public List<ProductData> getChildVariants() {
 		return super.getChildVariants();
 	}
@@ -94,7 +94,7 @@ public class JpaProduct extends ProductBase {
 	}
 	
 	@Override
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE }, targetEntity = JpaName.class)
+	@OneToMany(targetEntity = JpaName.class)
 	public List<NameData> getNames() {
 		return super.getNames();
 	}
