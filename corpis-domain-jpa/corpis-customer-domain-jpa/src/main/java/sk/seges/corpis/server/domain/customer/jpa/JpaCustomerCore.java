@@ -30,7 +30,6 @@ import javax.validation.constraints.Size;
 import sk.seges.corpis.server.domain.DBConstraints;
 import sk.seges.corpis.server.domain.customer.server.model.base.CustomerCoreBase;
 import sk.seges.corpis.server.domain.customer.server.model.data.CustomerCoreData;
-import sk.seges.corpis.server.domain.customer.server.model.data.CustomerData;
 import sk.seges.corpis.server.domain.jpa.JpaPersonName;
 import sk.seges.corpis.server.domain.server.model.data.AddressData;
 import sk.seges.corpis.shared.domain.validation.customer.CompanyCustomerFormCheck;
@@ -59,27 +58,32 @@ public class JpaCustomerCore extends CustomerCoreBase {
 		setContact(new JpaBasicContact());
 	}
 
+	@Override
 	@Id
 	@GeneratedValue(generator = "seqCustomers")
 	public Long getId() {
 		return super.getId();
 	}
 
+	@Override
 	@Column(length = DBConstraints.SHORTCUT_LENGTH)
 	public String getShortcut() {
 		return super.getShortcut();
 	}
 
+	@Override
 	@Column(name = "dic")
 	public String getDic() {
 		return super.getDic();
 	}
 
+	@Override
 	@Column(name = "ic_dph")
 	public String getIcDph() {
 		return super.getIcDph();
 	}
 
+	@Override
 	@Column(name = "ico")
 	@NotNull(groups = CompanyCustomerFormCheck.class)
 	@Size(min = 1, groups = CompanyCustomerFormCheck.class)
@@ -87,6 +91,7 @@ public class JpaCustomerCore extends CustomerCoreBase {
 		return super.getIco();
 	}
 
+	@Override
 	@Transient
 	public String getName() {
 		return (!isCompanyCustomerType()) ? (((getPerson().getFirstName() == null) ? "" : getPerson()
@@ -94,16 +99,19 @@ public class JpaCustomerCore extends CustomerCoreBase {
 				: getCompany().getCompanyName();
 	}
 
+	@Override
 	@Column(name = "invoice_payment_interval")
 	public Short getInvoicePaymentInterval() {
 		return super.getInvoicePaymentInterval();
 	}
 
+	@Override
 	@Column(name = "account_number")
 	public String getAccountNumber() {
 		return super.getAccountNumber();
 	}
 
+	@Override
 	@Column(name = "tax_payment")
 	public Boolean getTaxPayment() {
 		return super.getTaxPayment();
@@ -115,11 +123,13 @@ public class JpaCustomerCore extends CustomerCoreBase {
 		return super.getCompanyType();
 	}
 
+	@Override
 	@Version
 	public Integer getVersion() {
 		return super.getVersion();
 	}
 
+	@Override
 	@Valid
 	@Embedded
 	@AttributeOverride(name = JpaCompanyName.COMPANY_NAME, column = @Column(unique = true, nullable = true))
@@ -127,29 +137,34 @@ public class JpaCustomerCore extends CustomerCoreBase {
 		return (JpaCompanyName) super.getCompany();
 	}
 
+	@Override
 	@Embedded
 	@Valid
 	public JpaPersonName getPerson() {
 		return (JpaPersonName) super.getPerson();
 	}
 
+	@Override
 	@Valid
 	@Embedded
 	public JpaAddress getAddress() {
 		return (JpaAddress) super.getAddress();
 	}
 
+	@Override
 	@Embedded
 	@Valid
 	public JpaBasicContact getContact() {
 		return (JpaBasicContact) super.getContact();
 	}
 
+	@Override
 	@Column
 	public Date getRegistrationDate() {
 		return super.getRegistrationDate();
 	}
 
+	@Override
 	@Embedded
 	@AttributeOverrides({
 			@AttributeOverride(name = JpaCompanyName.COMPANY_NAME, column = @Column(name = DBConstraints.CORRESP_TABLE_PREFIX
@@ -160,6 +175,7 @@ public class JpaCustomerCore extends CustomerCoreBase {
 		return (JpaCompanyName) super.getCorrespCompany();
 	}
 
+	@Override
 	@Embedded
 	@AttributeOverrides({
 			@AttributeOverride(name = JpaPersonName.SALUTATION, column = @Column(name = DBConstraints.CORRESP_TABLE_PREFIX
@@ -172,6 +188,7 @@ public class JpaCustomerCore extends CustomerCoreBase {
 		return (JpaPersonName) super.getCorrespPerson();
 	}
 
+	@Override
 	@Embedded
 	@AttributeOverrides({
 			@AttributeOverride(name = JpaAddress.STREET, column = @Column(name = DBConstraints.CORRESP_TABLE_PREFIX + JpaAddress.STREET)),
@@ -185,6 +202,7 @@ public class JpaCustomerCore extends CustomerCoreBase {
 		return (JpaAddress) super.getCorrespAddress();
 	}
 
+	@Override
 	@Embedded
 	@AttributeOverrides({
 			@AttributeOverride(name = JpaBasicContact.PHONE, column = @Column(name = DBConstraints.CORRESP_TABLE_PREFIX
@@ -199,11 +217,13 @@ public class JpaCustomerCore extends CustomerCoreBase {
 		return (JpaBasicContact) super.getCorrespContact();
 	}
 
+	@Override
 	@Column
 	public Boolean getCommision() {
 		return super.getCommision();
 	}
 
+	@Override
 	@Transient
 	@Deprecated
 	public boolean isCompanyCustomerType() {
@@ -226,5 +246,30 @@ public class JpaCustomerCore extends CustomerCoreBase {
 	@Transient
 	public Class<?> getSecuredClass() {
 		return getClass();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustomerCoreBase other = (CustomerCoreBase) obj;
+		if (getId() == null) {
+			if (other.getId() != null)
+				return false;
+		} else if (!getId().equals(other.getId()))
+			return false;
+		return true;
 	}
 }
