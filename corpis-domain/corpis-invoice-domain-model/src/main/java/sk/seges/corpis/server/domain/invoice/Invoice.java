@@ -16,14 +16,18 @@ import sk.seges.sesam.domain.IMutableDomainObject;
 public interface Invoice extends IMutableDomainObject<Long>, HasVersion {
 
 	Date taxDate();
-	Date paybackDate();
+	Date paybackDate();//datum splatnosti
 	Date creationDate();
 	Integer invoiceId();
 	// CustomerCore customer();
+	//TODO
+//	Accountable order();
 	String csymbol();
 	String ssymbol();
 	String vsymbol();
+	//TODO remove paid and uncomment paymentDate
 	Boolean paid();
+//	Date paymentDate();
 	Boolean prepaid();
 	Boolean incomingInvoiceType();
 	Set<InvoiceItem> invoiceItems();

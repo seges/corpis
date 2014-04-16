@@ -76,15 +76,18 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 		this.id = id;
 	}
 
+	@Override
 	@Column
 	public String getWebId() {
 		return webId;
 	}
 
+	@Override
 	public void setWebId(String webId) {
 		this.webId = webId;
 	}
 
+	@Override
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order", targetEntity = JpaWebIDAwareOrderItem.class)
 	public List<OrderItemData> getOrderItems() {
 		return orderItems;
@@ -177,6 +180,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 		return orderItems;
 	}
 
+	@Override
 	@Embedded
 	@AttributeOverrides( {
 			@AttributeOverride(name = AddressData.STREET, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + AddressData.STREET)),
@@ -188,6 +192,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 		return (JpaAddress) super.getDeliveryAddress();
 	}
 
+	@Override
 	@Embedded
 	@Valid
 	@AttributeOverrides( {
@@ -202,6 +207,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 		return (JpaAddress) super.getCustomerAddress();
 	}
 
+	@Override
 	@Embedded
 	@AttributeOverrides( {
 			@AttributeOverride(name = BasicContactData.PHONE, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + BasicContactData.PHONE)),
@@ -213,6 +219,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 		return (JpaBasicContact) super.getDeliveryContact();
 	}
 
+	@Override
 	@Embedded
 	@Valid
 	@AttributeOverrides( {
@@ -223,6 +230,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 		return (JpaBasicContact) super.getCustomerContact();
 	}
 
+	@Override
 	@Embedded
 	@AttributeOverrides( {
 			@AttributeOverride(name = DeliveryPersonData.COMPANY, column = @Column(name = JpaDeliveryPerson.TABLE_PREFIX + DeliveryPersonData.COMPANY)),
@@ -231,6 +239,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 		return (JpaDeliveryPerson) super.getDeliveryPerson();
 	}
 
+	@Override
 	@Embedded
 	@Valid
 	@AttributeOverrides({
@@ -241,6 +250,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 		return (JpaPersonName) super.getCustomerPersonName();
 	}
 
+	@Override
 	@Embedded
 	@Valid
 	@AttributeOverrides({
