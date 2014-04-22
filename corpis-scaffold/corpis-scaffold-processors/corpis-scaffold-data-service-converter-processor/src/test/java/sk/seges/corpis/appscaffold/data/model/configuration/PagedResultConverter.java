@@ -18,7 +18,12 @@ public class PagedResultConverter<DTO_T, DOMAIN_T> extends BasicCachedConverter<
 
 	public void setTransactionPropagations(TransactionPropagationModel[] transactionPropagations) {}
 
-	@Override
+    @Override
+    public PagedResult<DOMAIN_T> createDomainInstance(Serializable dtoId) {
+        return null;
+    }
+
+    @Override
 	public PagedResult<DTO_T> convertToDto(PagedResult<DTO_T> result, PagedResult<DOMAIN_T> domain) {
 		return null;
 	}
