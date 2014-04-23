@@ -70,8 +70,8 @@ public class JpaRemittanceBase extends RemittanceBase {
 	}
 
 	@ManyToOne
-	public JpaInvoiceBase getInvoice() {
-		return (JpaInvoiceBase) super.getInvoice();
+	public JpaInvoice getInvoice() {
+		return (JpaInvoice) super.getInvoice();
 	}
 
 	@Column(name="prepaid")

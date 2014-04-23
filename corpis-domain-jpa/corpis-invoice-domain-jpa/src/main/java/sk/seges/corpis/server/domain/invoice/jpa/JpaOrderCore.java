@@ -46,52 +46,62 @@ public abstract class JpaOrderCore extends OrderCoreBase implements OrderCoreDat
 		setCustomerCompanyName(new JpaCompanyName());
 	}
 
+	@Override
 	@Column(name = "creation_date")
 	public Date getCreationDate() {
 		return super.getCreationDate();
 	}
 
+	@Override
 	@ManyToOne
 	public JpaCurrency getCurrency() {
 		return (JpaCurrency) super.getCurrency();
 	}
 
+	@Override
 	@Column
 	public String getOrderId() {
 		return super.getOrderId();
 	}
 
+	@Override
 	@Column(name = "note")
 	public String getNote() {
 		return super.getNote();
 	}
 
+	@Override
 	@Column(name = "delivered_by")
 	public ETransports getDeliveredBy() {
 		return super.getDeliveredBy();
 	}
 
+	@Override
 	@Deprecated
 	@Column(name = "delivery_price")
 	public Double getDeliveryPrice() {
 		return super.getDeliveryPrice();
 	}
 
+	@Override
 	@Column(name = "tracking_number")
 	public String getTrackingNumber() {
 		return super.getTrackingNumber();
 	}
 
+	@Override
 	@ManyToOne(targetEntity = JpaOrderStatus.class)
 	public OrderStatusData getStatus() {
 		return super.getStatus();
 	}
 
+	@Override
 	@Column(name = "ico")
 	public String getIco() {
 		return super.getIco();
 	}
 
+	@Override
 	@Column(name = "icdph")
 	public String getIcDph() {
 		return super.getIcDph();
@@ -103,21 +113,25 @@ public abstract class JpaOrderCore extends OrderCoreBase implements OrderCoreDat
 		return super.getDic();
 	}
 
+	@Override
 	@Column
 	public EPaymentType getPaymentType() {
 		return super.getPaymentType();
 	}
 
+	@Override
 	@Column(name = "account_number")
 	public String getAccountNumber() {
 		return super.getAccountNumber();
 	}
 
+	@Override
 	@Column(name = "project_number")
 	public String getProjectNumber() {
 		return super.getProjectNumber();
 	}
 
+	@Override
 	@Column(name = "same_delivery_address")
 	public Boolean getSameDeliveryAddress() {
 		return super.getSameDeliveryAddress();
@@ -127,9 +141,5 @@ public abstract class JpaOrderCore extends OrderCoreBase implements OrderCoreDat
 	@Override
 	public String getUserName() {
 		return super.getUserName();
-	}
-
-	public Date getUpdatedDate() {
-		return super.getUpdatedDate();
 	}
 }

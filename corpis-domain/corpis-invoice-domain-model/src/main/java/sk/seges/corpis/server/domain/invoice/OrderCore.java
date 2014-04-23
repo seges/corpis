@@ -1,6 +1,6 @@
 package sk.seges.corpis.server.domain.invoice;
 
-import java.util.Date;
+import java.util.List;
 
 import sk.seges.corpis.appscaffold.shared.annotation.BaseObject;
 import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
@@ -41,5 +41,5 @@ public interface OrderCore extends Accountable {
 	EPaymentType paymentType();
 	String accountNumber();
 	String projectNumber();
-	Date updatedDate();
+	List<Invoice> invoices();
 }

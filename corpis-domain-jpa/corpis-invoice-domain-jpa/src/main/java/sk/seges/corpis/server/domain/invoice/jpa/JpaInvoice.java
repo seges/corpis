@@ -34,14 +34,13 @@ import sk.seges.corpis.shared.domain.invoice.TransportType;
 @DiscriminatorColumn(discriminatorType=DiscriminatorType.INTEGER)
 @DiscriminatorValue(value="1")
 @Table(name = "invoice"/*, uniqueConstraints = {@UniqueConstraint(columnNames = {"invoiceId","prepaid","incomingInvoiceType"})}*/)//$NON-NLS-1$
-public class JpaInvoiceBase extends InvoiceBase {
+public class JpaInvoice extends InvoiceBase {
 
 	private static final long serialVersionUID = 7242853578333348764L;
 
-	public JpaInvoiceBase() {
+	public JpaInvoice() {
 		setInvoiceItems(new HashSet<InvoiceItemData>());
 		setRemittances(new HashSet<RemittanceData>());
-		setPaid(false);
 	}
 
 	@Override
@@ -50,21 +49,25 @@ public class JpaInvoiceBase extends InvoiceBase {
 		return super.getFinalPrice();
 	}
 
+	@Override
 	@Column(name = "tax_date")//$NON-NLS-1$
 	public Date getTaxDate() {
 		return super.getTaxDate();
 	}
 
+	@Override
 	@Column(name = "payback_date")//$NON-NLS-1$
 	public Date getPaybackDate() {
 		return super.getPaybackDate();
 	}
 
+	@Override
 	@Column(name = "creation_date")//$NON-NLS-1$
 	public Date getCreationDate() {
 		return super.getCreationDate();
 	}
 
+	@Override
 	@Column(name = "invoice_id", insertable = true, updatable = true) //$NON-NLS-1$
 	public Integer getInvoiceId() {
 		return super.getInvoiceId();
@@ -75,84 +78,100 @@ public class JpaInvoiceBase extends InvoiceBase {
 	// return (JpaCustomerCore) super.getCustomer();
 	// }
 
+	@Override
 	@Id
 	@GeneratedValue(generator = "seqInvoices")//$NON-NLS-1$
 	public Long getId() {
 		return super.getId();
 	}
 
+	@Override
 	@Column(name = "csymbol")//$NON-NLS-1$
 	public String getCsymbol() {
 		return super.getCsymbol();
 	}
 
+	@Override
 	@Column(name = "ssymbol")//$NON-NLS-1$
 	public String getSsymbol() {
 		return super.getSsymbol();
 	}
 
+	@Override
 	@Column(name = "vsymbol")//$NON-NLS-1$
 	public String getVsymbol() {
 		return super.getVsymbol();
 	}
 
-	@Column(name = "paid")//$NON-NLS-1$
-	public Boolean getPaid() {
-		return super.getPaid();
-	}
-
+	@Override
 	@Column(name = "prepaid")//$NON-NLS-1$
 	public Boolean getPrepaid() {
 		return super.getPrepaid();
 	}
 
+	@Override
 	@Column(name = "incomming_invoice_type")//$NON-NLS-1$
 	public Boolean getIncomingInvoiceType() {
 		return super.getIncomingInvoiceType();
 	}
 
-	@OneToMany(mappedBy = "invoice", cascade = { CascadeType.PERSIST }, targetEntity = JpaInvoiceItemBase.class)//$NON-NLS-1$
+	@Override
+	@OneToMany(mappedBy = "invoice", cascade = { CascadeType.PERSIST }, targetEntity = JpaInvoiceItem.class)//$NON-NLS-1$
 	public Set<InvoiceItemData> getInvoiceItems() {
 		return super.getInvoiceItems();
 	}
 
+	@Override
 	@Column(name="penny_balance")
 	public Double getPennyBalance() {
 		return super.getPennyBalance();
 	}
 
+	@Override
 	@Version
 	public Integer getVersion() {
 		return super.getVersion();
 	}
 
+	@Override
 	@OneToMany(mappedBy = "invoice", cascade = { CascadeType.PERSIST }, targetEntity = JpaRemittanceBase.class) //$NON-NLS-1$
 	public Set<RemittanceData> getRemittances() {
 		return super.getRemittances();
 	}
 
+	@Override
 	@ManyToOne
 	public JpaPersonCore getCreator() {
 		return (JpaPersonCore) super.getCreator();
 	}
 
+	@Override
 	@Column(name="text")
 	public String getInvoiceText() {
 		return super.getInvoiceText();
 	}
 
+	@Override
 	@Column(name = "remittance_type")
 	public RemittanceType getRemittanceType() {
 		return super.getRemittanceType();
 	}
 
+	@Override
 	@Column(name = "transport_type")
 	public TransportType getTransportType() {
 		return super.getTransportType();
 	}
 
+	@Override
 	@Column(name="add_vat")
 	public Boolean getAddVAT() {
 		return super.getAddVAT();
+	}
+	
+	@Override
+	@Column(name = "payment_date")
+	public Date getPaymentDate(){
+		return super.getPaymentDate();
 	}
 }

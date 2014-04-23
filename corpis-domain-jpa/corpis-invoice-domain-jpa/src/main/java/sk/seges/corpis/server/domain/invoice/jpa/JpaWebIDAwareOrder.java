@@ -33,6 +33,7 @@ import sk.seges.corpis.server.domain.customer.jpa.JpaCompanyName;
 import sk.seges.corpis.server.domain.customer.jpa.JpaCustomerCore;
 import sk.seges.corpis.server.domain.invoice.server.model.data.AccountableItemData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.DeliveryPersonData;
+import sk.seges.corpis.server.domain.invoice.server.model.data.InvoiceData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.LoyaltyCardData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.OrderData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.OrderItemData;
@@ -57,6 +58,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 	protected static final String SEQ_ORDERS = "seqOrders";
 
 	public static final String WEB_ID = "webId";
+	public static final String JOIN_COLUMN_ORDER_ID = "order_id"; 
 
 	private Long id;
 	private String webId;
@@ -258,5 +260,12 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 			@AttributeOverride(name = CompanyNameData.DEPARTMENT, column = @Column(name = JpaCustomerCore.TABLE_PREFIX + CompanyNameData.DEPARTMENT)) })
 	public JpaCompanyName getCustomerCompanyName() {
 		return (JpaCompanyName) super.getCustomerCompanyName();
+	}
+	
+	@Override
+	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY, targetEntity=JpaInvoice.class)
+	@JoinColumn(name=JOIN_COLUMN_ORDER_ID)
+	public List<InvoiceData> getInvoices(){
+		return super.getInvoices();
 	}
 }

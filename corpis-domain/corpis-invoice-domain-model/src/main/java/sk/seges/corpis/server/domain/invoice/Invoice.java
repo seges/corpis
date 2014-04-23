@@ -20,14 +20,10 @@ public interface Invoice extends IMutableDomainObject<Long>, HasVersion {
 	Date creationDate();
 	Integer invoiceId();
 	// CustomerCore customer();
-	//TODO
-//	Accountable order();
 	String csymbol();
 	String ssymbol();
-	String vsymbol();
-	//TODO remove paid and uncomment paymentDate
-	Boolean paid();
-//	Date paymentDate();
+	String vsymbol();	
+	Date paymentDate();
 	Boolean prepaid();
 	Boolean incomingInvoiceType();
 	Set<InvoiceItem> invoiceItems();

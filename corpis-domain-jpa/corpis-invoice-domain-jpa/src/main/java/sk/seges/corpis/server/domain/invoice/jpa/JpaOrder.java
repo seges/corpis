@@ -2,7 +2,16 @@ package sk.seges.corpis.server.domain.invoice.jpa;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 import sk.seges.corpis.server.domain.invoice.server.model.data.AccountableItemData;
 import sk.seges.corpis.server.domain.invoice.server.model.data.OrderData;
@@ -34,11 +43,13 @@ public class JpaOrder extends JpaOrderCore implements OrderData {
 		this.id = id;
 	}
 
+	@Override
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = JpaOrderItem.class, mappedBy = OrderItemData.ORDER)
 	public List<OrderItemData> getOrderItems() {
 		return orderItems;
 	}
 
+	@Override
 	public void setOrderItems(List<? extends OrderItemData> orderItems) {
 		this.orderItems = (List<OrderItemData>) orderItems;
 	}

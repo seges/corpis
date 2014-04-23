@@ -1,13 +1,12 @@
 package sk.seges.corpis.server.domain.invoice;
 
 import java.io.Serializable;
-import java.util.List;
 
 import sk.seges.corpis.appscaffold.shared.annotation.BaseObject;
 import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
-import sk.seges.corpis.shared.domain.HasDescription;
 import sk.seges.corpis.server.domain.Price;
 import sk.seges.corpis.server.domain.Vat;
+import sk.seges.corpis.shared.domain.HasDescription;
 import sk.seges.sesam.domain.IMutableDomainObject;
 
 @DomainInterface
@@ -23,5 +22,5 @@ public interface AccountableItem extends HasDescription, Serializable, IMutableD
 	Vat vat();
 	Float weight();
 
-	List<InvoiceItem> invoiceItems();
+//	List<InvoiceItem> invoiceItems();
 }
