@@ -59,7 +59,7 @@ public class HibernateCopyFromDtoMethodPrinter extends CopyFromDtoMethodPrinter 
     		
     		pw.print("(", parameterType, ")");
     		
-    		if (isCastReuqired(parameterType)) {
+    		if (isCastRequired(parameterType)) {
     			pw.print(CastUtils.class, ".cast(");
     		}
 
@@ -80,7 +80,7 @@ public class HibernateCopyFromDtoMethodPrinter extends CopyFromDtoMethodPrinter 
     		
     		pw.print(")");
     		
-    		if (isCastReuqired(parameterType)) {
+    		if (isCastRequired(parameterType)) {
         		pw.print(", ");
 	    		printCastDomainType(context, domainPathResolver, processingEnv.getTransferObjectUtils().getDomainType(parameterType), pw);
 	    		pw.print(".class)");

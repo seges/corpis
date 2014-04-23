@@ -35,6 +35,8 @@ public abstract class JpaOrderCore extends OrderCoreBase implements OrderCoreDat
 	public static final String CUSTOMER_PERSON_NAME = "customerPersonName";
 	public static final String CUSTOMER_COMPANY_NAME = "customerCompanyName";
 	
+	public static final String CUSTOMER_ID_COLUMN_NAME = "customer_id";
+
 	public JpaOrderCore() {
 		setDeliveryContact(new JpaBasicContact());
 		setDeliveryPerson(new JpaDeliveryPerson());
