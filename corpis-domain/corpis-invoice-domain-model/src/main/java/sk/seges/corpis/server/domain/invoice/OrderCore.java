@@ -42,4 +42,5 @@ public interface OrderCore extends Accountable {
 	String accountNumber();
 	String projectNumber();
 	List<Invoice> invoices();
+	Long customerId();
 }

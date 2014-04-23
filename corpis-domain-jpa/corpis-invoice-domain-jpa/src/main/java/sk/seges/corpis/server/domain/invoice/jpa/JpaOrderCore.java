@@ -144,4 +144,10 @@ public abstract class JpaOrderCore extends OrderCoreBase implements OrderCoreDat
 	public String getUserName() {
 		return super.getUserName();
 	}
+	
+	@Override
+	@Column(name=CUSTOMER_ID_COLUMN_NAME)
+	public Long getCustomerId(){
+		return super.getCustomerId();
+	}
 }
