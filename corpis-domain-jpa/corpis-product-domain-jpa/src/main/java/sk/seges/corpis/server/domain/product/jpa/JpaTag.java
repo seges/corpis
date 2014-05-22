@@ -62,12 +62,14 @@ public class JpaTag extends TagBase {
 		return super.getIndex();
 	}
 
+	@Override
 	@Column
 	@Enumerated(EnumType.STRING)
 	public ESystemTagsType getType() {
 		return super.getType();
 	}
 	
+	@Override
 	@Column 
 	@Enumerated(EnumType.STRING)
 	public EAssignmentTagsType getAssignmentType() {
@@ -107,5 +109,39 @@ public class JpaTag extends TagBase {
 		newTag.setAssignmentType(getAssignmentType());
 
 		return newTag;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+		result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+		result = prime * result + ((getWebId() == null) ? 0 : getWebId().hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TagBase other = (TagBase) obj;
+		if (getId() == null) {
+			if (other.getId() != null)
+				return false;
+		} else if (!getId().equals(other.getId()))
+			return false;
+		if (getType() != other.getType())
+			return false;
+		if (getWebId() == null) {
+			if (other.getWebId() != null)
+				return false;
+		} else if (!getWebId().equals(other.getWebId()))
+			return false;
+		return true;
 	}
 }
