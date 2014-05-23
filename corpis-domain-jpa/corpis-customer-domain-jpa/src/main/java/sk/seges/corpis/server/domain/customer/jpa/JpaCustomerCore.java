@@ -56,6 +56,7 @@ public class JpaCustomerCore extends CustomerCoreBase {
 		setPerson(new JpaPersonName());
 		setAddress(new JpaAddress());
 		setContact(new JpaBasicContact());
+
 	}
 
 	@Override

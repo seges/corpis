@@ -1,12 +1,18 @@
 package sk.seges.corpis.server.domain.product.jpa;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import sk.seges.corpis.server.domain.customer.server.model.data.CustomerCoreData;
 import sk.seges.corpis.server.domain.product.server.model.data.OrderTypeDiscountPriceConditionData;
 import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 import sk.seges.corpis.shared.domain.customer.ECustomerDiscountType;
 import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
-
-import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("3")
