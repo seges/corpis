@@ -3,6 +3,7 @@
  */
 package sk.seges.corpis.server.domain.invoice.jpa;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -40,5 +41,11 @@ public class JpaOrderItem extends JpaOrderItemBase {
 	@JoinColumn(name = "orders_id")
 	public OrderData getOrder() {
 		return super.getOrder();
+	}
+
+	@Override
+	@Column
+	public Integer getSequence() {
+		return super.getSequence();
 	}
 }

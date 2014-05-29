@@ -38,37 +38,57 @@ public class JpaPriceCondition extends PriceConditionBase {
 	
 	protected static final String SEQ_PRICE_CONDITIONS = "seqPriceCondition";
 
+	@Override
 	@Id
 	@GeneratedValue(generator = SEQ_PRICE_CONDITIONS)
 	public Long getId() {
 		return super.getId();
 	}
 
+	@Override
 	@Column(name = PriceConditionData.VALUE)
 	public Double getValue() {
 		return super.getValue();
 	}
 	
+	@Override
 	@ManyToOne(cascade = { CascadeType.ALL }, targetEntity = JpaCustomerCore.class)
 	public CustomerCoreData getCustomer() {
 		return super.getCustomer();
 	}
 	
+	@Override
 	@ManyToOne(targetEntity = JpaProduct.class)
 	public ProductData getProduct() {
 		return super.getProduct();
 	}
 	
+	@Override
 	@Column(name = PriceConditionData.WEB_ID)
 	@NotNull
 	public String getWebId() {
 		return super.getWebId();
 	}
 
-	@Transient
 	@Override
+	@Transient
 	public String getName() {
-		return "";
+		if (getSalesName() == null) {
+			return getDefaultName();
+		}
+		return getSalesName();
+	}
+
+	@Override
+	@Transient
+	public String getDefaultName() {
+		return super.getDefaultName();
+	}
+
+	@Override
+	@Column(name = PriceConditionData.SALES_NAME)
+	public String getSalesName() {
+		return super.getSalesName();
 	}
 	
 	@Override

@@ -10,11 +10,13 @@ import sk.seges.corpis.server.domain.invoice.server.model.data.OrderItemData;
  * @author eldzi
  */
 //@MappedSuperclass
-public abstract class JpaOrderItemBase extends JpaAccountableItem implements OrderItemData {
+public abstract class JpaOrderItemBase extends JpaAccountableItem implements OrderItemData, Comparable<JpaOrderItemBase> {
 
 	private static final long serialVersionUID = -7389416843335701988L;
 	
 	private OrderData order;
+	private Integer sequence;
+	private Integer customDiscount;
 	
 	@Override
 //	@ManyToOne(fetch=FetchType.LAZY, targetEntity = JpaOrderCore.class)
@@ -26,6 +28,22 @@ public abstract class JpaOrderItemBase extends JpaAccountableItem implements Ord
 	@Override
 	public void setOrder(OrderData order) {
 		this.order = order;
+	}
+
+	public Integer getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(Integer sequence) {
+		this.sequence = sequence;
+	}
+
+	public Integer getCustomDiscount() {
+		return customDiscount;
+	}
+
+	public void setCustomDiscount(Integer customDiscount) {
+		this.customDiscount = customDiscount;
 	}
 
 	@Override
@@ -56,5 +74,14 @@ public abstract class JpaOrderItemBase extends JpaAccountableItem implements Ord
 	@Override
 	public String toString() {
 		return "OrderItemBase [order=" + order + ", toString()=" + super.toString() + "]";
+	}
+
+	@Override
+	public int compareTo(JpaOrderItemBase o) {
+		int result = this.getExtId().compareTo(o.getExtId());
+		if (result == 0) {
+			return this.getSequence().compareTo(o.getSequence());
+		}
+		return result;
 	}
 }

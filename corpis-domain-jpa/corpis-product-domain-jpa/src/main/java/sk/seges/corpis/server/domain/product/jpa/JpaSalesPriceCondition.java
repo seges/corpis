@@ -11,9 +11,11 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import sk.seges.corpis.server.domain.customer.server.model.data.CustomerCoreData;
+import sk.seges.corpis.server.domain.product.PriceCondition;
 import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 import sk.seges.corpis.server.domain.product.server.model.data.SalesPriceConditionData;
 import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
+import sk.seges.sesam.i18n.Messages;
 
 @Entity
 @DiscriminatorValue("4")
@@ -23,10 +25,10 @@ public class JpaSalesPriceCondition extends JpaPriceCondition implements SalesPr
 	private static final long serialVersionUID = -3413508898223159392L;
 
 	public static final String DEFAUL_SALES_COLOR = "#FF6464";
+	public static final String DEFAUL_NAME = "SalesPriceCondition.product_discount";
 
 	private Date validFrom;
 	private Date validTo;
-	private String salesName;
 	private String color;
 	private Boolean active;
 	private Boolean activeForWeb;
@@ -36,11 +38,9 @@ public class JpaSalesPriceCondition extends JpaPriceCondition implements SalesPr
 
 	public JpaSalesPriceCondition() {}
 
-	public JpaSalesPriceCondition(Date validFrom, Date validTo, String salesName, String color, Boolean active, Boolean activeForWeb, Boolean deleted,
-							   Long extId, String productExtId) {
+	public JpaSalesPriceCondition(Date validFrom, Date validTo, String color, Boolean active, Boolean activeForWeb, Boolean deleted, Long extId, String productExtId) {
 		this.validFrom = validFrom;
 		this.validTo = validTo;
-		this.salesName = salesName;
 		this.color = color;
 		this.active = active;
 		this.activeForWeb = activeForWeb;
@@ -49,33 +49,29 @@ public class JpaSalesPriceCondition extends JpaPriceCondition implements SalesPr
 		this.productExtId = productExtId;
 	}
 
+	@Override
 	@Column(name = VALID_FROM)
 	public Date getValidFrom() {
 		return validFrom;
 	}
 
+	@Override
 	public void setValidFrom(Date validFrom) {
 		this.validFrom = validFrom;
 	}
 
+	@Override
 	@Column(name = VALID_TO)
 	public Date getValidTo() {
 		return validTo;
 	}
 
+	@Override
 	public void setValidTo(Date validTo) {
 		this.validTo = validTo;
 	}
 
-	@Column(name = SALES_NAME)
-	public String getSalesName() {
-		return salesName;
-	}
-	
-	public void setSalesName(String salesName) {
-		this.salesName = salesName;
-	}
-
+	@Override
 	@Column(name = COLOR)
 	public String getColor() {
 		if (color == null) {
@@ -84,60 +80,71 @@ public class JpaSalesPriceCondition extends JpaPriceCondition implements SalesPr
 		return color;
 	}
 
+	@Override
 	public void setColor(String color) {
 		this.color = color;
 	}
 
+	@Override
 	@Column(name = ACTIVE)
 	public Boolean getActive() {
 		return active;
 	}
 
+	@Override
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
 
+	@Override
 	@Column(name = ACTIVE_FOR_WEB)
 	public Boolean getActiveForWeb() {
 		return activeForWeb;
 	}
 
+	@Override
 	public void setActiveForWeb(Boolean activeForWeb) {
 		this.activeForWeb = activeForWeb;
 	}
-	
-	@Column(name = DELETED) 
+
+	@Override
+	@Column(name = DELETED)
 	public Boolean getDeleted() {
 		return deleted;
 	}
 	
+	@Override
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
 
+	@Override
 	@NotNull
 	@Column(name = EXT_ID)
 	public Long getExtId() {
 		return extId;
 	}
-	
+
+	@Override
 	public void setExtId(Long extId) {
 		this.extId = extId;
 	}
-	
+
 	@Override
-	@Transient
-	public String getName() {
-		return getSalesName();
-	}
-	
 	@Transient
 	public String getProductExtId() {
 		return productExtId;
 	}
 	
+	@Override
 	public void setProductExtId(String productExtId) {
 		this.productExtId = productExtId;
+	}
+
+	@Override
+	@Transient
+	public String getDefaultName() {
+		return Messages.getString(PriceCondition.class, DEFAUL_NAME);
 	}
 
 	@Override

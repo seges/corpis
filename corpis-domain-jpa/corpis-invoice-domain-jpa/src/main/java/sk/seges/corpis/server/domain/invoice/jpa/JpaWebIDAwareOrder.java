@@ -21,6 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -91,6 +92,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 
 	@Override
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order", targetEntity = JpaWebIDAwareOrderItem.class)
+	@OrderBy("extId, sequence")
 	public List<OrderItemData> getOrderItems() {
 		return orderItems;
 	}

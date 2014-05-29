@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import sk.seges.corpis.server.domain.invoice.server.model.data.OrderData;
 
@@ -55,4 +56,15 @@ public class JpaWebIDAwareOrderItem extends JpaOrderItemBase {
 		return super.getOrder();
 	}
 	
+	@Override
+	@Column
+	public Integer getSequence() {
+		return super.getSequence();
+	}
+
+	@Override
+	@Transient
+	public Integer getCustomDiscount() {
+		return super.getCustomDiscount();
+	}
 }

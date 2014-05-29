@@ -25,37 +25,44 @@ public abstract class JpaAccountableItem extends AccountableItemBase {
 		setBasePrice(new JpaPrice());
 	}
 
+	@Override
 	@Embedded
 	@Column(nullable = false)
 	public JpaPrice getBasePrice() {
 		return (JpaPrice)super.getBasePrice();
 	}
 
+	@Override
 	@Column(length = DESCRIPTION_LENGTH)
 	public String getDescription() {
 		return super.getDescription();
 	}
 
+	@Override
 	@Column(nullable = false)
 	public Float getAmount() {
 		return super.getAmount();
 	}
 
+	@Override
 	@Column
 	public Float getWeight() {
 		return super.getWeight();
 	}
 
+	@Override
 	@OneToOne
 	public JpaUnit getUnit() {
 		return (JpaUnit) super.getUnit();
 	}
 
+	@Override
 	@OneToOne
 	public JpaVat getVat() {
 		return (JpaVat) super.getVat();
 	}
 
+	@Override
 	@Column
 	public String getExtId() {
 		return super.getExtId();

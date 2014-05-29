@@ -105,8 +105,12 @@ public class DecimalRounder implements Rounder {
 					/ fractionDigitsMultiplier.doubleValue());
 		} else {
 			BigDecimal bd = (BigDecimal) value;
+			BigDecimal half = new BigDecimal("0.5");
+			if (bd.signum() == -1) {
+				half = half.negate(mc);
+			}
 			BigDecimal multiply = bd.multiply(fractionDigitsMultiplier, mc);
-			BigDecimal left = new BigDecimal(multiply.add(new BigDecimal("0.5"),
+			BigDecimal left = new BigDecimal(multiply.add(half,
 					new MathContext(0, RoundingMode.FLOOR)).longValue(), mc);
 			return (T) left.divide(fractionDigitsMultiplier, mc);
 		}

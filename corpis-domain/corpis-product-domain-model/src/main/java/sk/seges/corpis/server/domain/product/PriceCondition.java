@@ -18,4 +18,8 @@ public interface PriceCondition extends IMutableDomainObject<Long>, IPriceCondit
 	
 	Product product();
 	
+	String salesName();
+
+	String defaultName();
+
 }

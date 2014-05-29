@@ -11,7 +11,6 @@ public interface SalesPriceCondition extends PriceCondition {
 
 	Date validFrom();
 	Date validTo();
-	String salesName();
 	String color();
 	Boolean active();
 	Boolean activeForWeb();
