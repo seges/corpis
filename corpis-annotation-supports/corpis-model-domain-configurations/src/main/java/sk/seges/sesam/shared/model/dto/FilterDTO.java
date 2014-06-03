@@ -1,10 +1,10 @@
 package sk.seges.sesam.shared.model.dto;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import sk.seges.sesam.shared.model.api.PropertyHolder;
 import sk.seges.sesam.shared.model.dao.MatchMode;
-
-import java.util.Date;
-import java.util.ArrayList;
 
 public class FilterDTO {
 
@@ -23,6 +23,12 @@ public class FilterDTO {
 		ConjunctionDTO conjunction = new ConjunctionDTO();
 		conjunction.setJunctions(new ArrayList<CriterionDTO>());
 		return conjunction;
+	}
+	
+	public static DisjunctionDTO disjunction() {
+		DisjunctionDTO disjunction = new DisjunctionDTO();
+		disjunction.setJunctions(new ArrayList<CriterionDTO>());
+		return disjunction;
 	}
 
 	public static BetweenExpressionDTO between(String property) {

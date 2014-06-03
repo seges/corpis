@@ -42,8 +42,8 @@ import sk.seges.sesam.dao.NullExpression;
 import sk.seges.sesam.dao.Page;
 import sk.seges.sesam.dao.PagedResult;
 import sk.seges.sesam.dao.SimpleExpression;
-import sk.seges.sesam.shared.model.dao.SortInfo;
 import sk.seges.sesam.domain.IDomainObject;
+import sk.seges.sesam.shared.model.dao.SortInfo;
 
 public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends AbstractJPADAO<T> implements
 		IHibernateFinderDAO<T> {
@@ -547,9 +547,11 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 				continue;
 			}
 			orig = chain.substring(0, index);
-			criteria.createAlias(replaceAllEmbeddedFieldDelimsWithFieldDelims(orig), aliased, Criteria.LEFT_JOIN);
-			existingAliases.add(aliased);
-
+			aliased = aliased.replaceAll(EMBEDDED_FIELD_DELIM, "");
+			if(!existingAliases.contains(aliased)){
+				criteria.createAlias(replaceAllEmbeddedFieldDelimsWithFieldDelims(orig), aliased, Criteria.LEFT_JOIN);
+				existingAliases.add(aliased);
+			}
 			lastIndex = index + 1;
 		}
 		return aliased + FIELD_DELIM + lastField;
@@ -590,7 +592,7 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 		Class<?>[] parameterTypes = null;
 		Object[] parameters = null;
 
-		PropertyAccessor propertyAccessor = PropertyAccessorFactory.getPropertyAccessor("field");
+		PropertyAccessor propertyAccessor = PropertyAccessorFactory.getPropertyAccessor("property");
 
 		if (filterable1 instanceof BetweenExpression<?>) {
 			BetweenExpression<?> filterable = (BetweenExpression<?>) filterable1;
