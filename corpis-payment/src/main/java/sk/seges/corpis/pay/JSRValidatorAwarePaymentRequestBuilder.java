@@ -11,6 +11,11 @@ import javax.validation.Validator;
 import sk.seges.corpis.domain.shared.pay.PaymentMethodRequest;
 
 /**
+ * Implements JSR-303 validation of the incoming {@link PaymentMethodRequest}.
+ * Validation is usually called as part of
+ * {@link #generate(PaymentMethodRequest, String)} method of specific request
+ * builder.
+ * 
  * @author ladislav.gazo
  */
 public abstract class JSRValidatorAwarePaymentRequestBuilder<T extends PaymentMethodRequest> extends

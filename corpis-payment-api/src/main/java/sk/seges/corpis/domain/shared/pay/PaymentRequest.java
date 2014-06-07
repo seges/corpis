@@ -7,6 +7,17 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
+ * Represents all components of HTTP call to a payment gateway. It is a transfer
+ * object between payment service and a client going to actually call the
+ * payment gateway.<br/>
+ * <br/>
+ * The client can be e.g.:<br/>
+ * <ul>
+ * 	<li>client-side (e.g. GWT-built) payment form (submitting the form calls a payment gateway)</li>
+ * 	<li>server-side forged payment form</li>
+ *  <li>server-side HTTP call to a payment gateway</li>
+ * </ul>
+ * 
  * @author ladislav.gazo
  */
 public class PaymentRequest implements Serializable {

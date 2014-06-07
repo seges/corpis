@@ -1,4 +1,7 @@
-
+.classpath
+.project
+.settings
+/corpis-os/target
 /corpis-test/target
 /corpis-payment-api/target
 /corpis-payment/target
