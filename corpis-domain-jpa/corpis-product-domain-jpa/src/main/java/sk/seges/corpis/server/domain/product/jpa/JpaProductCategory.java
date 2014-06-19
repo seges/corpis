@@ -103,6 +103,7 @@ public class JpaProductCategory extends ProductCategoryBase {
 		return super.getNames();
 	}
 
+	@Override
 	@ManyToMany(fetch = FetchType.EAGER, targetEntity = JpaTag.class)
 	@OrderBy(value = TagData.PRIORITY)
 	public List<TagData> getTags() {
@@ -112,8 +113,8 @@ public class JpaProductCategory extends ProductCategoryBase {
 	@Override
     @JoinColumn(name = "mapping")
     @ManyToOne (cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, targetEntity = JpaProductCategory.class)
-	public JpaProductCategory getParent() {
-		return (JpaProductCategory) super.getParent();
+	public ProductCategoryData getParent() {
+		return super.getParent();
 	}
 
 	@Override
@@ -143,21 +144,25 @@ public class JpaProductCategory extends ProductCategoryBase {
 		return super.getWebId();
 	}
 	
+	@Override
 	@Column(name = "visually_decorated")
 	public Boolean getVisuallyDecorated() {
 		return super.getVisuallyDecorated();
 	};
 
+	@Override
 	@Column(name = "visually_separated")
 	public Boolean getVisuallySeparated() {
 		return super.getVisuallySeparated();
 	}
 
+	@Override
 	@Column(name = "visually_interactive")
 	public Boolean getVisuallyInteractive() {
 		return super.getVisuallyInteractive();
 	}
 
+	@Override
 	@Column(name = "provide_summary")
 	public Boolean getProvideSummary() {
 		return super.getProvideSummary();
@@ -181,11 +186,13 @@ public class JpaProductCategory extends ProductCategoryBase {
 		return super.getVisible();
 	}
 
+	@Override
 	@Transient
 	public Long getProductsCount() {
 		return super.getProductsCount();
 	}
 
+	@Override
 	public void addProduct(ProductData product) {
 		if (getProducts() != null && getProducts().contains(product)) {
 			return;
@@ -199,6 +206,7 @@ public class JpaProductCategory extends ProductCategoryBase {
 
 	}
 
+	@Override
 	public void addChild(ProductCategoryData child) {
 		if (null == getChildren()) {
 			setChildren(new HashSet<ProductCategoryData>());
@@ -207,6 +215,7 @@ public class JpaProductCategory extends ProductCategoryBase {
 		getChildren().add(child);
 	}
 
+	@Override
 	public void removeChild(ProductCategoryData child) {
 		if (getChildren() == null || child == null) {
 			return;
@@ -215,6 +224,7 @@ public class JpaProductCategory extends ProductCategoryBase {
 		getChildren().remove(child);
 	}
 
+	@Override
 	public void removeProduct(ProductData original) {
 		if (getProducts() == null || getProducts().size() == 0) {
 			return;
@@ -316,7 +326,7 @@ public class JpaProductCategory extends ProductCategoryBase {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ProductCategoryBase other = (ProductCategoryBase) obj;
+		ProductCategoryData other = (ProductCategoryData) obj;
 		if (getExtId() == null) {
 			if (other.getExtId() != null)
 				return false;
