@@ -26,5 +26,10 @@
 			<artifactId>sesam-configuration-processor</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!-- Hibernate dependencies -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
 	</dependencies>
 </project>
