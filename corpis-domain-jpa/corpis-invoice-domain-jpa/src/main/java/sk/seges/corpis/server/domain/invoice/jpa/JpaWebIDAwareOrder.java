@@ -11,6 +11,7 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -18,6 +19,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -51,12 +54,15 @@ import sk.seges.sesam.security.shared.domain.ISecuredObject;
  * @author eldzi
  */
 @Entity
-@Table(name = "webid_aware_order", uniqueConstraints = @UniqueConstraint(columnNames = { JpaWebIDAwareOrder.WEB_ID, JpaOrderCore.ORDER_ID }) )
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorValue("1")
+@Table(name = JpaWebIDAwareOrder.TABLE_NAME, uniqueConstraints = @UniqueConstraint(columnNames = { JpaWebIDAwareOrder.WEB_ID, JpaOrderCore.ORDER_ID }) )
 @SequenceGenerator(name = JpaWebIDAwareOrder.SEQ_ORDERS, sequenceName = "seq_orders", initialValue = 1)
 public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderData {
 	private static final long serialVersionUID = 5948016788551732181L;
 	
 	protected static final String SEQ_ORDERS = "seqOrders";
+	public static final String TABLE_NAME = "webid_aware_order";
 
 	public static final String WEB_ID = "webId";
 	public static final String JOIN_COLUMN_ORDER_ID = "order_id"; 

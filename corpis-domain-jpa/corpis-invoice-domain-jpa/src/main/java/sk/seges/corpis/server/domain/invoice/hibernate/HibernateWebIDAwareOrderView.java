@@ -1,5 +1,6 @@
 package sk.seges.corpis.server.domain.invoice.hibernate;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -10,13 +11,14 @@ import org.hibernate.annotations.Immutable;
 import sk.seges.corpis.server.domain.invoice.jpa.JpaWebIDAwareOrder;
 
 @Entity
-@Table(name = "webid_aware_order")
+@Table(name = JpaWebIDAwareOrder.TABLE_NAME)
+@DiscriminatorValue("1")
 @Immutable
 public class HibernateWebIDAwareOrderView extends JpaWebIDAwareOrder{
 
 	private String customerName;
 		
-	@Formula("(case when customer_companyname is not null then customer_companyname else customer_surname end)")
+	@Formula("(case when customer_companyname is not null then customer_companyname else customer_surname || ' ' || customer_firstname end)")
 	public String getCustomerName() {
 		return customerName;
 	}
