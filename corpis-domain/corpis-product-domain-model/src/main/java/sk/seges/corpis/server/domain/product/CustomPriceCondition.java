@@ -5,6 +5,6 @@ import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
 
 @DomainInterface
 @BaseObject
-public interface CustomSalesPriceCondition extends SalesPriceCondition {
+public interface CustomPriceCondition extends PriceCondition {
 
 }
