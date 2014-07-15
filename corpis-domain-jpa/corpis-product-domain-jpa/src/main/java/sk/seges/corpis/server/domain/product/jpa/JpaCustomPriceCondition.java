@@ -9,7 +9,7 @@ import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
 
 @Entity
-@DiscriminatorValue("6")
+@DiscriminatorValue("7")
 public class JpaCustomPriceCondition extends JpaPriceCondition implements CustomPriceConditionData{
 
 	private static final long serialVersionUID = 1314089364078203476L;
