@@ -34,6 +34,12 @@ public class JpaWebIDAwareOrderItem extends JpaOrderItemBase {
 	private String supValues;
 
 	@Override
+	@Transient
+	public Float getDischargedAmount() {
+		return super.getDischargedAmount();
+	}
+
+	@Override
 	@Id
 	@GeneratedValue(generator = SEQ_ORDER_ITEMS)
 	public Long getId() {

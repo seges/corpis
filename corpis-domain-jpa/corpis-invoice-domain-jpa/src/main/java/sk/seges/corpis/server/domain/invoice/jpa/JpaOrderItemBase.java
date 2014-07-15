@@ -16,7 +16,17 @@ public abstract class JpaOrderItemBase extends JpaAccountableItem implements Ord
 	
 	private OrderData order;
 	private Integer sequence;
-	private Integer customDiscount;
+	private Integer customDiscount;	
+	private Float dischargedAmount;
+
+
+	public Float getDischargedAmount() {
+		return dischargedAmount;
+	}
+
+	public void setDischargedAmount(Float dischargedAmount) {
+		this.dischargedAmount = dischargedAmount;
+	}
 	
 	@Override
 //	@ManyToOne(fetch=FetchType.LAZY, targetEntity = JpaOrderCore.class)
@@ -30,10 +40,12 @@ public abstract class JpaOrderItemBase extends JpaAccountableItem implements Ord
 		this.order = order;
 	}
 
+	@Override
 	public Integer getSequence() {
 		return sequence;
 	}
 
+	@Override
 	public void setSequence(Integer sequence) {
 		this.sequence = sequence;
 	}

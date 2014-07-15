@@ -22,6 +22,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
@@ -140,7 +141,8 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
+		result = prime * result + ((getOrderId() == null) ? 0 : getOrderId().hashCode());
 		result = prime * result + ((webId == null) ? 0 : webId.hashCode());
 		return result;
 	}
@@ -149,11 +151,16 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		JpaWebIDAwareOrder other = (JpaWebIDAwareOrder) obj;
+		if (getOrderId() == null) {
+			if (other.getOrderId() != null)
+				return false;
+		} else if (!getOrderId().equals(other.getOrderId()))
+			return false;
 		if (webId == null) {
 			if (other.webId != null)
 				return false;
@@ -271,8 +278,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 	}
 	
 	@Override
-	@OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY, targetEntity=JpaInvoice.class)
-	@JoinColumn(name=JOIN_COLUMN_ORDER_ID)
+	@ManyToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY, targetEntity=JpaInvoice.class)
 	public List<InvoiceData> getInvoices(){
 		return super.getInvoices();
 	}
