@@ -149,6 +149,6 @@ public class JpaSalesPriceCondition extends JpaPriceCondition implements SalesPr
 
 	@Override
 	public boolean applies(PriceConditionContext context, String webId, CustomerCoreData customer, ProductData product) {
-		return super.applies(context, webId, customer, product) && ((getActiveForWeb() == null && getActive()) || getActiveForWeb());
+		return super.applies(context, webId, customer, product) && ((getActiveForWeb() == null && getActive() != null && getActive()) || (getActiveForWeb() != null && getActiveForWeb()));
 	}
 }
