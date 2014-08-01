@@ -120,7 +120,7 @@ public class JpaProduct extends ProductBase {
 
 	@Override
 	@Column(name = "weight")
-	public Float getWeight() {
+	public Double getWeight() {
 		return super.getWeight();
 	}
 
