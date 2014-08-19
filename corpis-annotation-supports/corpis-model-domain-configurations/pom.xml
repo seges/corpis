@@ -34,6 +34,11 @@
 			<scope>provided</scope>
 			<classifier>sources</classifier>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-core-asl</artifactId>
+		</dependency>
 
 	</dependencies>
 </project>
