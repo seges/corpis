@@ -69,7 +69,7 @@ public class JpaInvoice extends InvoiceBase {
 
 	@Override
 	@Column(name = "invoice_id", insertable = true, updatable = true) //$NON-NLS-1$
-	public Integer getInvoiceId() {
+	public String getInvoiceId() {
 		return super.getInvoiceId();
 	}
 

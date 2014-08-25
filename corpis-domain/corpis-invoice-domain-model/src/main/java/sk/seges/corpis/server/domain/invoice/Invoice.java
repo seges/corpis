@@ -18,7 +18,7 @@ public interface Invoice extends IMutableDomainObject<Long>, HasVersion {
 	Date taxDate();
 	Date paybackDate();//datum splatnosti
 	Date creationDate();
-	Integer invoiceId();
+	String invoiceId();
 	// CustomerCore customer();
 	String csymbol();
 	String ssymbol();
