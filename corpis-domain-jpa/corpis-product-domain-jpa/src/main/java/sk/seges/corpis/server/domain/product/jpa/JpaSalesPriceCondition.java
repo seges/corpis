@@ -35,6 +35,7 @@ public class JpaSalesPriceCondition extends JpaPriceCondition implements SalesPr
 	private Boolean deleted;
 	private Long extId;
 	private String productExtId;
+	private String productExternalId;
 
 	public JpaSalesPriceCondition() {}
 
@@ -150,5 +151,16 @@ public class JpaSalesPriceCondition extends JpaPriceCondition implements SalesPr
 	@Override
 	public boolean applies(PriceConditionContext context, String webId, CustomerCoreData customer, ProductData product) {
 		return super.applies(context, webId, customer, product) && ((getActiveForWeb() == null && getActive() != null && getActive()) || (getActiveForWeb() != null && getActiveForWeb()));
+	}
+
+	@Override
+	@Transient
+	public String getProductExternalId() {		
+		return productExternalId;
+	}
+
+	@Override
+	public void setProductExternalId(String productExternalId) {
+		this.productExternalId = productExternalId;		
 	}
 }
