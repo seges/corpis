@@ -48,7 +48,7 @@ import sk.seges.sesam.security.shared.domain.ISecuredObject;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = DBNamespace.TABLE_PREFIX + "product", uniqueConstraints = { @UniqueConstraint(columnNames = { ProductData.WEB_ID, JpaProduct.EXT_ID_COLUMN }) })
+@Table(name = DBNamespace.TABLE_PREFIX + "product", uniqueConstraints = { @UniqueConstraint(columnNames = { ProductData.WEB_ID, JpaProduct.EXT_ID_COLUMN, JpaProduct.EXTERNAL_ID_COLUMN }) })
 @SequenceGenerator(name = JpaProduct.SEQ_PRODUCT, sequenceName = DBNamespace.TABLE_PREFIX + "seq_products", initialValue = 1)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class JpaProduct extends ProductBase {
@@ -73,6 +73,7 @@ public class JpaProduct extends ProductBase {
 		return super.getId();
 	}
 
+	@Override
 	@OneToMany(targetEntity = JpaProduct.class, mappedBy = "variant")
 	public List<ProductData> getChildVariants() {
 		return super.getChildVariants();
@@ -213,6 +214,7 @@ public class JpaProduct extends ProductBase {
 		return super.getRoleName();
 	}
 
+	@Override
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = JpaSupValue.class, orphanRemoval=true)
 	@JoinColumn(name="product_id")
 	public Set<SupValueData> getSups() {
@@ -243,6 +245,7 @@ public class JpaProduct extends ProductBase {
 		return super.getVariant();
 	}
 
+	@Override
 	public ProductData clone() {
 		List<ProductCategoryData> newCategories = null;
 		if (getCategories() != null) {
