@@ -14,7 +14,7 @@
 	<name>Corpis-application-scaffold-parent Build</name>
 
 	<modules>
-		<module>corpis-scaffold-parent</module>
+		<module>corpis-application-scaffold-parent</module>
 	</modules>
 
 </project>
