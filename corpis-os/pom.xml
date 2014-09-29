@@ -3,13 +3,13 @@
 
 	<groupId>sk.seges.corpis</groupId>
 	<artifactId>corpis-os</artifactId>
-	<version>2.0.0-SNAPSHOT</version>
+	<version>2.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>sk.seges.sesam</groupId>
 		<artifactId>sesam-os-base-parent</artifactId>
-		<version>2.0.0-SNAPSHOT</version>
+		<version>2.0.0</version>
 	</parent>
 
 	<!-- More Project Information -->
@@ -41,9 +41,9 @@
 	<url>http://acris.googlecode.com</url>
 
 	<scm>
-		<url>http://acris.googlecode.com/svn/corpis/trunk</url>
-		<connection>scm:svn:https://acris.googlecode.com/svn/corpis/trunk</connection>
-		<developerConnection>scm:svn:https://acris.googlecode.com/svn/corpis/trunk</developerConnection>
+		<url>http://acris.googlecode.com</url>
+		<connection>scm:git:https://code.google.com/p/acris.corpis</connection>
+		<developerConnection>scm:git:https://code.google.com/p/acris.corpis</developerConnection>
 	</scm>
 	
 	<modules>
@@ -51,6 +51,7 @@
 		<module>../corpis-dao-api</module>
 		<module>../corpis-dao-impl</module>
 		<module>../corpis-lang-api</module>
+		<module>../corpis-scaffold</module>
 		<module>../corpis-domain</module>
 		<module>../corpis-domain-jpa</module>
 		<module>../corpis-domain-generator-import</module>
@@ -62,14 +63,13 @@
 		<module>../corpis-import-export</module>
 		<module>../corpis-payment-api</module>
 		<module>../corpis-payment</module>
-		<module>../corpis-scaffold/corpis-scaffold-parent</module>
 	</modules>
 
 	<properties>
 		<repository.type>java</repository.type>
 		<repository.project>corpis</repository.project>
 	
-		<sesam-os.version>2.0.0-SNAPSHOT</sesam-os.version>
+		<sesam-os.version>2.0.0</sesam-os.version>
 
 		<bouncycastle.version>1.45</bouncycastle.version>
 	</properties>
