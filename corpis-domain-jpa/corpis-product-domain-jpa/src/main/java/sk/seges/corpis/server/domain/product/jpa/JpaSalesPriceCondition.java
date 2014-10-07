@@ -11,11 +11,9 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import sk.seges.corpis.server.domain.customer.server.model.data.CustomerCoreData;
-import sk.seges.corpis.server.domain.product.PriceCondition;
 import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 import sk.seges.corpis.server.domain.product.server.model.data.SalesPriceConditionData;
 import sk.seges.corpis.shared.domain.price.api.PriceConditionContext;
-import sk.seges.sesam.i18n.Messages;
 
 @Entity
 @DiscriminatorValue("4")
@@ -25,7 +23,7 @@ public class JpaSalesPriceCondition extends JpaPriceCondition implements SalesPr
 	private static final long serialVersionUID = -3413508898223159392L;
 
 	public static final String DEFAUL_SALES_COLOR = "#FF6464";
-	public static final String DEFAUL_NAME = "SalesPriceCondition.product_discount";
+	public static final String DEFAUL_NAME = "SalesPriceCondition_product_discount";
 
 	private Date validFrom;
 	private Date validTo;
@@ -145,7 +143,7 @@ public class JpaSalesPriceCondition extends JpaPriceCondition implements SalesPr
 	@Override
 	@Transient
 	public String getDefaultName() {
-		return Messages.getString(PriceCondition.class, DEFAUL_NAME);
+		return DEFAUL_NAME;
 	}
 
 	@Override
