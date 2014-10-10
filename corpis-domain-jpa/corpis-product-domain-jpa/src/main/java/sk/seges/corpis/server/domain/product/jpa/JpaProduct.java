@@ -244,6 +244,12 @@ public class JpaProduct extends ProductBase {
 	public ProductData getVariant() {
 		return super.getVariant();
 	}
+	
+	@Override
+	@Column
+	public Boolean getGenerated() {
+		return super.getGenerated();
+	}
 
 	@Override
 	public ProductData clone() {

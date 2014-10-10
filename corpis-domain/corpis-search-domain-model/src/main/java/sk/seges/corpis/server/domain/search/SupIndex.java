@@ -12,4 +12,6 @@ public interface SupIndex extends IMutableDomainObject<Long>, HasCodeListField {
 	Sup sup();
 
 	String extId();
+	
+	Double additionalCharge();
 }

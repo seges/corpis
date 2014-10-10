@@ -19,9 +19,7 @@ public class JpaName extends JpaEmbeddedName implements NameData {
 	private static final long serialVersionUID = -5163495413909118691L;
 
 	protected static final String SEQ_OLEA_NAMES = "seqOleaNames";
-	
-	private Long id;
-	
+		
 	public JpaName() {}
 	
 	public JpaName(String language, String value) {
@@ -29,10 +27,11 @@ public class JpaName extends JpaEmbeddedName implements NameData {
 		setValue(value);
 	}
 	
+	@Override
 	@Id
 	@GeneratedValue(generator = SEQ_OLEA_NAMES)
 	public Long getId() {
-		return id;
+		return super.getId();
 	}
 
 	@Column
@@ -45,11 +44,6 @@ public class JpaName extends JpaEmbeddedName implements NameData {
 	@Column
 	public String getValue() {
 		return super.getValue();
-	}
-
-	@Override
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	@Override
