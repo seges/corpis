@@ -44,6 +44,7 @@ public interface Product extends IMutableDomainObject<Long>, ISecuredObject<Long
 	Long priority();
 	Boolean deleted();
 	String imagePath();
+	Boolean generated();
 
 	@ReadOnly(ReadOnly.PropertyType.METHOD)
 	Product clone();

@@ -23,7 +23,7 @@ public class JpaSupIndex extends SupIndexBase implements SupIndexData {
 
 	public JpaSupIndex() {}
 
-	public JpaSupIndex(String extId, Long id, String names, int position, SupData sup, String webId, String type) {
+	public JpaSupIndex(String extId, Long id, String names, int position, SupData sup, String webId, String type, Double additionalCharge) {
 	    setExtId(extId);
 		setId(id);
 		setNames(names);
@@ -31,6 +31,7 @@ public class JpaSupIndex extends SupIndexBase implements SupIndexData {
 		setSup(sup);
 		setWebId(webId);
 		setType(type);
+		setAdditionalCharge(additionalCharge);
 	}
 
 	@Override
@@ -77,5 +78,11 @@ public class JpaSupIndex extends SupIndexBase implements SupIndexData {
 	@Transient
 	public String getType() {
 		return getSup().getType();
+	}
+	
+	@Override
+	@Column
+	public Double getAdditionalCharge() {
+		return super.getAdditionalCharge();
 	}
 }
