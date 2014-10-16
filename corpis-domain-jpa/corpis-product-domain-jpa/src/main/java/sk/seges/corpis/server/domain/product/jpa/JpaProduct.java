@@ -9,6 +9,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -44,6 +46,7 @@ import sk.seges.corpis.server.domain.search.server.model.data.SupValueData;
 import sk.seges.corpis.server.domain.server.model.data.DescriptionData;
 import sk.seges.corpis.server.domain.server.model.data.NameData;
 import sk.seges.corpis.server.domain.server.model.data.VatData;
+import sk.seges.corpis.shared.domain.product.ProductUnit;
 import sk.seges.sesam.security.shared.domain.ISecuredObject;
 
 @SuppressWarnings("serial")
@@ -139,7 +142,7 @@ public class JpaProduct extends ProductBase {
 	
 	@Override
 	@Column(name = "units_per_package")
-	public Integer getUnitsPerPackage() {
+	public Double getUnitsPerPackage() {
 		return super.getUnitsPerPackage();
 	}
 
@@ -249,6 +252,13 @@ public class JpaProduct extends ProductBase {
 	@Column
 	public Boolean getGenerated() {
 		return super.getGenerated();
+	}
+	
+	@Override
+	@Column
+	@Enumerated(EnumType.STRING)
+	public ProductUnit getUnit() {
+		return super.getUnit();
 	}
 
 	@Override

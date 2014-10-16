@@ -11,6 +11,7 @@ import sk.seges.corpis.server.domain.Name;
 import sk.seges.corpis.server.domain.Vat;
 import sk.seges.corpis.server.domain.customer.CustomerCore;
 import sk.seges.corpis.server.domain.search.SupValue;
+import sk.seges.corpis.shared.domain.product.ProductUnit;
 import sk.seges.sesam.domain.IMutableDomainObject;
 import sk.seges.sesam.pap.model.annotation.ReadOnly;
 import sk.seges.sesam.security.shared.domain.ISecuredObject;
@@ -25,7 +26,7 @@ public interface Product extends IMutableDomainObject<Long>, ISecuredObject<Long
 	List<? extends Description> descriptions();
 	String description();
 	Double weight();
-	Integer unitsPerPackage();
+	Double unitsPerPackage();
 	List<? extends ProductPrice> prices();
 	Set<? extends ProductPrice> fees();
 	Vat vat();
@@ -45,6 +46,7 @@ public interface Product extends IMutableDomainObject<Long>, ISecuredObject<Long
 	Boolean deleted();
 	String imagePath();
 	Boolean generated();
+	ProductUnit unit();
 
 	@ReadOnly(ReadOnly.PropertyType.METHOD)
 	Product clone();
