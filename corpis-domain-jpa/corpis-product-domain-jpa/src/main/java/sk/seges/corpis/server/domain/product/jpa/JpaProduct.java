@@ -28,6 +28,8 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 
 import sk.seges.corpis.server.domain.DBNamespace;
@@ -54,6 +56,7 @@ import sk.seges.sesam.security.shared.domain.ISecuredObject;
 @Table(name = DBNamespace.TABLE_PREFIX + "product", uniqueConstraints = { @UniqueConstraint(columnNames = { ProductData.WEB_ID, JpaProduct.EXT_ID_COLUMN, JpaProduct.EXTERNAL_ID_COLUMN }) })
 @SequenceGenerator(name = JpaProduct.SEQ_PRODUCT, sequenceName = DBNamespace.TABLE_PREFIX + "seq_products", initialValue = 1)
 @Inheritance(strategy = InheritanceType.JOINED)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = DBNamespace.TABLE_PREFIX + "product")
 public class JpaProduct extends ProductBase {
 
 	protected static final String SEQ_PRODUCT = "seqProduct";
