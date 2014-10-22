@@ -37,7 +37,7 @@ public interface Product extends IMutableDomainObject<Long>, ISecuredObject<Long
 	CustomerCore manufacturer();
 	CustomerCore seller();
 	Product variant();
-	List<? extends Product> relatedProducts();
+	List<String> relatedProductExtIds();
 	Integer count();
 	String thumbnailPath();
 	Date importedDate();
