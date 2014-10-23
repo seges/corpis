@@ -194,8 +194,8 @@ public class JpaProduct extends ProductBase {
 	
 	@Override
 	@Transient
-	public List<ProductData> getRelatedProducts() {
-		return super.getRelatedProducts();
+	public List<String> getRelatedProductExtIds() {
+		return super.getRelatedProductExtIds();
 	}
 	
 	@Override
@@ -313,15 +313,7 @@ public class JpaProduct extends ProductBase {
 				newPrices.add(productPrice.clone());
 			}
 		}
-
-		List<ProductData> newRelatedProducts = null;
-		if (getRelatedProducts() != null) {
-			newRelatedProducts = new ArrayList<ProductData>();
-			for (ProductData product : getRelatedProducts()) {
-				newRelatedProducts.add(product.clone());
-			}
-		}
-
+		
 		Set<TagData> newTags = null;
 		if (getTags() != null) {
 			newTags = new HashSet<TagData>();
@@ -342,7 +334,7 @@ public class JpaProduct extends ProductBase {
 		newProduct.setManufacturer(getManufacturer());
 		newProduct.setNames(newNames);
 		newProduct.setPrices(newPrices);
-		newProduct.setRelatedProducts(newRelatedProducts);
+		newProduct.setRelatedProductExtIds(getRelatedProductExtIds());
 		newProduct.setRoleName(getRoleName());
 		newProduct.setSeller(getSeller());
 		newProduct.setTags(newTags);
