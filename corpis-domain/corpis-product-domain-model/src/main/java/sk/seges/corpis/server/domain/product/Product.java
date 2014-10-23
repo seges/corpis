@@ -10,6 +10,7 @@ import sk.seges.corpis.server.domain.Description;
 import sk.seges.corpis.server.domain.Name;
 import sk.seges.corpis.server.domain.Vat;
 import sk.seges.corpis.server.domain.customer.CustomerCore;
+import sk.seges.corpis.server.domain.search.SupIndex;
 import sk.seges.corpis.server.domain.search.SupValue;
 import sk.seges.corpis.shared.domain.product.ProductUnit;
 import sk.seges.sesam.domain.IMutableDomainObject;
@@ -34,7 +35,7 @@ public interface Product extends IMutableDomainObject<Long>, ISecuredObject<Long
 	List<? extends ProductCategory> categories();
 	Set<? extends Tag> tags();
 	String webId();
-	Set<? extends SupValue> sups();
+	Set<? extends SupValue> supValues();
 	CustomerCore manufacturer();
 	CustomerCore seller();
 	Product variant();
@@ -47,6 +48,7 @@ public interface Product extends IMutableDomainObject<Long>, ISecuredObject<Long
 	String imagePath();
 	Boolean generated();
 	ProductUnit unit();
+	List<? extends SupIndex> variantsSupIndexes();
 
 	@ReadOnly(ReadOnly.PropertyType.METHOD)
 	Product clone();
