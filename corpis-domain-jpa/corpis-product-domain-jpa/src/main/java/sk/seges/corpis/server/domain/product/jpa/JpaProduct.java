@@ -43,7 +43,9 @@ import sk.seges.corpis.server.domain.product.server.model.data.ProductCategoryDa
 import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 import sk.seges.corpis.server.domain.product.server.model.data.ProductPriceData;
 import sk.seges.corpis.server.domain.product.server.model.data.TagData;
+import sk.seges.corpis.server.domain.search.jpa.JpaSupIndex;
 import sk.seges.corpis.server.domain.search.jpa.JpaSupValue;
+import sk.seges.corpis.server.domain.search.server.model.data.SupIndexData;
 import sk.seges.corpis.server.domain.search.server.model.data.SupValueData;
 import sk.seges.corpis.server.domain.server.model.data.DescriptionData;
 import sk.seges.corpis.server.domain.server.model.data.NameData;
@@ -65,7 +67,7 @@ public class JpaProduct extends ProductBase {
 	public static final String EXTERNAL_ID_COLUMN = "external_id";
 
 	protected static final int EXT_ID_MIN_LENGTH = 1;
-	protected static final int EXT_ID_MAX_LENGTH = 30;
+	protected static final int EXT_ID_MAX_LENGTH = 128;
 
 	public JpaProduct() {
 		setVisible(true);
@@ -223,8 +225,8 @@ public class JpaProduct extends ProductBase {
 	@Override
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = JpaSupValue.class, orphanRemoval=true)
 	@JoinColumn(name="product_id")
-	public Set<SupValueData> getSups() {
-		return super.getSups();
+	public Set<SupValueData> getSupValues() {
+		return super.getSupValues();
 	};
 
 	@Override
@@ -263,6 +265,12 @@ public class JpaProduct extends ProductBase {
 	public ProductUnit getUnit() {
 		return super.getUnit();
 	}
+	
+	@Override
+	@ManyToMany(cascade = { CascadeType.ALL }, targetEntity = JpaSupIndex.class)	
+	public List<SupIndexData> getVariantsSupIndexes() {
+		return super.getVariantsSupIndexes();
+	};
 
 	@Override
 	public ProductData clone() {
