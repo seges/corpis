@@ -7,6 +7,7 @@ import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
 import sk.seges.corpis.server.domain.Price;
 import sk.seges.corpis.server.domain.Vat;
 import sk.seges.corpis.shared.domain.HasDescription;
+import sk.seges.corpis.shared.domain.price.api.ProductUnit;
 import sk.seges.sesam.domain.IMutableDomainObject;
 
 @DomainInterface
@@ -18,7 +19,7 @@ public interface AccountableItem extends HasDescription, Serializable, IMutableD
 	String extId();
 
 	Float amount();
-	Unit unit();
+	ProductUnit unit();
 	Vat vat();
 	Float weight();
 

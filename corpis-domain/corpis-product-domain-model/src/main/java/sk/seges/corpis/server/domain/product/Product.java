@@ -11,7 +11,7 @@ import sk.seges.corpis.server.domain.Name;
 import sk.seges.corpis.server.domain.Vat;
 import sk.seges.corpis.server.domain.customer.CustomerCore;
 import sk.seges.corpis.server.domain.search.SupValue;
-import sk.seges.corpis.shared.domain.product.ProductUnit;
+import sk.seges.corpis.shared.domain.price.api.ProductUnit;
 import sk.seges.sesam.domain.IMutableDomainObject;
 import sk.seges.sesam.pap.model.annotation.ReadOnly;
 import sk.seges.sesam.security.shared.domain.ISecuredObject;

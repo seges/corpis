@@ -8,6 +8,8 @@ import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -23,6 +25,7 @@ import sk.seges.corpis.server.domain.invoice.server.model.base.InvoiceItemBase;
 import sk.seges.corpis.server.domain.invoice.server.model.data.InvoiceItemData;
 import sk.seges.corpis.server.domain.jpa.JpaPrice;
 import sk.seges.corpis.server.domain.server.model.data.PriceData;
+import sk.seges.corpis.shared.domain.price.api.ProductUnit;
 
 @Entity
 @Table(name = "invoice_items")//$NON-NLS-1$
@@ -81,9 +84,10 @@ public class JpaInvoiceItem extends InvoiceItemBase {
 	}
 
 	@Override
-	@Column(name = "unit")//$NON-NLS-1$
-	public JpaUnitBase getUnit() {
-		return (JpaUnitBase) super.getUnit();
+	@Column(name = "unit")
+	@Enumerated(EnumType.STRING)
+	public ProductUnit getUnit() {
+		return super.getUnit();
 	}
 
 	@Override

@@ -48,7 +48,7 @@ import sk.seges.corpis.server.domain.search.server.model.data.SupValueData;
 import sk.seges.corpis.server.domain.server.model.data.DescriptionData;
 import sk.seges.corpis.server.domain.server.model.data.NameData;
 import sk.seges.corpis.server.domain.server.model.data.VatData;
-import sk.seges.corpis.shared.domain.product.ProductUnit;
+import sk.seges.corpis.shared.domain.price.api.ProductUnit;
 import sk.seges.sesam.security.shared.domain.ISecuredObject;
 
 @SuppressWarnings("serial")

@@ -5,11 +5,14 @@ package sk.seges.corpis.server.domain.invoice.jpa;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
 import sk.seges.corpis.server.domain.invoice.server.model.base.AccountableItemBase;
 import sk.seges.corpis.server.domain.jpa.JpaPrice;
+import sk.seges.corpis.shared.domain.price.api.ProductUnit;
 
 /**
  * @author eldzi
@@ -51,9 +54,10 @@ public abstract class JpaAccountableItem extends AccountableItemBase {
 	}
 
 	@Override
-	@OneToOne
-	public JpaUnit getUnit() {
-		return (JpaUnit) super.getUnit();
+	@Column
+	@Enumerated(EnumType.STRING)
+	public ProductUnit getUnit() {
+		return super.getUnit();
 	}
 
 	@Override

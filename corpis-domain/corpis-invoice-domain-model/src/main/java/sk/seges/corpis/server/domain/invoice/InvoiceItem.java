@@ -6,6 +6,7 @@ import sk.seges.corpis.server.domain.HasPrice;
 import sk.seges.corpis.server.domain.Vat;
 import sk.seges.corpis.shared.domain.HasDescription;
 import sk.seges.corpis.shared.domain.HasVersion;
+import sk.seges.corpis.shared.domain.price.api.ProductUnit;
 import sk.seges.sesam.domain.IMutableDomainObject;
 import sk.seges.sesam.pap.model.annotation.ReadOnly;
 
@@ -15,7 +16,7 @@ public interface InvoiceItem extends IMutableDomainObject<Long>, HasVersion, Has
 
 	Invoice invoice();
 	Float count();
-	Unit unit();
+	ProductUnit unit();
 	Vat vat();
 	
 //	AccountableItem orderItem();
