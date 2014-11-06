@@ -1,6 +1,13 @@
 package sk.seges.corpis.server.domain.search.jpa;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import sk.seges.corpis.server.domain.search.server.model.base.SupValueBase;
 import sk.seges.corpis.server.domain.search.server.model.data.SupValueData;
@@ -53,6 +60,12 @@ public class JpaSupValue extends SupValueBase implements SupValueData {
 	@Override
 	public void setProductExtId(String extId){
 		super.setProductExtId(extId);
+	}
+	
+	@Override
+	@Column
+	public Double getAdditionalCharge(){
+		return super.getAdditionalCharge();
 	}
 }
 

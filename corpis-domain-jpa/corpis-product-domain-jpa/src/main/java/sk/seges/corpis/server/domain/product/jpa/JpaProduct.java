@@ -43,9 +43,7 @@ import sk.seges.corpis.server.domain.product.server.model.data.ProductCategoryDa
 import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 import sk.seges.corpis.server.domain.product.server.model.data.ProductPriceData;
 import sk.seges.corpis.server.domain.product.server.model.data.TagData;
-import sk.seges.corpis.server.domain.search.jpa.JpaSupIndex;
 import sk.seges.corpis.server.domain.search.jpa.JpaSupValue;
-import sk.seges.corpis.server.domain.search.server.model.data.SupIndexData;
 import sk.seges.corpis.server.domain.search.server.model.data.SupValueData;
 import sk.seges.corpis.server.domain.server.model.data.DescriptionData;
 import sk.seges.corpis.server.domain.server.model.data.NameData;
@@ -267,9 +265,10 @@ public class JpaProduct extends ProductBase {
 	}
 	
 	@Override
-	@ManyToMany(cascade = { CascadeType.ALL }, targetEntity = JpaSupIndex.class)	
-	public List<SupIndexData> getVariantsSupIndexes() {
-		return super.getVariantsSupIndexes();
+	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = JpaSupValue.class)
+	@JoinColumn(name="parent_product_id")
+	public List<SupValueData> getVariantsSupValues() {
+		return super.getVariantsSupValues();
 	};
 
 	@Override

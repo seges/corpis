@@ -18,4 +18,6 @@ public interface SupValue extends IMutableDomainObject<Long>, HasCodeListField {
 	SupIndex supIndex();
 
 	String productExtId();
+	
+	Double additionalCharge();
 }
