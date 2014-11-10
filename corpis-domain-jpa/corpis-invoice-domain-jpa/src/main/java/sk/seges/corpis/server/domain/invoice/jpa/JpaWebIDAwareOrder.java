@@ -66,7 +66,8 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 	public static final String TABLE_NAME = "webid_aware_order";
 
 	public static final String WEB_ID = "webId";
-	public static final String JOIN_COLUMN_ORDER_ID = "order_id"; 
+	public static final String JOIN_COLUMN_ORDER_ID = "order_id";
+	public static final String ORDER_TYPE = "orderType";
 
 	private Long id;
 	private String webId;

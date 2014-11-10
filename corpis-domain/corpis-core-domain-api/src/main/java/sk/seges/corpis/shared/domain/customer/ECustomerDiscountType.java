@@ -10,7 +10,8 @@ public enum ECustomerDiscountType {
 	DIRECT_SALES("discount_directSales", EDiscountType.PRODUCT),
 	COMMISSION_SALES("discount_commissionSales", EDiscountType.PRODUCT),
 	CASH("discount_cash", EDiscountType.ORDER),
-	COD("discount_cod", EDiscountType.ORDER);
+	COD("discount_cod", EDiscountType.ORDER),
+	OFFER("orderType_offer", null);
 
 	
 	public enum EDiscountType {
