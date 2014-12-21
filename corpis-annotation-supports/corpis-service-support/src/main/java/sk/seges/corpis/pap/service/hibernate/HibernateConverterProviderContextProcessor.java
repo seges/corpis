@@ -2,24 +2,23 @@ package sk.seges.corpis.pap.service.hibernate;
 
 import sk.seges.corpis.pap.converter.model.ContextualConverterProviderType;
 import sk.seges.corpis.pap.model.printer.converter.HibernateConverterProviderPrinter;
-import sk.seges.corpis.pap.service.hibernate.printer.converterprovider.HibernateConverterProviderContextPrinterDelegate;
-import sk.seges.sesam.core.pap.model.ParameterElement;
+import sk.seges.corpis.pap.service.hibernate.printer.converterprovider.HibernateConverterProviderContextPrinter;
 import sk.seges.sesam.core.pap.model.api.PropagationType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableDeclaredType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableReferenceType;
+import sk.seges.sesam.core.pap.processor.MutableAnnotationProcessor;
 import sk.seges.sesam.pap.model.hibernate.resolver.HibernateConverterProviderParameterResolver;
 import sk.seges.sesam.pap.model.hibernate.resolver.HibernateServiceParameterResolver;
 import sk.seges.sesam.pap.model.printer.converter.ConverterProviderPrinter;
 import sk.seges.sesam.pap.model.resolver.CacheableConverterConstructorParametersResolverProvider;
-import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider;
-import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider.UsageType;
-import sk.seges.sesam.pap.model.resolver.DefaultConverterConstructorParametersResolver;
+import sk.seges.sesam.pap.model.resolver.ProviderConstructorParametersResolverProvider;
+import sk.seges.sesam.pap.model.resolver.ProviderConstructorParametersResolverProvider.UsageType;
 import sk.seges.sesam.pap.model.resolver.api.ConverterConstructorParametersResolver;
 import sk.seges.sesam.pap.service.ServiceConverterContextProcessor;
 import sk.seges.sesam.pap.service.model.ServiceTypeElement;
-import sk.seges.sesam.pap.service.printer.api.ConverterContextElementPrinter;
+import sk.seges.sesam.pap.service.printer.api.ProviderContextElementPrinter;
+import sk.seges.sesam.pap.service.printer.converterprovider.ConverterProviderContextPrinter;
 import sk.seges.sesam.pap.service.printer.converterprovider.ConverterProviderContextPrinterDelegate;
-import sk.seges.sesam.pap.service.printer.converterprovider.ServiceConverterProviderContextPrinter;
 
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
@@ -28,16 +27,16 @@ import javax.lang.model.SourceVersion;
 public class HibernateConverterProviderContextProcessor extends ServiceConverterContextProcessor {
 
     @Override
-    protected MutableDeclaredType[] getOutputClasses(RoundContext context) {
+    protected MutableDeclaredType[] getOutputClasses(MutableAnnotationProcessor.RoundContext context) {
         return new MutableDeclaredType[] {
                 new ContextualConverterProviderType(context.getMutableType(), processingEnv)
         };
     }
 
-    private ConverterConstructorParametersResolverProvider converterConstructorParametersResolverProvider;
+    private ProviderConstructorParametersResolverProvider converterConstructorParametersResolverProvider;
 
 	@Override
-	protected ConverterConstructorParametersResolverProvider getParametersResolverProvider(MutableDeclaredType contextType) {
+	protected ProviderConstructorParametersResolverProvider getParametersResolverProvider(MutableDeclaredType contextType) {
 		return new CacheableConverterConstructorParametersResolverProvider() {
 			@Override
 			public ConverterConstructorParametersResolver constructParameterResolver(UsageType usageType) {
@@ -50,24 +49,24 @@ public class HibernateConverterProviderContextProcessor extends ServiceConverter
 					@Override
 					protected MutableReferenceType getConverterProviderContextReference() {
 						//TODO define also in sesam
-						return processingEnv.getTypeUtils().getReference(null, ConverterProviderContextPrinterDelegate.RESULT_INSTANCE_NAME);
+						return processingEnv.getTypeUtils().getReference(null, ConverterProviderContextPrinter.RESULT_INSTANCE_NAME);
 					}
 				};
 			}
 		};
 	}
 	@Override
-	protected ConverterContextElementPrinter[] getElementPrinters(MutableDeclaredType contextType) {
-		return new ConverterContextElementPrinter[] {
-				new ServiceConverterProviderContextPrinter(processingEnv, getParametersResolverProvider(contextType), getClassPathTypes()) {
-					protected ConverterProviderContextPrinterDelegate getConverterProviderContextPrinterDelegate(ConverterConstructorParametersResolverProvider parametersResolverProvider) {
-						return new HibernateConverterProviderContextPrinterDelegate(processingEnv, parametersResolverProvider);
+	protected ProviderContextElementPrinter[] getElementPrinters(MutableDeclaredType contextType) {
+		return new ProviderContextElementPrinter[] {
+				new ConverterProviderContextPrinterDelegate(processingEnv, getParametersResolverProvider(contextType), getClassPathTypes()) {
+					protected ConverterProviderContextPrinter getProviderContextPrinter(ProviderConstructorParametersResolverProvider parametersResolverProvider) {
+						return new HibernateConverterProviderContextPrinter(processingEnv, parametersResolverProvider);
 					}
 				}
 		};
 	}
 
-	protected ConverterConstructorParametersResolverProvider getParametersResolverProvider(final ServiceTypeElement serviceTypeElement) {
+	protected ProviderConstructorParametersResolverProvider getParametersResolverProvider(final ServiceTypeElement serviceTypeElement) {
 
         if (converterConstructorParametersResolverProvider == null) {
             converterConstructorParametersResolverProvider = new CacheableConverterConstructorParametersResolverProvider() {
@@ -75,7 +74,7 @@ public class HibernateConverterProviderContextProcessor extends ServiceConverter
                 @Override
                 public ConverterConstructorParametersResolver constructParameterResolver(UsageType usageType) {
                     switch (usageType) {
-                        case CONVERTER_PROVIDER_CONSTRUCTOR_USAGE:
+                        case PROVIDER_CONSTRUCTOR_USAGE:
                             return new HibernateServiceParameterResolver(processingEnv) {
                                 @Override
                                 protected PropagationType getConverterCacheParameterPropagation() {
@@ -88,7 +87,7 @@ public class HibernateConverterProviderContextProcessor extends ServiceConverter
 									return processingEnv.getTypeUtils().getReference(null, THIS);
 								}
 							};
-                        case CONVERTER_PROVIDER_CONTEXT_CONSTRUCTOR:
+                        case PROVIDER_CONTEXT_CONSTRUCTOR:
                             return new HibernateServiceParameterResolver(processingEnv) {
 
                                 @Override
@@ -118,7 +117,7 @@ public class HibernateConverterProviderContextProcessor extends ServiceConverter
 								@Override
 								protected MutableReferenceType getConverterProviderContextReference() {
 									//TODO define also in sesam
-									return processingEnv.getTypeUtils().getReference(null, ConverterProviderContextPrinterDelegate.RESULT_INSTANCE_NAME);
+									return processingEnv.getTypeUtils().getReference(null, ConverterProviderContextPrinter.RESULT_INSTANCE_NAME);
 								}
 							};
                     }
@@ -138,6 +137,6 @@ public class HibernateConverterProviderContextProcessor extends ServiceConverter
 
 
     protected ConverterProviderPrinter getConverterProviderPrinter(ServiceTypeElement serviceTypeElement) {
-        return new HibernateConverterProviderPrinter(processingEnv, getParametersResolverProvider(serviceTypeElement), UsageType.CONVERTER_PROVIDER_OUTSIDE_USAGE);
+        return new HibernateConverterProviderPrinter(processingEnv, getParametersResolverProvider(serviceTypeElement), UsageType.PROVIDER_OUTSIDE_USAGE);
     }
 }

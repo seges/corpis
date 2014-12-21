@@ -7,12 +7,12 @@ import sk.seges.sesam.pap.model.model.ConfigurationTypeElement;
 import sk.seges.sesam.pap.model.model.TransferObjectProcessingEnvironment;
 import sk.seges.sesam.pap.model.model.api.dto.DtoType;
 import sk.seges.sesam.pap.model.printer.converter.ConverterProviderPrinter;
-import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider;
+import sk.seges.sesam.pap.model.resolver.ProviderConstructorParametersResolverProvider;
 import sk.seges.sesam.pap.service.printer.model.ServiceConverterPrinterContext;
 
 public class HibernateDataServiceMethodConverterPrinter extends HibernateServiceMethodConverterPrinter {
 
-	public HibernateDataServiceMethodConverterPrinter(TransferObjectProcessingEnvironment processingEnv, ConverterConstructorParametersResolverProvider parametersResolverProvider, 
+	public HibernateDataServiceMethodConverterPrinter(TransferObjectProcessingEnvironment processingEnv, ProviderConstructorParametersResolverProvider parametersResolverProvider,
 			ConverterProviderPrinter converterProviderPrinter) {
 		super(processingEnv, parametersResolverProvider, converterProviderPrinter);
 	}

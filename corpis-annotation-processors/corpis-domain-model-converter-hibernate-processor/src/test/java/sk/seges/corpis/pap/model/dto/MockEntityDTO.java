@@ -8,7 +8,7 @@ import sk.seges.sesam.pap.model.annotation.TransferObjectMapping;
 
 @SuppressWarnings("serial")
 @TransferObjectMapping(dtoClass = MockEntityDTO.class,
-		domainClassName = "sk.seges.corpis.pap.model.entity.MockEntity", 
+		domainClassName = "sk.seges.corpis.pap.model.entityprovider.MockEntity",
 		configurationClassName = "sk.seges.corpis.pap.model.configuration.MockEntityDTOConfiguration", 
 		converterClassName = "sk.seges.corpis.pap.model.configuration.MockEntityDTOConverter")
 @Generated(value = "sk.seges.corpis.pap.model.hibernate.HibernateTransferObjectProcessor")

@@ -2,19 +2,19 @@ package sk.seges.corpis.pap.model.printer.converter;
 
 import sk.seges.sesam.core.pap.model.mutable.utils.MutableProcessingEnvironment;
 import sk.seges.sesam.pap.model.hibernate.resolver.HibernateConverterProviderParameterResolver;
-import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider;
+import sk.seges.sesam.pap.model.resolver.ProviderConstructorParametersResolverProvider;
 import sk.seges.sesam.pap.service.model.ServiceTypeElement;
 
 @Deprecated
 public class HibernateServiceConverterProviderParameterResolver extends HibernateConverterProviderParameterResolver {
 
 	private final ServiceTypeElement serviceTypeElement;
-	private final ConverterConstructorParametersResolverProvider parametersResolverProvider;
+	private final ProviderConstructorParametersResolverProvider parametersResolverProvider;
 	
 //	private static final String CONVERTER_PROVIDER_CONTEXT_REFERENCE = "converterProviderContext";
 //	public static final String GET_CONVERTER_PROVIDER_CONTEXT_METHOD = "getConverterProviderContext";
 
-	public HibernateServiceConverterProviderParameterResolver(ConverterConstructorParametersResolverProvider parametersResolverProvider, MutableProcessingEnvironment processingEnv, ServiceTypeElement serviceTypeElement) {
+	public HibernateServiceConverterProviderParameterResolver(ProviderConstructorParametersResolverProvider parametersResolverProvider, MutableProcessingEnvironment processingEnv, ServiceTypeElement serviceTypeElement) {
 		super(processingEnv);
 		this.parametersResolverProvider = parametersResolverProvider;
 		this.serviceTypeElement = serviceTypeElement;
@@ -32,7 +32,7 @@ public class HibernateServiceConverterProviderParameterResolver extends Hibernat
 //        //convertProviderContextType);
 //
 //		ParameterElement[] generatedParameters = new HasConstructorParametersDelegate().getRequiredParameters(processingEnv,
-//				parametersResolverProvider.getParameterResolver(UsageType.CONVERTER_PROVIDER_CONTEXT_CONSTRUCTOR),
+//				parametersResolverProvider.getParameterResolver(UsageType.PROVIDER_CONTEXT_CONSTRUCTOR),
 //				parametersResolverProvider.getParameterResolver(UsageType.DEFINITION));
 //
 //		List<MutableVariableElement> requiredParameters = new ArrayList<MutableVariableElement>();//convertProviderContextType.getConstructor().getParameters();

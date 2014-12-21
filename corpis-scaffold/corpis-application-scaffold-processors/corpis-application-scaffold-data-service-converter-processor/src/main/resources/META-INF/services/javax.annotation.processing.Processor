@@ -1,2 +1,3 @@
 sk.seges.corpis.appscaffold.model.pap.DataServiceConverterProcessor
 sk.seges.corpis.appscaffold.model.pap.DataConverterProviderContextProcessor
+sk.seges.corpis.appscaffold.model.pap.DataEntityProviderContextProcessor

@@ -4,17 +4,15 @@ import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 
 import sk.seges.corpis.pap.model.printer.converter.HibernateConverterProviderPrinter;
-import sk.seges.corpis.pap.model.printer.converter.HibernateServiceConverterProviderParameterResolver;
 import sk.seges.corpis.pap.service.hibernate.printer.HibernateServiceMethodConverterPrinter;
-import sk.seges.corpis.pap.service.hibernate.printer.ServiceConverterProviderContextMethodPrinter;
 import sk.seges.sesam.core.pap.model.api.PropagationType;
 import sk.seges.sesam.core.pap.model.mutable.api.MutableReferenceType;
 import sk.seges.sesam.pap.model.hibernate.resolver.HibernateConverterProviderParameterResolver;
 import sk.seges.sesam.pap.model.hibernate.resolver.HibernateServiceParameterResolver;
 import sk.seges.sesam.pap.model.printer.converter.ConverterProviderPrinter;
 import sk.seges.sesam.pap.model.resolver.CacheableConverterConstructorParametersResolverProvider;
-import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider;
-import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider.UsageType;
+import sk.seges.sesam.pap.model.resolver.ProviderConstructorParametersResolverProvider;
+import sk.seges.sesam.pap.model.resolver.ProviderConstructorParametersResolverProvider.UsageType;
 import sk.seges.sesam.pap.model.resolver.api.ConverterConstructorParametersResolver;
 import sk.seges.sesam.pap.service.ServiceConverterProcessor;
 import sk.seges.sesam.pap.service.model.ServiceTypeElement;
@@ -27,10 +25,10 @@ import sk.seges.sesam.pap.service.printer.api.ServiceConverterElementPrinter;
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class HibernateServiceConverterProcessor extends ServiceConverterProcessor {
 
-	private ConverterConstructorParametersResolverProvider converterConstructorParametersResolverProvider;
+	private ProviderConstructorParametersResolverProvider converterConstructorParametersResolverProvider;
 	
 	@Override
-	protected ConverterConstructorParametersResolverProvider getParametersResolverProvider(final ServiceTypeElement serviceTypeElement) {
+	protected ProviderConstructorParametersResolverProvider getParametersResolverProvider(final ServiceTypeElement serviceTypeElement) {
 		
 		if (converterConstructorParametersResolverProvider == null) {
 			converterConstructorParametersResolverProvider = new CacheableConverterConstructorParametersResolverProvider() {
@@ -38,23 +36,23 @@ public class HibernateServiceConverterProcessor extends ServiceConverterProcesso
 				@Override
 				public ConverterConstructorParametersResolver constructParameterResolver(UsageType usageType) {
 					switch (usageType) {
-						case CONVERTER_PROVIDER_OUTSIDE_USAGE:
+						case PROVIDER_OUTSIDE_USAGE:
 							return new HibernateConverterProviderParameterResolver(processingEnv) {
 								@Override
 								protected PropagationType getConverterCacheParameterPropagation() {
 									return PropagationType.INSTANTIATED;
 								}
 							};
-						case CONVERTER_PROVIDER_CONSTRUCTOR_USAGE:
+						case PROVIDER_CONSTRUCTOR_USAGE:
 							return new HibernateServiceParameterResolver(processingEnv) {
 								@Override
 								protected PropagationType getConverterCacheParameterPropagation() {
 									return PropagationType.PROPAGATED_MUTABLE;
 								}
 							};
-						case CONVERTER_PROVIDER_INSIDE_USAGE:
+						case PROVIDER_INSIDE_USAGE:
 							return new HibernateServiceParameterResolver(processingEnv);
-						case CONVERTER_PROVIDER_CONSTRUCTOR: 
+						case PROVIDER_CONSTRUCTOR:
 							return new HibernateServiceParameterResolver(processingEnv) {
 
 								@Override
@@ -111,6 +109,6 @@ public class HibernateServiceConverterProcessor extends ServiceConverterProcesso
 	
 	@Override
 	protected ConverterProviderPrinter getConverterProviderPrinter(ServiceTypeElement serviceTypeElement) {
-		return new HibernateConverterProviderPrinter(processingEnv, getParametersResolverProvider(serviceTypeElement), UsageType.CONVERTER_PROVIDER_OUTSIDE_USAGE);
+		return new HibernateConverterProviderPrinter(processingEnv, getParametersResolverProvider(serviceTypeElement), UsageType.PROVIDER_OUTSIDE_USAGE);
 	}
 }

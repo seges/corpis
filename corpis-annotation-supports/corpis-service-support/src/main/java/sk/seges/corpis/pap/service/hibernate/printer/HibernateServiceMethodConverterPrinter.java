@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import sk.seges.corpis.pap.service.hibernate.accessor.TransactionPropagationAccessor;
 import sk.seges.sesam.pap.model.model.TransferObjectProcessingEnvironment;
 import sk.seges.sesam.pap.model.printer.converter.ConverterProviderPrinter;
-import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider;
+import sk.seges.sesam.pap.model.resolver.ProviderConstructorParametersResolverProvider;
 import sk.seges.sesam.pap.service.printer.ServiceMethodConverterPrinter;
 
 public class HibernateServiceMethodConverterPrinter extends ServiceMethodConverterPrinter {
 
-	public HibernateServiceMethodConverterPrinter(TransferObjectProcessingEnvironment processingEnv, ConverterConstructorParametersResolverProvider parametersResolverProvider,
+	public HibernateServiceMethodConverterPrinter(TransferObjectProcessingEnvironment processingEnv, ProviderConstructorParametersResolverProvider parametersResolverProvider,
 			ConverterProviderPrinter converterProviderPrinter) {
 		super(processingEnv, parametersResolverProvider, converterProviderPrinter);
 	}

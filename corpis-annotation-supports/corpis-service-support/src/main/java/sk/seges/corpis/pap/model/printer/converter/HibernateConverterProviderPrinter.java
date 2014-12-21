@@ -9,15 +9,15 @@ import sk.seges.sesam.core.pap.model.ParameterElement;
 import sk.seges.sesam.pap.model.model.ConverterTypeElement;
 import sk.seges.sesam.pap.model.model.TransferObjectProcessingEnvironment;
 import sk.seges.sesam.pap.model.printer.converter.ConverterProviderPrinter;
-import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider;
-import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider.UsageType;
+import sk.seges.sesam.pap.model.resolver.ProviderConstructorParametersResolverProvider;
+import sk.seges.sesam.pap.model.resolver.ProviderConstructorParametersResolverProvider.UsageType;
 
 public class HibernateConverterProviderPrinter extends ConverterProviderPrinter {
 
 	protected TransferObjectProcessingEnvironment processingEnv;
 	
 	public HibernateConverterProviderPrinter(TransferObjectProcessingEnvironment processingEnv,
-			ConverterConstructorParametersResolverProvider parametersResolverProvider, UsageType usageType) {
+			ProviderConstructorParametersResolverProvider parametersResolverProvider, UsageType usageType) {
 		super(processingEnv, parametersResolverProvider, usageType);
 		this.processingEnv = processingEnv;
 	}

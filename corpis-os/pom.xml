@@ -114,6 +114,35 @@
 			</dependencies>
 		</profile>
 		<profile>
+			<id>scaffold-converter</id>
+			<activation>
+				<file>
+					<exists>${basedir}/.scaffold-converter</exists>
+				</file>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>sk.seges.corpis</groupId>
+					<artifactId>corpis-domain-model-hibernate-processor</artifactId>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>sk.seges.corpis</groupId>
+					<artifactId>corpis-application-scaffold-data-domain-model-converter-processor</artifactId>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>sk.seges.corpis</groupId>
+					<artifactId>corpis-application-scaffold-data-entity-provider-processor</artifactId>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>sk.seges.corpis</groupId>
+					<artifactId>corpis-model-domain-configurations</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
 			<id>scaffold-model</id>
 			<activation>
 				<file>
@@ -244,9 +273,19 @@
 			</dependency>
 			<dependency>
 				<groupId>sk.seges.sesam</groupId>
+				<artifactId>sesam-service-converter-processor</artifactId>
+				<version>${sesam-os.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>sk.seges.sesam</groupId>
 				<artifactId>sesam-service-support</artifactId>
 				<version>${sesam-os.version}</version>
 			</dependency>			
+			<dependency>
+				<groupId>sk.seges.sesam</groupId>
+				<artifactId>sesam-provider-context-processor</artifactId>
+				<version>${sesam-os.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>sk.seges.sesam</groupId>
 				<artifactId>sesam-annotation-core-support</artifactId>
@@ -473,6 +512,11 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>corpis-application-scaffold-model-support</artifactId>
+				<version>${project.version}</version>
+			</dependency>		
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>corpis-application-scaffold-data-entity-provider-processor</artifactId>
 				<version>${project.version}</version>
 			</dependency>		
 			<dependency>

@@ -50,5 +50,17 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>sk.seges.sesam</groupId>
+            <artifactId>sesam-service-converter-processor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>sk.seges.sesam</groupId>
+            <artifactId>sesam-provider-context-processor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>sk.seges.sesam</groupId>
+            <artifactId>sesam-service-converter-processor</artifactId>
+        </dependency>
+    </dependencies>
 </project>

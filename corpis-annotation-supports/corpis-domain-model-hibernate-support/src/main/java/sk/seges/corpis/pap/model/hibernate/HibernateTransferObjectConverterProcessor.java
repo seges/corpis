@@ -12,7 +12,7 @@ import sk.seges.sesam.pap.model.model.api.ElementHolderTypeConverter;
 import sk.seges.sesam.pap.model.printer.api.TransferObjectElementPrinter;
 import sk.seges.sesam.pap.model.printer.equals.ConverterEqualsPrinter;
 import sk.seges.sesam.pap.model.resolver.CacheableConverterConstructorParametersResolverProvider;
-import sk.seges.sesam.pap.model.resolver.ConverterConstructorParametersResolverProvider;
+import sk.seges.sesam.pap.model.resolver.ProviderConstructorParametersResolverProvider;
 import sk.seges.sesam.pap.model.resolver.api.ConverterConstructorParametersResolver;
 
 import javax.annotation.processing.ProcessingEnvironment;
@@ -41,7 +41,7 @@ public class HibernateTransferObjectConverterProcessor extends TransferObjectCon
 	}
 
 	@Override
-	protected ConverterConstructorParametersResolverProvider getParametersResolverProvider() {
+	protected ProviderConstructorParametersResolverProvider getParametersResolverProvider() {
 		return new CacheableConverterConstructorParametersResolverProvider() {
 			
 			@Override
