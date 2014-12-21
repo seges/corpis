@@ -1,5 +1,7 @@
 package sk.seges.corpis.server.domain.search;
 
+import java.util.List;
+
 import sk.seges.corpis.appscaffold.shared.annotation.BaseObject;
 import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
 import sk.seges.corpis.shared.domain.api.HasCodeListField;
@@ -20,4 +22,6 @@ public interface SupValue extends IMutableDomainObject<Long>, HasCodeListField {
 	String productExtId();
 	
 	Double additionalCharge();
+	
+	List<? extends Sup> childSups();
 }

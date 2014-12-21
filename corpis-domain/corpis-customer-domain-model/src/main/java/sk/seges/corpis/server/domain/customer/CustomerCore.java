@@ -42,6 +42,7 @@ public interface CustomerCore extends IMutableDomainObject<Long>, ISecuredObject
 	Boolean commision();
 
 	Integer version();
+	Integer invoiceInfoPeriod();
 
 	@ReadOnly
 	boolean isCompanyCustomerType();

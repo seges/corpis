@@ -265,7 +265,7 @@ public class JpaProduct extends ProductBase {
 	}
 	
 	@Override
-	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = JpaSupValue.class)
+	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = JpaSupValue.class, orphanRemoval=true)
 	@JoinColumn(name="parent_product_id")
 	public List<SupValueData> getVariantsSupValues() {
 		return super.getVariantsSupValues();

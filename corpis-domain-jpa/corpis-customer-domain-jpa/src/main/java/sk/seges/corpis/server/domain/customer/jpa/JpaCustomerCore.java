@@ -223,6 +223,12 @@ public class JpaCustomerCore extends CustomerCoreBase {
 	public Boolean getCommision() {
 		return super.getCommision();
 	}
+	
+	@Override
+	@Column
+	public Integer getInvoiceInfoPeriod() {
+		return super.getInvoiceInfoPeriod();
+	}
 
 	@Override
 	@Transient
