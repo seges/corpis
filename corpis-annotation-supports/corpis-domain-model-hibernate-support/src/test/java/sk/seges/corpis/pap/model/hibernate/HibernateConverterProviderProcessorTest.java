@@ -27,7 +27,7 @@ public class HibernateConverterProviderProcessorTest extends AnnotationTest {
 
 	@Override
 	protected File getResourceFile(Class<?> clazz) {
-		return getResourceFile("provider", clazz);
+		return getResourceFile("provider", clazz, OUTPUT_FILE_SUFFIX);
 	}
 
 	public File getOutputFile(Class<?> type) {

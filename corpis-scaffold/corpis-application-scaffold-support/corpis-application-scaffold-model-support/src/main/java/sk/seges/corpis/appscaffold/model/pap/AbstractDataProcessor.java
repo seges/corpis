@@ -1,10 +1,6 @@
 package sk.seges.corpis.appscaffold.model.pap;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
@@ -53,7 +49,7 @@ public abstract class AbstractDataProcessor extends MutableAnnotationProcessor {
 	}
 
 	private Set<MutableTypeMirror> toPrintableTypes(TypeElement owner, Set<? extends MutableTypeMirror> bounds) {
-		Set<MutableTypeMirror> result = new HashSet<MutableTypeMirror>();
+		Set<MutableTypeMirror> result = new LinkedHashSet<MutableTypeMirror>();
 		for (MutableTypeMirror bound: bounds) {
 			result.add(toPrintableType(owner, bound));
 		}
