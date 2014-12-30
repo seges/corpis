@@ -40,8 +40,8 @@ public class DomainDataInterfaceType extends AbstractDataType {
 
 		if (interfaces.size() == 0) {
 			if (new PersistentObjectAccessor(element, processingEnv).isEntity()) {
-				MutableDeclaredType dmainObjectMutableType = processingEnv.getTypeUtils().toMutableType(IMutableDomainObject.class.getName());
-				interfaces.add(dmainObjectMutableType);
+				MutableDeclaredType domainObjectMutableType = processingEnv.getTypeUtils().toMutableType(IMutableDomainObject.class.getName());
+				interfaces.add(domainObjectMutableType);
 			} else {
 				interfaces.add(processingEnv.getTypeUtils().toMutableType(Serializable.class));
 			}
@@ -111,7 +111,7 @@ public class DomainDataInterfaceType extends AbstractDataType {
 		
 		if (type.asType() != null) {
 			if (new DomainInterfaceAccessor(((DeclaredType)type.asType()).asElement(), processingEnv).isValid()) {
-				return new DomainDataInterfaceType((MutableDeclaredType)type, processingEnv);
+				return new DomainDataInterfaceType(type, processingEnv);
 			}
 		}
 		

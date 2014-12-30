@@ -44,7 +44,7 @@ public class HomecreditSettings implements PaymentMethodSettings, HasKeyPaymentM
 
 	@Pattern(regexp = RegexConstants.WEB_URL)
 	@Column
-	@NotNull
+	//@NotNull
 	protected String calcUrl;
 
 	/*

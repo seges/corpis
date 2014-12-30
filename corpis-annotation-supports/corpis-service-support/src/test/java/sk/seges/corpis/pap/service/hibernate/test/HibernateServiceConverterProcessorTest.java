@@ -16,19 +16,19 @@ import sk.seges.sesam.pap.service.model.ServiceTypeElement;
 public class HibernateServiceConverterProcessorTest extends AnnotationTest {
 
 	@Test
-	public void testServiceConveter() {
+	public void testServiceConverter() {
 		assertCompilationSuccessful(compileFiles(MockService.class));
 		assertOutput(getResourceFile(MockService.class), getOutputFile(MockService.class));
 	}
 
 	@Test
-	public void testServiceConveterForEclipse() {
+	public void testServiceConverterForEclipse() {
 		assertCompilationSuccessful(compileFiles(Compiler.ECLIPSE, MockService.class));
 		assertOutput(getEclipseResourceFile(MockService.class), getOutputFile(MockService.class));
 	}
 
 	@Test
-	public void testTransactionalServiceConveter() {
+	public void testTransactionalServiceConverter() {
 		assertCompilationSuccessful(compileFiles(TransactionalMockService.class));
 		assertOutput(getResourceFile(TransactionalMockService.class), getOutputFile(TransactionalMockService.class));
 	}

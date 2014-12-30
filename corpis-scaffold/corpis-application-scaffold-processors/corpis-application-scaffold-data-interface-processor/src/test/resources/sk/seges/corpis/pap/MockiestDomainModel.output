@@ -1,37 +1,36 @@
-package sk.seges.corpis.pap.shared.model;
-
+package sk.seges.corpis.pap.server.model.data;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Generated;
 
-import sk.seges.corpis.pap.shared.model.MockDomainModelData;
+import sk.seges.corpis.appscaffold.shared.annotation.DomainData;
 
-@Generated(value = "sk.seges.corpis.pap.model.domain.data.DomainDataInterfaceProcessor")
+@DomainData
+@Generated(value = "sk.seges.corpis.appscaffold.model.pap.DomainDataInterfaceProcessor")
 public interface MockiestDomainModelData<T> extends MockDomainModelData<T> {
-
-	public static final String DECLAREDTYPELIST = "declaredTypeList";
-
+	 
+	public static final String DECLARED_TYPE_LIST = "declaredTypeList";
+	
 	List<MockDomainModelData> getDeclaredTypeList();
-
+	
 	void setDeclaredTypeList(List<MockDomainModelData> declaredTypeList);
-
+	
 	public static final String DOMAIN = "domain";
-
+	
 	MockDomainModelData getDomain();
-
+	
 	void setDomain(MockDomainModelData domain);
-
-	public static final String MAPWITHWILDCARD = "mapWithWildcard";
-
-	HashMap<Long, List<? extends MockDomainModelData>> getMapWithWildcard();
-
-	void setMapWithWildcard(HashMap<Long, List<? extends MockDomainModelData>> mapWithWildcard);
-
-	public static final String WILDCARDTYPELIST = "wildcardTypeList";
-
-	List<? extends MockDomainModelData> getWildcardTypeList();
-
+	
+	public static final String MAP_WITH_WILDCARD = "mapWithWildcard";
+	
+	HashMap<Long, List<?>> getMapWithWildcard();
+	
+	void setMapWithWildcard(HashMap<Long, List<?>> mapWithWildcard);
+	
+	public static final String WILDCARD_TYPE_LIST = "wildcardTypeList";
+	
+	List<MockDomainModelData> getWildcardTypeList();
+	
 	void setWildcardTypeList(List<? extends MockDomainModelData> wildcardTypeList);
-
 }

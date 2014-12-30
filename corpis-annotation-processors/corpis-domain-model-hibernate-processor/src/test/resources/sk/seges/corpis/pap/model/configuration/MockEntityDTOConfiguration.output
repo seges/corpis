@@ -1,5 +1,4 @@
 package sk.seges.corpis.shared.model.dto;
-
 import java.io.Serializable;
 
 import javax.annotation.Generated;
@@ -10,48 +9,55 @@ import sk.seges.sesam.pap.model.annotation.TransferObjectMapping;
 @TransferObjectMapping(dtoClass = MockEntityDTO.class,
 		domainClassName = "sk.seges.corpis.pap.model.entity.MockEntity", 
 		configurationClassName = "sk.seges.corpis.pap.model.configuration.MockEntityDTOConfiguration", 
+		generateConverter = false, generateDto = false, 
 		converterClassName = "sk.seges.corpis.pap.model.configuration.MockEntityDTOConverter")
 @Generated(value = "sk.seges.corpis.pap.model.hibernate.HibernateTransferObjectProcessor")
 public class MockEntityDTO implements Serializable {
-
+	 
+	public static final String CONTENT_DETACHED = "contentDetached";
+	
 	private String contentDetached;
-
+	
+	public static final String ID = "id";
+	
 	private Long id;
-
+	
+	public static final String NAME = "name";
+	
 	private String name;
-
-	public MockEntityDTO() {
-	}
+	
+	public MockEntityDTO() {}
+	
 	public MockEntityDTO(String contentDetached, Long id, String name) {
 		this.contentDetached = contentDetached;
 		this.id = id;
 		this.name = name;
 	}
-
+	
 	public String getContentDetached() {
 		return contentDetached;
 	}
-
+	
 	public void setContentDetached(String contentDetached) {
 		this.contentDetached = contentDetached;
 	}
-
+	 
 	public Long getId() {
 		return id;
 	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	 
 	public String getName() {
 		return name;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	 
 	private boolean processingEquals = false;
 	
 	@Override
@@ -63,53 +69,39 @@ public class MockEntityDTO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		MockEntityDTO other = (MockEntityDTO) obj;
-		if (contentDetached == null) {
-			if (other.contentDetached != null)
-				return false;
-		} else { 
-			if (!processingEquals) {
-				processingEquals = true;
-				if (!contentDetached.equals(other.contentDetached)) {
-					processingEquals = false;
-					return false;
-				} else {
-					processingEquals = false;
-				}
-			}
-		}
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else { 
-			if (!processingEquals) {
-				processingEquals = true;
-				if (!name.equals(other.name)) {
-					processingEquals = false;
-					return false;
-				} else {
-					processingEquals = false;
-				}
-			}
-		}
+		if (!_equalsSupport(contentDetached, other.contentDetached)) return false;
+		if (!_equalsSupport(name, other.name)) return false;
 		return true;
 	}
-
+	
 	private boolean processingHashCode = false;
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		if (!processingHashCode) {
-			processingHashCode = true;
-			result = prime * result + ((contentDetached == null) ? 0 : contentDetached.hashCode());
-			processingHashCode = false;
+		result = _hashCodeSupport(contentDetached, prime, result);
+		result = _hashCodeSupport(name, prime, result);
+		return result;
+	}
+	private boolean _equalsSupport(Object o1, Object o2) {
+		if (o1 == null) {
+			if (o2 != null) return false;
+		} else if (!processingEquals) {
+			processingEquals = true;
+			if (!o1.equals(o2)) return processingEquals = false;
+			else processingEquals = false;
 		}
+		return true;
+	}
+	 
+	private int _hashCodeSupport(Object o1, int prime, int result) {
 		if (!processingHashCode) {
 			processingHashCode = true;
-			result = prime * result + ((name == null) ? 0 : name.hashCode());
-			processingHashCode = false;
+			result = 
+			prime * result + ((o1 == null) ? 0 : o1.hashCode());processingHashCode = false;
 		}
 		return result;
 	}
+	 
 }

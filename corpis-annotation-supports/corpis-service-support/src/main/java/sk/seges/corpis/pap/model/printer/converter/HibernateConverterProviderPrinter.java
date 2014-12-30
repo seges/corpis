@@ -39,7 +39,7 @@ public class HibernateConverterProviderPrinter extends ConverterProviderPrinter 
 	protected ParameterElement[] getConverterParameters(ConverterTypeElement converterTypeElement, ExecutableElement method) {
 		
 		if (converterTypeElement == null) {
-			return parametersResolverProvider.getParameterResolver(usageType).getConstructorAditionalParameters();
+			return parametersResolverProvider.getParameterResolver(usageType).getConstructorAdditionalParameters();
 		}
 		
 		return toParameters(converterTypeElement.getConverterParameters(parametersResolverProvider.getParameterResolver(usageType)));

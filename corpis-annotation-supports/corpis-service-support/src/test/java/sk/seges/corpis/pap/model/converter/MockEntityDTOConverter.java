@@ -11,17 +11,22 @@ import sk.seges.corpis.pap.model.entity.MockEntity;
 import sk.seges.corpis.service.annotation.TransactionPropagationModel;
 import sk.seges.corpis.server.converter.utils.ConverterUtils;
 import sk.seges.sesam.shared.model.converter.BasicCachedConverter;
+import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
 import sk.seges.sesam.shared.model.converter.MapConvertedInstanceCache;
 
 @Generated(value = "sk.seges.corpis.pap.model.hibernate.HibernateTransferObjectConverterProcessor")
 public class MockEntityDTOConverter extends BasicCachedConverter<MockEntityDTO, MockEntity> {
 
-	public MockEntityDTOConverter(EntityManager entityManager, TransactionPropagationModel[] transactionPropagations) {
+	public MockEntityDTOConverter(EntityManager entityManager, TransactionPropagationModel[] transactionPropagations,
+                                  ConverterProviderContext converterProviderContext) {
 		this.entityManager = entityManager;
 		this.transactionPropagations = transactionPropagations;
+        this.converterProviderContext = converterProviderContext;
 	}
 
-	private MapConvertedInstanceCache cache;
+    protected final ConverterProviderContext converterProviderContext;
+
+    private MapConvertedInstanceCache cache;
 
 	private EntityManager entityManager;
 

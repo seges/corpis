@@ -28,8 +28,8 @@ public class HibernateConverterProviderParameterResolver extends ServiceConverte
 	}
 
 	@Override
-	public ParameterElement[] getConstructorAditionalParameters() {
-		return hibernateParameterResolverDelegate.getConstructorAditionalParameters(super.getConstructorAditionalParameters());
+	public ParameterElement[] getConstructorAdditionalParameters() {
+		return hibernateParameterResolverDelegate.getConstructorAditionalParameters(super.getConstructorAdditionalParameters());
 	}	
 	
 	@Override

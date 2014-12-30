@@ -1,6 +1,5 @@
 package sk.seges.corpis.pap.model.configuration.configuration;
 import java.io.Serializable;
-import java.util.List;
 
 import javax.annotation.Generated;
 import javax.persistence.EntityManager;
@@ -8,11 +7,8 @@ import javax.persistence.EntityManager;
 import sk.seges.corpis.pap.converter.hibernate.TransactionalConverter;
 import sk.seges.corpis.pap.model.converter.MockStringConverter;
 import sk.seges.sesam.dao.Page;
-import sk.seges.sesam.dao.SortInfo;
 import sk.seges.sesam.pap.model.annotation.TransferObjectMapping;
-import sk.seges.sesam.server.model.converter.common.CollectionConverter;
 import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
-import sk.seges.sesam.shared.model.converter.api.DtoConverter;
 import sk.seges.sesam.utils.CastUtils;
 
 @SuppressWarnings("serial")
@@ -23,9 +19,9 @@ import sk.seges.sesam.utils.CastUtils;
 		converterClassName = "sk.seges.corpis.pap.model.configuration.configuration.MockPageConverter")
 @Generated(value = "sk.seges.corpis.pap.model.hibernate.HibernateTransferObjectConverterProcessor")
 public class MockPageConverter extends TransactionalConverter<Page, Page> {
-	
+	 
 	protected final EntityManager entityManager;
-	
+	 
 	protected final ConverterProviderContext converterProviderContext;
 	 
 	public MockPageConverter(EntityManager entityManager, ConverterProviderContext converterProviderContext) {
@@ -34,7 +30,27 @@ public class MockPageConverter extends TransactionalConverter<Page, Page> {
 		this.converterProviderContext = converterProviderContext;
 	}
 	 
-	public boolean equals(Page _domain, Page _dto) {
+	public boolean equals(Object _domainArg, Object _dtoArg) {
+		if (_domainArg == null) {
+			return (_dtoArg == null);
+		}
+	
+		if (_dtoArg == null) {
+			return false;
+		}
+	
+		if (!(_domainArg instanceof Page)) {
+			return false;
+		}
+	
+		Page _domain = (Page)_domainArg;
+	
+		if (!(_dtoArg instanceof Page)) {
+			return false;
+		}
+	
+		Page _dto = (Page)_dtoArg;
+	
 		if (_domain.getFilterable() == null) {
 			if (_dto.getFilterable() != null)
 				return false;
@@ -89,14 +105,8 @@ public class MockPageConverter extends TransactionalConverter<Page, Page> {
 		if (converterProjectableResult != null) {
 			_result.setProjectableResult(converterProjectableResult.toDto(CastUtils.cast((String)_domain.getProjectableResult(), String.class)));
 		}
-		CollectionConverter<String, String> converterProjectables = ((CollectionConverter<String, String>)(DtoConverter)converterProviderContext.getConverterForDomain(_domain.getProjectables()));
-		if (converterProjectables != null) {
-			_result.setProjectables(converterProjectables.toDto(CastUtils.cast((List<?>)_domain.getProjectables(), String.class), java.util.ArrayList.class));
-		}
-		CollectionConverter<SortInfo, SortInfo> converterSortables = ((CollectionConverter<SortInfo, SortInfo>)(DtoConverter)converterProviderContext.getConverterForDomain(_domain.getSortables()));
-		if (converterSortables != null) {
-			_result.setSortables(converterSortables.toDto(CastUtils.cast((List<?>)_domain.getSortables(), SortInfo.class), java.util.ArrayList.class));
-		}
+		_result.setProjectables(_domain.getProjectables());
+		_result.setSortables(_domain.getSortables());
 		_result.setStartIndex(_domain.getStartIndex());
 		return _result;
 	}
@@ -135,14 +145,8 @@ public class MockPageConverter extends TransactionalConverter<Page, Page> {
 		if (converterProjectableResult != null) {
 			_result.setProjectableResult((String)converterProjectableResult.fromDto((String)_dto.getProjectableResult()));
 		}
-		CollectionConverter<String, String> converterProjectables = ((CollectionConverter<String, String>)(DtoConverter)converterProviderContext.getConverterForDto(_dto.getProjectables()));
-		if (converterProjectables != null) {
-			_result.setProjectables(CastUtils.cast((List<?>)converterProjectables.fromDto(CastUtils.cast(_dto.getProjectables(), String.class)), String.class));
-		}
-		CollectionConverter<SortInfo, SortInfo> converterSortables = ((CollectionConverter<SortInfo, SortInfo>)(DtoConverter)converterProviderContext.getConverterForDto(_dto.getSortables()));
-		if (converterSortables != null) {
-			_result.setSortables(CastUtils.cast((List<?>)converterSortables.fromDto(CastUtils.cast(_dto.getSortables(), SortInfo.class)), SortInfo.class));
-		}
+		_result.setProjectables(_dto.getProjectables());
+		_result.setSortables(_dto.getSortables());
 		_result.setStartIndex(_dto.getStartIndex());
 		return _result;
 	}

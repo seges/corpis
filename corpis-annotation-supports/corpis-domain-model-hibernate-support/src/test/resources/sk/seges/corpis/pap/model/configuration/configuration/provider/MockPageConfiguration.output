@@ -2,19 +2,19 @@ package sk.seges.corpis.pap;
 import javax.annotation.Generated;
 import javax.persistence.EntityManager;
 
+import sk.seges.corpis.pap.converter.hibernate.provider.AbstractTransactionalConverterProvider;
 import sk.seges.corpis.pap.model.configuration.configuration.MockPageConverter;
 import sk.seges.sesam.dao.Page;
 import sk.seges.sesam.pap.model.annotation.ConverterProviderDefinition;
 import sk.seges.sesam.shared.model.converter.ConverterProviderContext;
 import sk.seges.sesam.shared.model.converter.api.DtoConverter;
-import sk.seges.sesam.shared.model.converter.provider.AbstractConverterProvider;
 
 @ConverterProviderDefinition
 @Generated(value = "sk.seges.corpis.pap.converter.hibernate.HibernateConverterProviderProcessor")
-public class HibernateConverterProviderProcessorTestConverterProvider extends AbstractConverterProvider {
-	
+public class HibernateConverterProviderProcessorTestConverterProvider extends AbstractTransactionalConverterProvider {
+	 
 	protected final EntityManager entityManager;
-	
+	 
 	protected final ConverterProviderContext converterProviderContext;
 	 
 	public HibernateConverterProviderProcessorTestConverterProvider(EntityManager entityManager, ConverterProviderContext converterProviderContext) {
@@ -29,7 +29,7 @@ public class HibernateConverterProviderProcessorTestConverterProvider extends Ab
 		}
 	
 		if (Page.class.equals(domainClass)) {
-			return (DtoConverter<DTO, DOMAIN>) getDomainMockPageConverter();
+			return (DtoConverter<DTO, DOMAIN>)getDomainMockPageConverter();
 		}
 	
 		return null;

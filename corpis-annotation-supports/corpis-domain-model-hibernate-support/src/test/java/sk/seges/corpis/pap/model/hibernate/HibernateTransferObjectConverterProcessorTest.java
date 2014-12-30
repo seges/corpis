@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class HibernateTransferObjectConverterProcessorTest extends AnnotationTest {
 
 	@Test
-	public void testConveter() {
+	public void testConverter() {
 		assertCompilationSuccessful(compileFiles(MockPageConfiguration.class));
 		assertOutput(getResourceFile(MockPageConfiguration.class), getOutputFile(MockPageConfiguration.class));
 	}
