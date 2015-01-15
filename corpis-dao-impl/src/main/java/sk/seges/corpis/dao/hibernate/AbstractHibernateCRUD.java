@@ -302,6 +302,38 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 	public PagedResult<List<T>> findPagedResultByCriteria(DetachedCriteria criteria, Page requestedPage) {
 		return findPagedResultByCriteria(criteria, requestedPage, false);
 	}
+	
+	public PagedResult<List<T>> findDistinctPagedResultByCriteria(DetachedCriteria criteria, Page requestedPage){		
+		criteria.setProjection(Projections.distinct(Projections
+				.property(IDomainObject.ID)));
+		Criteria executable = criteria.getExecutableCriteria(
+				(Session) entityManager.getDelegate());
+		List<Order> orderings = removeOrderingFromCriteria(executable);
+		
+		List<Long> ids = executable.list();
+		if (ids == null || ids.isEmpty()) {
+			return new PagedResult<List<T>>(requestedPage, new ArrayList<T>(), 0);
+		}		
+
+		DetachedCriteria criteriaFromIds = createCriteria();
+		criteriaFromIds.add(Restrictions.in(IDomainObject.ID, ids));
+		addOrderingsToCriteria(orderings, criteria);
+		copyOrdersAndTheirSubcriteriaFromCriteriaToAnother(criteria.getExecutableCriteria(
+				(Session) entityManager.getDelegate()), criteriaFromIds);
+		
+		criteriaFromIds.setResultTransformer(DetachedCriteria.DISTINCT_ROOT_ENTITY);
+		PagedResult<List<T>> result = null;
+		if(requestedPage.getPageSize() >= ids.size()) {
+			Page pageForCriteria = new Page(requestedPage.getStartIndex(), requestedPage.getPageSize());
+			pageForCriteria.setSortables(requestedPage.getSortables());
+			result = findPagedResultByCriteria(criteriaFromIds, pageForCriteria);
+			result.setPage(requestedPage);
+		} else {
+			result = findPagedResultByCriteria(criteriaFromIds, requestedPage);
+		}
+
+		return result;
+	}
 
 	private boolean retrieveAllResults(Page requestedPage) {
 		return requestedPage.getPageSize() == Page.ALL_RESULTS;
