@@ -325,6 +325,7 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 		PagedResult<List<T>> result = null;
 		if(requestedPage.getPageSize() >= ids.size()) {
 			Page pageForCriteria = new Page(requestedPage.getStartIndex(), requestedPage.getPageSize());
+			pageForCriteria.setProjectableResult(requestedPage.getProjectableResult());
 			pageForCriteria.setSortables(requestedPage.getSortables());
 			result = findPagedResultByCriteria(criteriaFromIds, pageForCriteria);
 			result.setPage(requestedPage);
