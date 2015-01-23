@@ -16,7 +16,6 @@ public abstract class JpaOrderItemBase extends JpaAccountableItem implements Ord
 	
 	private OrderData order;
 	private Integer sequence;
-	private Integer customDiscount;	
 	private Float dischargedAmount;
 
 
@@ -48,14 +47,6 @@ public abstract class JpaOrderItemBase extends JpaAccountableItem implements Ord
 	@Override
 	public void setSequence(Integer sequence) {
 		this.sequence = sequence;
-	}
-
-	public Integer getCustomDiscount() {
-		return customDiscount;
-	}
-
-	public void setCustomDiscount(Integer customDiscount) {
-		this.customDiscount = customDiscount;
 	}
 
 	@Override

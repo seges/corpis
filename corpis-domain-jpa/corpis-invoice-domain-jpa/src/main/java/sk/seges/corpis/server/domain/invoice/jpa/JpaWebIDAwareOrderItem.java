@@ -67,10 +67,4 @@ public class JpaWebIDAwareOrderItem extends JpaOrderItemBase {
 	public Integer getSequence() {
 		return super.getSequence();
 	}
-
-	@Override
-	@Transient
-	public Integer getCustomDiscount() {
-		return super.getCustomDiscount();
-	}
 }
