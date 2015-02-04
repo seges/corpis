@@ -77,5 +77,42 @@ public class JpaSupIndex extends SupIndexBase implements SupIndexData {
 	@Transient
 	public String getType() {
 		return getSup().getType();
-	}	
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getNames() == null) ? 0 : getNames().hashCode());
+		result = prime * result + ((getSup() == null) ? 0 : getSup().hashCode());
+		result = prime * result + ((getWebId() == null) ? 0 : getWebId().hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SupIndexBase other = (SupIndexBase) obj;
+		if (getNames() == null) {
+			if (other.getNames() != null)
+				return false;
+		} else if (!getNames().equals(other.getNames()))
+			return false;
+		if (getSup() == null) {
+			if (other.getSup() != null)
+				return false;
+		} else if (!getSup().equals(other.getSup()))
+			return false;
+		if (getWebId() == null) {
+			if (other.getWebId() != null)
+				return false;
+		} else if (!getWebId().equals(other.getWebId()))
+			return false;
+		return true;
+	}
 }

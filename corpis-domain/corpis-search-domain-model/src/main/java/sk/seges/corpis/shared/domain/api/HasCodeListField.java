@@ -5,6 +5,8 @@ import sk.seges.corpis.shared.domain.HasWebId;
 public interface HasCodeListField extends HasWebId {
 	
 	public static final String TYPE = "type";
+	
+	public static final String POSITION = "position";
 
 	int getPosition();
 	
