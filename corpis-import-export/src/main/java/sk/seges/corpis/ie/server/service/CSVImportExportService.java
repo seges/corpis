@@ -3,8 +3,10 @@
  */
 package sk.seges.corpis.ie.server.service;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
@@ -87,7 +89,7 @@ public abstract class CSVImportExportService {
 		if (format.toUpperCase().endsWith(CUSTOM_SUFFIX)) {
 			entries = readCustomEntries(file, violations);
 		} else {
-			entries = readCsvEntries(file, handledCsvEntryClass, violations);
+			entries = readCsvEntries(file, handledCsvEntryClass, violations, handler.isSkippedReadingFirtLine());
 		}
 		
 		RowBasedHandlerContext restrContext = instantiateContext();
@@ -136,7 +138,7 @@ public abstract class CSVImportExportService {
 		return violations;
 	}
 	
-	private List<CsvEntry> readCsvEntries(String file, Class handledCsvEntryClass, List<ImportExportViolation> violations) {
+	private List<CsvEntry> readCsvEntries(String file, Class handledCsvEntryClass, List<ImportExportViolation> violations, boolean skippedReadingFirtLine) {
 		List<CsvEntry> entries = null;
 		
 		CsvToBean csv = new CsvToBean();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
@@ -147,12 +149,19 @@ public abstract class CSVImportExportService {
 		try {
 //			Reader in = new BufferedReader(new FileReader(file));
 			Reader in = new InputStreamReader(new FileInputStream(file), getCsvEncoding());
-			entries = csv.parse(strat, in, getCsvDelimiter());
+			BufferedReader br = new BufferedReader(in);
+			if(skippedReadingFirtLine){
+				br.readLine();
+			}			
+			entries = csv.parse(strat, br, getCsvDelimiter());
 		} catch (FileNotFoundException e) {
 			log.warn("CSV File not found = " + file, e);
 			violations.add(new ImportExportViolation(ViolationConstants.FILE_NOT_FOUND, file));
 		} catch (UnsupportedEncodingException e) {
 			log.warn("Unsupported encoding = " + file, e);
+			violations.add(new ImportExportViolation(ViolationConstants.UNSUPPORTED_ENCODING, file));
+		} catch (IOException e) {
+			log.warn("Failed while reading file = " + file, e);
 			violations.add(new ImportExportViolation(ViolationConstants.UNSUPPORTED_ENCODING, file));
 		}
 		return entries;

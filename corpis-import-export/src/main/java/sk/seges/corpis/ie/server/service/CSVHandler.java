@@ -29,4 +29,6 @@ public interface CSVHandler<T extends CsvEntry, C extends RowBasedHandlerContext
 	List<ImportExportViolation> checkRestrictions(C context, List<T> entries);
 		
 	ImportExportViolation postImportCleanup(C context);
+	
+	boolean isSkippedReadingFirtLine();
 }
