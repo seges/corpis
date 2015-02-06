@@ -89,7 +89,7 @@ public abstract class CSVImportExportService {
 		if (format.toUpperCase().endsWith(CUSTOM_SUFFIX)) {
 			entries = readCustomEntries(file, violations);
 		} else {
-			entries = readCsvEntries(file, handledCsvEntryClass, violations, handler.isSkippedReadingFirtLine());
+			entries = readCsvEntries(file, handledCsvEntryClass, violations);
 		}
 		
 		RowBasedHandlerContext restrContext = instantiateContext();
@@ -138,7 +138,7 @@ public abstract class CSVImportExportService {
 		return violations;
 	}
 	
-	private List<CsvEntry> readCsvEntries(String file, Class handledCsvEntryClass, List<ImportExportViolation> violations, boolean skippedReadingFirtLine) {
+	private List<CsvEntry> readCsvEntries(String file, Class handledCsvEntryClass, List<ImportExportViolation> violations) {
 		List<CsvEntry> entries = null;
 		
 		CsvToBean csv = new CsvToBean();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
@@ -149,10 +149,7 @@ public abstract class CSVImportExportService {
 		try {
 //			Reader in = new BufferedReader(new FileReader(file));
 			Reader in = new InputStreamReader(new FileInputStream(file), getCsvEncoding());
-			BufferedReader br = new BufferedReader(in);
-			if(skippedReadingFirtLine){
-				br.readLine();
-			}			
+			BufferedReader br = new BufferedReader(in);						
 			entries = csv.parse(strat, br, getCsvDelimiter());
 		} catch (FileNotFoundException e) {
 			log.warn("CSV File not found = " + file, e);
