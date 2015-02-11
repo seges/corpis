@@ -1,6 +1,5 @@
 package sk.seges.corpis.server.domain.product.jpa;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -52,7 +51,7 @@ public class JpaPriceCondition extends PriceConditionBase {
 	}
 	
 	@Override
-	@ManyToOne(cascade = { CascadeType.ALL }, targetEntity = JpaCustomerCore.class)
+	@ManyToOne(targetEntity = JpaCustomerCore.class)
 	public CustomerCoreData getCustomer() {
 		return super.getCustomer();
 	}
