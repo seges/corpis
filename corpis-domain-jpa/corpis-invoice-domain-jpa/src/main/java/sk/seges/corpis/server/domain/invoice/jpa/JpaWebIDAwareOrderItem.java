@@ -31,7 +31,7 @@ public class JpaWebIDAwareOrderItem extends JpaOrderItemBase {
 
 	private static final long serialVersionUID = 3399448840385713282L;
 
-	private String supValues;
+	
 
 	@Override
 	@Transient
@@ -44,15 +44,6 @@ public class JpaWebIDAwareOrderItem extends JpaOrderItemBase {
 	@GeneratedValue(generator = SEQ_ORDER_ITEMS)
 	public Long getId() {
 		return super.getId();
-	}
-
-	@Column
-	public String getSupValues() {
-		return supValues;
-	}
-
-	public void setSupValues(String supValues) {
-		this.supValues = supValues;
 	}
 	
 	@Override
