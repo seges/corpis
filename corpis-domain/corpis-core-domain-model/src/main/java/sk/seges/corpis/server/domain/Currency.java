@@ -10,6 +10,8 @@ import sk.seges.sesam.pap.model.annotation.ReadOnly;
 public interface Currency extends IMutableDomainObject<Short> {
 
 	String code();
+	
+	String webId();
 
 	@ReadOnly(ReadOnly.PropertyType.METHOD)
 	Currency clone();
