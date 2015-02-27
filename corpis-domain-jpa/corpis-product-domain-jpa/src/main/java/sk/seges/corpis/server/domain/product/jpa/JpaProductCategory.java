@@ -112,7 +112,7 @@ public class JpaProductCategory extends ProductCategoryBase {
 	
 	@Override
     @JoinColumn(name = "mapping")
-    @ManyToOne (cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, targetEntity = JpaProductCategory.class)
+    @ManyToOne (fetch=FetchType.LAZY, targetEntity = JpaProductCategory.class)
 	public ProductCategoryData getParent() {
 		return super.getParent();
 	}
