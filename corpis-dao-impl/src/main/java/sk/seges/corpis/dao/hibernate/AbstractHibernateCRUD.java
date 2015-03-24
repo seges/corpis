@@ -309,7 +309,7 @@ public abstract class AbstractHibernateCRUD<T extends IDomainObject<?>> extends 
 		Criteria executable = criteria.getExecutableCriteria(
 				(Session) entityManager.getDelegate());
 		List<Order> orderings = removeOrderingFromCriteria(executable);
-		
+		enrichCriteriaWithFilterables(requestedPage, executable, new HashSet<String>());		
 		List<Long> ids = executable.list();
 		if (ids == null || ids.isEmpty()) {
 			return new PagedResult<List<T>>(requestedPage, new ArrayList<T>(), 0);
