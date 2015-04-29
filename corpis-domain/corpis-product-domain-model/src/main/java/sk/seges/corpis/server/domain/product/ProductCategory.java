@@ -1,16 +1,17 @@
 package sk.seges.corpis.server.domain.product;
 
+import java.util.List;
+import java.util.Set;
+
 import sk.seges.corpis.appscaffold.shared.annotation.BaseObject;
 import sk.seges.corpis.appscaffold.shared.annotation.DomainInterface;
-import sk.seges.corpis.shared.domain.HasWebId;
 import sk.seges.corpis.server.domain.Name;
+import sk.seges.corpis.server.domain.search.Sup;
+import sk.seges.corpis.shared.domain.HasWebId;
 import sk.seges.corpis.shared.domain.product.EProductCategoryType;
 import sk.seges.sesam.domain.IMutableDomainObject;
 import sk.seges.sesam.pap.model.annotation.ReadOnly;
 import sk.seges.sesam.security.shared.domain.ISecuredObject;
-
-import java.util.List;
-import java.util.Set;
 
 @DomainInterface
 @BaseObject
@@ -33,6 +34,7 @@ public interface ProductCategory extends IMutableDomainObject<Long>, HasWebId, I
 	Boolean contentCategory();
 	boolean loadTagsFromParent();
 	Long productsCount();
+	List<Sup> assignedSups();
 
 	//TODO move to secured info
 	Boolean visible();

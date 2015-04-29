@@ -32,6 +32,8 @@ import sk.seges.corpis.server.domain.product.server.model.base.ProductCategoryBa
 import sk.seges.corpis.server.domain.product.server.model.data.ProductCategoryData;
 import sk.seges.corpis.server.domain.product.server.model.data.ProductData;
 import sk.seges.corpis.server.domain.product.server.model.data.TagData;
+import sk.seges.corpis.server.domain.search.jpa.JpaSup;
+import sk.seges.corpis.server.domain.search.server.model.data.SupData;
 import sk.seges.corpis.server.domain.server.model.data.NameData;
 import sk.seges.corpis.shared.domain.product.EProductCategoryType;
 
@@ -243,6 +245,12 @@ public class JpaProductCategory extends ProductCategoryBase {
 	@Override
 	public Class<?> getSecuredClass() {
 		return getClass();
+	}
+	
+	@Override
+	@ManyToMany(targetEntity = JpaSup.class)
+	public List<SupData> getAssignedSups(){
+		return super.getAssignedSups();
 	}
 
 	@Override
