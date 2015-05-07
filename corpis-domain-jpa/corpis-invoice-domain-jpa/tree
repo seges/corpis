@@ -1,0 +1,59 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for sk.seges.corpis:corpis-invoice-domain-jpa:jar:2.0.0-SNAPSHOT
+[WARNING] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: ${project.groupId}:corpis-customer-domain-jpa:jar -> duplicate declaration of version ${project.version} @ sk.seges.corpis:corpis-os:2.0.0-SNAPSHOT, c:\acris.corpis\corpis-os\pom.xml, line 380, column 16
+[WARNING] 'parent.relativePath' of POM sk.seges.corpis:corpis-os:2.0.0-SNAPSHOT (c:\acris.corpis\corpis-os\pom.xml) points at sk.seges.corpis:corpis-os-build instead of sk.seges.sesam:sesam-os-base-parent, please verify your project structure @ sk.seges.corpis:corpis-os:2.0.0-SNAPSHOT, c:\acris.corpis\corpis-os\pom.xml, line 9, column 10
+[WARNING] The expression ${pom.version} is deprecated. Please use ${project.version} instead.
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building CorpIS Invoice Domain JPA 2.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+Downloading: https://local.seges.sk/nexus/content/groups/public/sk/seges/corpis/corpis-search-domain-jpa/2.0.0-SNAPSHOT/maven-metadata.xml
+[WARNING] Could not transfer metadata sk.seges.corpis:corpis-search-domain-jpa:2.0.0-SNAPSHOT/maven-metadata.xml from/to central (https://local.seges.sk/nexus/content/groups/public/): sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+[WARNING] Failure to transfer sk.seges.corpis:corpis-search-domain-jpa:2.0.0-SNAPSHOT/maven-metadata.xml from https://local.seges.sk/nexus/content/groups/public/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata sk.seges.corpis:corpis-search-domain-jpa:2.0.0-SNAPSHOT/maven-metadata.xml from/to central (https://local.seges.sk/nexus/content/groups/public/): sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.2:tree (default-cli) @ corpis-invoice-domain-jpa ---
+[INFO] sk.seges.corpis:corpis-invoice-domain-jpa:jar:2.0.0-SNAPSHOT
+[INFO] +- sk.seges.corpis:corpis-invoice-domain-model:jar:2.0.0-SNAPSHOT:compile
+[INFO] |  +- sk.seges.corpis:corpis-customer-domain-model:jar:2.0.0-SNAPSHOT:compile
+[INFO] |  |  \- sk.seges.corpis:corpis-user-domain-model:jar:2.0.0-SNAPSHOT:compile
+[INFO] |  +- sk.seges.corpis:corpis-core-domain-model:jar:2.0.0-SNAPSHOT:compile
+[INFO] |  |  \- sk.seges.corpis:corpis-application-scaffold-model:jar:2.0.0-SNAPSHOT:compile
+[INFO] |  +- sk.seges.corpis:corpis-payment-api:jar:2.0.0-SNAPSHOT:compile
+[INFO] |  |  \- sk.seges.sesam:sesam-core:jar:sources:2.0.0-SNAPSHOT:compile
+[INFO] |  \- sk.seges.corpis:corpis-search-domain-model:jar:2.0.0-SNAPSHOT:compile
+[INFO] +- sk.seges.corpis:corpis-core-domain-jpa:jar:2.0.0-SNAPSHOT:compile
+[INFO] |  +- javax.validation:validation-api:jar:1.0.0.GA:compile
+[INFO] |  +- org.hibernate.javax.persistence:hibernate-jpa-2.0-api:jar:1.0.0.Final:compile
+[INFO] |  \- sk.seges.sesam:sesam-core:jar:2.0.0-SNAPSHOT:compile
+[INFO] +- sk.seges.corpis:corpis-customer-domain-jpa:jar:2.0.0-SNAPSHOT:compile
+[INFO] +- sk.seges.corpis:corpis-price-domain-api:jar:2.0.0-SNAPSHOT:compile
+[INFO] |  \- sk.seges.corpis:corpis-core-domain-api:jar:2.0.0-SNAPSHOT:compile
+[INFO] |     \- sk.seges.corpis:corpis-lang-api:jar:2.0.0-SNAPSHOT:compile
+[INFO] +- sk.seges.corpis:corpis-search-domain-jpa:jar:2.0.0-SNAPSHOT:compile
+[INFO] +- sk.seges.sesam:sesam-security-api:jar:2.0.0-SNAPSHOT:compile
+[INFO] |  +- sk.seges.sesam:sesam-core-api:jar:2.0.0-SNAPSHOT:compile
+[INFO] |  \- log4j:log4j:jar:1.2.14:compile
+[INFO] +- org.hibernate:hibernate-core:jar:3.6.0.Final:compile
+[INFO] |  +- antlr:antlr:jar:2.7.6:compile
+[INFO] |  +- commons-collections:commons-collections:jar:3.2.1:compile (version managed from 3.1)
+[INFO] |  +- dom4j:dom4j:jar:1.6.1:compile
+[INFO] |  +- org.hibernate:hibernate-commons-annotations:jar:3.2.0.Final:compile
+[INFO] |  +- javax.transaction:jta:jar:1.1:compile
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.5.8:compile
+[INFO] +- junit:junit:jar:4.8.2:test
+[INFO] \- org.springframework:spring-test:jar:3.2.3.RELEASE:test
+[INFO]    \- org.springframework:spring-core:jar:3.2.3.RELEASE:test
+[INFO]       \- commons-logging:commons-logging:jar:1.1.1:test
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.497s
+[INFO] Finished at: Thu Feb 20 16:30:09 CET 2014
+[INFO] Final Memory: 12M/218M
+[INFO] ------------------------------------------------------------------------
