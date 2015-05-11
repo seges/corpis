@@ -13,5 +13,7 @@ public interface Vat extends IMutableDomainObject<Short> {
 	Short vat();
 	
 	Date validFrom();
+	
+	Boolean defaultVat();
 
 }

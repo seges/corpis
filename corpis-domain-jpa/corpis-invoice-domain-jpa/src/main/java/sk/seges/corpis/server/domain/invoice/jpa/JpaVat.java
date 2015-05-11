@@ -15,9 +15,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import sk.seges.corpis.server.domain.server.model.base.VatBase;
 import sk.seges.sesam.domain.IDomainObject;
 
@@ -30,7 +27,7 @@ import sk.seges.sesam.domain.IDomainObject;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType=DiscriminatorType.INTEGER)
 @DiscriminatorValue(value="1")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "vat")
+//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "vat")
 public class JpaVat extends VatBase implements IDomainObject<Short> {
 
 	private static final long serialVersionUID = 4895994133127568395L;
@@ -53,5 +50,11 @@ public class JpaVat extends VatBase implements IDomainObject<Short> {
 	@Column(name="valid_from")
 	public Date getValidFrom() {
 		return super.getValidFrom();
+	}
+	
+	@Override
+	@Column(name="default")
+	public Boolean getDefaultVat() {
+		return super.getDefaultVat();
 	}
 }
