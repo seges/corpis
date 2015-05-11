@@ -151,7 +151,6 @@ public class JpaProduct extends ProductBase {
 
 	@Override
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = JpaProductPrice.class)
-	@OrderBy(ProductPriceData.PRIORITY)
 	@JoinTable(name = DBNamespace.TABLE_PREFIX + "product_product_prices")
 	public List<ProductPriceData> getPrices() {
 		return super.getPrices();
