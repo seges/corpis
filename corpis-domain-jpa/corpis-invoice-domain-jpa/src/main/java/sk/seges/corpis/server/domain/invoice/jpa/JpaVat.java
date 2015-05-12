@@ -53,7 +53,7 @@ public class JpaVat extends VatBase implements IDomainObject<Short> {
 	}
 	
 	@Override
-	@Column(name="default")
+	@Column(name="default_vat")
 	public Boolean getDefaultVat() {
 		return super.getDefaultVat();
 	}
