@@ -24,7 +24,8 @@ public class JpaSup extends SupBase implements SupData {
 
 	public JpaSup() {}
 
-	public JpaSup(String classType, String extId, Long id, String names, SupData parentSup, Boolean required, String type, Unit unit, String webId) {
+	public JpaSup(String classType, String extId, Long id, String names, SupData parentSup, Boolean required, String type, Unit unit, String webId,
+			Integer position) {
 		setClassType(classType);
 		setExtId(extId);
 		setId(id);
@@ -34,6 +35,7 @@ public class JpaSup extends SupBase implements SupData {
 		setType(type);
 		setUnit(unit);
 		setWebId(webId);
+		setPosition(position);
 	}
 
 	@Override
@@ -93,6 +95,12 @@ public class JpaSup extends SupBase implements SupData {
 	@Column
 	public String getExtId() {
 		return super.getExtId();
+	}
+	
+	@Override
+	@Column
+	public Integer getPosition() {
+		return super.getPosition();
 	}
 	
 	@Override

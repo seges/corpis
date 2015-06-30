@@ -33,7 +33,7 @@ public class JpaSupValue extends SupValueBase implements SupValueData {
 
 	@Override
 	@ManyToOne(targetEntity = JpaSup.class)
-	public JpaSup getSup() {
+	public SupData getSup() {
 		return (JpaSup)super.getSup();
 	}
 

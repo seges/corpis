@@ -23,5 +23,7 @@ public interface Sup extends IMutableDomainObject<Long>, HasWebId {
 	Boolean required();
 
 	String extId();
+	
+	Integer position();
 
 }
