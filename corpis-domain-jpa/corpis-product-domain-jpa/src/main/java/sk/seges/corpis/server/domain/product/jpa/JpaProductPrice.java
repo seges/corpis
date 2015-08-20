@@ -1,6 +1,17 @@
 package sk.seges.corpis.server.domain.product.jpa;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
@@ -75,7 +86,7 @@ public class JpaProductPrice extends ProductPriceBase {
 	};
 
 	@Override
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = JpaProductPriceCondition.class)
+	@ManyToOne(cascade = { CascadeType.REMOVE, CascadeType.MERGE}, fetch = FetchType.EAGER, targetEntity = JpaProductPriceCondition.class)
 	public ProductPriceConditionData getPriceCondition() {
 		return super.getPriceCondition();
 	}

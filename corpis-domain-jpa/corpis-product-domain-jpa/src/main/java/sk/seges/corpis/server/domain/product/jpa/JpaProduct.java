@@ -59,13 +59,13 @@ import sk.seges.sesam.security.shared.domain.ISecuredObject;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = DBNamespace.TABLE_PREFIX + "product")
 public class JpaProduct extends ProductBase {
 
-	protected static final String SEQ_PRODUCT = "seqProduct";
+	public static final String SEQ_PRODUCT = "seqProduct";
 
 	public static final String EXT_ID_COLUMN = "ext_id";
 	public static final String EXTERNAL_ID_COLUMN = "external_id";
 
-	protected static final int EXT_ID_MIN_LENGTH = 1;
-	protected static final int EXT_ID_MAX_LENGTH = 128;
+	public static final int EXT_ID_MIN_LENGTH = 1;
+	public static final int EXT_ID_MAX_LENGTH = 128;
 
 	public JpaProduct() {
 		setVisible(true);
