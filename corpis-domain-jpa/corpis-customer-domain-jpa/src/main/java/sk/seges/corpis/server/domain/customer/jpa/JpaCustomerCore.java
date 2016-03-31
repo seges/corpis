@@ -133,7 +133,8 @@ public class JpaCustomerCore extends CustomerCoreBase {
 	@Override
 	@Valid
 	@Embedded
-	@AttributeOverride(name = JpaCompanyName.COMPANY_NAME, column = @Column(unique = true, nullable = true))
+	@AttributeOverride(name = JpaCompanyName.COMPANY_NAME, column = @Column(unique = true, nullable = true, length = DBConstraints.COMPANY_LENGTH))
+	@Size(max = DBConstraints.COMPANY_LENGTH)
 	public JpaCompanyName getCompany() {
 		return (JpaCompanyName) super.getCompany();
 	}
