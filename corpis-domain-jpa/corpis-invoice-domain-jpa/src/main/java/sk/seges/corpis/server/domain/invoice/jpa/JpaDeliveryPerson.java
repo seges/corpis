@@ -25,6 +25,7 @@ public class JpaDeliveryPerson extends DeliveryPersonBase {
 		setPerson(new JpaPersonName());
 	}
 
+	@Override
 	@Embedded
 	@AttributeOverrides({
 			@AttributeOverride(name = CompanyNameData.COMPANY_NAME, column = @Column(name = TABLE_PREFIX + CompanyNameData.COMPANY_NAME)),
@@ -34,6 +35,7 @@ public class JpaDeliveryPerson extends DeliveryPersonBase {
 		return (JpaCompanyName) super.getCompany();
 	}
 
+	@Override
 	@Embedded
 	@AttributeOverrides({
 			@AttributeOverride(name = PersonNameData.FIRST_NAME, column = @Column(name = TABLE_PREFIX + PersonNameData.FIRST_NAME)),

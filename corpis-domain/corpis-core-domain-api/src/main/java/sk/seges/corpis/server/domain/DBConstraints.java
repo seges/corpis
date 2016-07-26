@@ -12,7 +12,7 @@ public class DBConstraints {
 	public static final byte ZIP_LENGTH = 5;
 	
 	// CompanyName
-	public static final byte COMPANY_LENGTH = 50;
+	public static final byte COMPANY_LENGTH = 100;
 	
 	// CustomerBase
 	public static final byte SHORTCUT_LENGTH = 10;
