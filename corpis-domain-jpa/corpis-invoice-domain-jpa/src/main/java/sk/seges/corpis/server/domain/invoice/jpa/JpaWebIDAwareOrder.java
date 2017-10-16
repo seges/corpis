@@ -68,6 +68,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 	public static final String WEB_ID = "webId";
 	public static final String JOIN_COLUMN_ORDER_ID = "order_id";
 	public static final String ORDER_TYPE = "orderType";
+	public static final String UID = "uid";
 
 	private Long id;
 	private String webId;
@@ -75,6 +76,7 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 	private LoyaltyCardData loyaltyCard;
 	private ECustomerDiscountType orderType;
 	private BigDecimal discountValue;
+	private String uid;
 
 	@Override
 	@Id
@@ -96,6 +98,15 @@ public class JpaWebIDAwareOrder extends JpaOrderCore implements HasWebId, OrderD
 	@Override
 	public void setWebId(String webId) {
 		this.webId = webId;
+	}
+
+	@Column(name=UID)
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 
 	@Override
