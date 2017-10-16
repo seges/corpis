@@ -37,7 +37,7 @@ public class JpaInvoiceItem extends InvoiceItemBase {
 
 	private static final long serialVersionUID = 207883043243372294L;
 
-	private static final short DESCRIPTION_LENGTH = 250;
+	private static final short DESCRIPTION_LENGTH = 500;
 
 	public JpaInvoiceItem() {
 		setVat(new JpaVat());
